@@ -10,13 +10,12 @@ namespace LB1
     {
 
         private List<Person> _persons;
+        int index;
 
-        
         public void Add(Person person)
         {
             _persons.Add(person);
         
-
         }
 
         public void Clear() 
@@ -24,9 +23,35 @@ namespace LB1
             _persons.Clear();
         
         }
-       
-        
 
+        public void Remove(Person person)
+        {
+            _persons.Remove(person);
 
+        }
+
+        public void RemoveAt()
+        {
+            _persons.RemoveAt(index);
+
+        }
+
+        public void Index(Person person)
+        {
+            Console.WriteLine(_persons[index]);
+
+        }
+
+        public void IndexOf(Person person)
+        {
+            _persons.IndexOf(person);
+
+        }
+
+        public void Count()
+        {
+            Console.WriteLine(_persons.Count);
+
+        }
     }
 }
