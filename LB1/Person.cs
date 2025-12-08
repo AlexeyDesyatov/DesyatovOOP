@@ -14,12 +14,6 @@ namespace LB1
         /// <summary>
         /// Варианты пола
         /// </summary>
-        public enum Gender
-        {
-            Male,
-            Female,
-            NonBinary
-        }
 
         private string _name;
         private string _surname;
@@ -89,6 +83,17 @@ namespace LB1
             }
         }
 
+        public string Introduce()
+        {
+            string genderStr = Gendr switch
+            {
+                Gender.Male => "Мужчина",
+                Gender.Female => "Женщина",
+                _ => "Неизвестно"
+            };
+
+            return $"Person {Name} {Surname} my friend!\nGender is {genderStr}";
+        }
     }
 
 }

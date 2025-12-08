@@ -12,6 +12,12 @@ namespace LB1
         private List<Person> _persons;
         int index;
 
+        public PersonList()
+        {
+            _persons = new List<Person>();
+            index = 0;
+        }
+
         public void Add(Person person)
         {
             _persons.Add(person);
@@ -36,21 +42,21 @@ namespace LB1
 
         }
 
-        public void Index(Person person)
+        public Person Index(int index)
         {
-            Console.WriteLine(_persons[index]);
+            return _persons[index];
 
         }
 
-        public void IndexOf(Person person)
+        public int IndexOf(Person person)
         {
-            _persons.IndexOf(person);
+            return _persons.IndexOf(person);
 
         }
 
-        public void Count()
+        public int Count()
         {
-            Console.WriteLine(_persons.Count);
+            return _persons.Count;
 
         }
     }
