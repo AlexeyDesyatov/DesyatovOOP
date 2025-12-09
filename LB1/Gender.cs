@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace LB1
 {
+    /// <summary>
+    /// Варианты пола
+    /// </summary>
     public enum Gender
     {
         Female,

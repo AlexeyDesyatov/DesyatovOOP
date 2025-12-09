@@ -11,9 +11,6 @@ namespace LB1
     /// </summary>
     public class Person
     {
-        /// <summary>
-        /// Варианты пола
-        /// </summary>
 
         private string _name;
         private string _surname;
@@ -26,7 +23,7 @@ namespace LB1
         /// <param name="name"></param>
         /// <param name="surname"></param>
         /// <param name="age"></param>
-        /// <param name="gendr"></param>
+        /// <param name="gender"></param>
         public Person(string name, string surname, int age, Gender gender)
         {
             Name = name;
@@ -82,7 +79,39 @@ namespace LB1
                 _gender = value;
             }
         }
-        
+
+        // Списки имён и фамилий для генерации случайных персон
+        private static readonly string[] _maleNames = { "Алексей", "Дмитрий", "Иван", "Сергей", "Андрей", "Максим", "Егор", "Артём" };
+        private static readonly string[] _femaleNames = { "Анна", "Елена", "Мария", "Ольга", "Татьяна", "Наталья", "Дарья", "Полина" };
+        private static readonly string[] _surnamesMale = { "Иванов", "Смирнов", "Кузнецов", "Попов", "Волков", "Соколов", "Лебедев", "Морозов" };
+        private static readonly string[] _surnamesFemale = { "Иванова", "Смирнова", "Кузнецова", "Попова", "Волкова", "Соколова", "Лебедева", "Морозова" };
+
+        private static readonly Random _random = new Random(); 
+
+        /// <summary>
+        /// Генерирует случайного человека с данными для тестирования.
+        /// </summary>
+        public static Person GetRandomPerson()
+        {
+            var gender = _random.Next(2) == 0 ? Gender.Male : Gender.Female;
+
+            string name, surname;
+            int age = _random.Next(0, 123); // от 0 до 123 включительно
+
+            if (gender == Gender.Male)
+            {
+                name = _maleNames[_random.Next(_maleNames.Length)];
+                surname = _surnamesMale[_random.Next(_surnamesMale.Length)];
+            }
+            else
+            {
+                name = _femaleNames[_random.Next(_femaleNames.Length)];
+                surname = _surnamesFemale[_random.Next(_surnamesFemale.Length)];
+            }
+
+            return new Person(name, surname, age, gender);
+        }
+
     }
 
 }

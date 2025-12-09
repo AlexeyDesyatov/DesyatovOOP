@@ -8,26 +8,26 @@ class Program
         PersonList list1 = new PersonList();
         PersonList list2 = new PersonList();
 
-        Person person1 = new Person("Ivan", "Ivanov", 22, Gender.Male);
-        Person person2 = new Person("Dmitriy", "Dmitriev", 25, Gender.Male);
-        Person person3 = new Person("Dmi", "Dmiev", 25, Gender.Male);
+        Console.WriteLine("Генерация начальных данных с помощью Person.GetRandomPerson()...");
 
-        Person person4 = new Person("Елена", "Кузнецова", 35, Gender.Female);
-        Person person5 = new Person("Дмитрий", "Попов", 40, Gender.Male);
-        Person person6 = new Person("Ольга", "Смирнова", 22, Gender.Female);
+        
+        // Заполняем list1 тремя случайными персонами
+        
+        for (int i = 0; i < 3; i++)
+        {
+            list1.Add(Person.GetRandomPerson());
+        }
 
-        list1.Add(person1);
-        list1.Add(person2);
-        list1.Add(person3);
+        // Заполняем list2 тремя случайными персонами
+        for (int i = 0; i < 3; i++)
+        {
+            list2.Add(Person.GetRandomPerson());
+        }
 
-        list2.Add(person4);
-        list2.Add(person5);
-        list2.Add(person6);
-
+        
         // Пункт b: Выводим исходное состояние
         Console.WriteLine("Нажмите любую клавишу, чтобы показать начальное состояние...");
         Console.ReadKey();
-
         PersonList.PrintPersonList(list1, "Список 1");
         PersonList.PrintPersonList(list2, "Список 2");
 
@@ -57,7 +57,6 @@ class Program
         Console.ReadKey();
         list2.Clear();
         PersonList.PrintPersonList(list2, "Список 2 (очищен)");
-
         Console.WriteLine("\n\nРабота завершена. Нажмите любую клавишу для выхода...");
         Console.ReadKey();
     }
