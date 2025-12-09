@@ -11,7 +11,7 @@ namespace LB1
     /// </summary>
     internal class PersonList
     {
-
+        
         private List<Person> _persons;
 
         /// <summary>
@@ -28,16 +28,16 @@ namespace LB1
         public void Add(Person person)
         {
             _persons.Add(person);
-        
+
         }
 
         /// <summary>
         /// Удаляет все элементы из списка.
         /// </summary>
-        public void Clear() 
-        { 
+        public void Clear()
+        {
             _persons.Clear();
-        
+
         }
 
         /// <summary>
@@ -86,24 +86,16 @@ namespace LB1
         }
 
         /// <summary>
-        /// Выводит содержимое списка людей в консоль в человекочитаемом формате.
+        /// Возвращает список.
         /// </summary>
-        public static void PrintPersonList(PersonList list, string listName)
+        public List<Person> Persons
         {
-            Console.WriteLine($"\n=== {listName} ===");
-            for (int i = 0; i < list.Count(); i++)
-            {
-                Person p = list.Index(i);
-                string genderStr = p.Gender switch
-                {
-                    Gender.Male => "Мужчина",
-                    Gender.Female => "Женщина",
-                    _ => "Неизвестно"
-                };
+            get { return _persons; }
 
-                Console.WriteLine($"Имя: {p.Name}, Фамилия: {p.Surname}, Возраст: {p.Age}, Пол: {genderStr}");
-            }
         }
+
+
+
     }
-    
+
 }
