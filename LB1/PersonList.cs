@@ -10,12 +10,10 @@ namespace LB1
     {
 
         private List<Person> _persons;
-        int index;
 
         public PersonList()
         {
             _persons = new List<Person>();
-            index = 0;
         }
 
         public void Add(Person person)
@@ -36,7 +34,7 @@ namespace LB1
 
         }
 
-        public void RemoveAt()
+        public void RemoveAt(int index)
         {
             _persons.RemoveAt(index);
 
@@ -59,5 +57,22 @@ namespace LB1
             return _persons.Count;
 
         }
+        public static void PrintPersonList(PersonList list, string listName)
+        {
+            Console.WriteLine($"\n=== {listName} ===");
+            for (int i = 0; i < list.Count(); i++)
+            {
+                Person p = list.Index(i);
+                string genderStr = p.Gender switch
+                {
+                    Gender.Male => "Мужчина",
+                    Gender.Female => "Женщина",
+                    _ => "Неизвестно"
+                };
+
+                Console.WriteLine($"Имя: {p.Name}, Фамилия: {p.Surname}, Возраст: {p.Age}, Пол: {genderStr}");
+            }
+        }
     }
+    
 }

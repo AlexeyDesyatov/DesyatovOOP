@@ -32,7 +32,7 @@ namespace LB1
             Name = name;
             Surname = surname;
             Age = age;
-            Gendr = gender; 
+            Gender = gender; 
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace LB1
         /// <summary>
         /// Получение и валидация пола
         /// </summary>
-        public Gender Gendr
+        public Gender Gender
         {
             get { return _gender; }
             set
@@ -82,18 +82,7 @@ namespace LB1
                 _gender = value;
             }
         }
-
-        public string Introduce()
-        {
-            string genderStr = Gendr switch
-            {
-                Gender.Male => "Мужчина",
-                Gender.Female => "Женщина",
-                _ => "Неизвестно"
-            };
-
-            return $"Person {Name} {Surname} my friend!\nGender is {genderStr}";
-        }
+        
     }
 
 }
