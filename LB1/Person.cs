@@ -32,6 +32,7 @@ namespace LB1
             Gender = gender; 
         }
 
+        public Person() : this("Ivan", "Ivanov", 18, Gender.Female) { }
         /// <summary>
         /// Получение и валидация имени
         /// </summary>
@@ -40,6 +41,10 @@ namespace LB1
             get { return _name; }
             set
             {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new Exception("Имя не может быть пустым!");
+                }
                 _name = value;
             }
         }
@@ -52,6 +57,10 @@ namespace LB1
             get { return _surname; }
             set
             {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new Exception("Фамилия не может быть пустой!");
+                }   
                 _surname = value;
             }
         }
@@ -64,6 +73,13 @@ namespace LB1
             get { return _age; }
             set
             {
+                const int minAge = 0;
+                const int maxAge = 123;
+                if (value < minAge || value > maxAge)
+                {
+                    throw new Exception($"{nameof(Age)} должен быть от " +
+                        $"{minAge} до {maxAge}!");
+                }
                 _age = value;
             }
         }
@@ -75,139 +91,54 @@ namespace LB1
         {
             get { return _gender; }
             set
-            {
+            {               
                 _gender = value;
             }
         }
-
-        private static readonly Random _random = new Random(); 
 
         /// <summary>
         /// Генерирует случайного человека с данными для тестирования.
         /// </summary>
         public static Person GetRandomPerson()
         {
-            string[] _maleNames = { "Алексей", "Дмитрий", "Иван", "Сергей",
+            Random random = new Random();
+
+            string[] maleNames = { "Алексей", "Дмитрий", "Иван", "Сергей",
                                     "Андрей", "Максим", "Егор", "Артём" };
 
-            string[] _femaleNames = { "Анна", "Елена", "Мария",
+            string[] femaleNames = { "Анна", "Елена", "Мария",
                                       "Ольга", "Татьяна", "Наталья",
                                       "Дарья", "Полина" };
 
-            string[] _surnamesMale = { "Иванов", "Смирнов", "Кузнецов",
+            string[] surnamesMale = { "Иванов", "Смирнов", "Кузнецов",
                                        "Попов", "Волков", "Соколов", 
                                        "Лебедев", "Морозов" };
 
-            string[] _surnamesFemale = { "Иванова", "Смирнова", "Кузнецова",
+            string[] surnamesFemale = { "Иванова", "Смирнова", "Кузнецова",
                                          "Попова", "Волкова", "Соколова", 
                                          "Лебедева", "Морозова" };
 
-            var gender = _random.Next(2) == 0 ? Gender.Male : Gender.Female;
+            var gender = random.Next(2) == 0 ? Gender.Male : Gender.Female;
 
             string name, surname;
-            int age = _random.Next(0, 123);
+            int age = random.Next(0, 123);
 
             if (gender == Gender.Male)
             {
-                name = _maleNames[_random.Next(_maleNames.Length)];
-                surname = _surnamesMale[_random.Next(_surnamesMale.Length)];
+                name = maleNames[random.Next(maleNames.Length)];
+                surname = surnamesMale[random.Next(surnamesMale.Length)];
             }
             else
             {
-                name = _femaleNames[_random.Next(_femaleNames.Length)];
-                surname = _surnamesFemale[_random.Next(_surnamesFemale.Length)];
+                name = femaleNames[random.Next(femaleNames.Length)];
+                surname = surnamesFemale[random.Next(surnamesFemale.Length)];
             }
 
             return new Person(name, surname, age, gender);
         }
 
 
-        public static Person ReadFromConsole()
-        {
-            var person = new Person("Заглушка", "Заглушка", 0, Gender.Male);
-
-            var actionDictionary = new Dictionary<string, Action>()
-
-            {
-                {
-                    "имя",
-                    new Action(() =>
-                    {
-                        string input = Console.ReadLine();
-                        if (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
-                            throw new Exception("Имя не может быть пустым!");
-                        person._name = input.Trim();
-                    })
-                },
-                {
-                     "фамилию",
-                     new Action(() =>
-                     {
-                         string input = Console.ReadLine();
-                         if (string.IsNullOrEmpty(input) || string.IsNullOrWhiteSpace(input))
-                             throw new Exception("Фамилия не может быть пустой!");
-                         person._surname = input.Trim();
-                     })
-                },
-                {
-                     "возраст",
-                     new Action(() =>
-                     {
-                         if (int.TryParse(Console.ReadLine(), out int age))
-                         {
-                             if (age < 0 || age > 123)
-                                 throw new Exception("Возраст должен быть от 0 до 123!");
-                             person._age = age;
-                         }
-                         else
-                         {
-                             throw new Exception("Введённая строка не может быть преобразована в целое число!");
-                         }
-                     })
-                },
-                {
-                     "пол (1 — Мужчина, 2 — Женщина)",
-                      new Action(() =>
-                      {
-                          string input = Console.ReadLine();
-                          switch (input)
-                          {
-                              case "1":
-                                  person._gender = Gender.Male;
-                                  break;
-                              case "2":
-                                  person._gender = Gender.Female;
-                                  break;
-                              default:
-                                  throw new Exception("Некорректный ввод пола! Введите 1 или 2.");
-                          }
-                      })
-                }
-            };
-
-            foreach (var actionHandler in actionDictionary)
-            {
-                ActionHandler(actionHandler.Value, actionHandler.Key);
-            }
-
-            return person;
-        }
-        private static void ActionHandler(Action action, string fieldName)
-        {
-            while (true)
-            {
-                try
-                {
-                    Console.Write($"Введите {fieldName}: ");
-                    action.Invoke();
-                    return;
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine($"❌ Ошибка: {exception.Message} Попробуйте снова.");
-                }
-            }
-        }
+        
 
 
     }

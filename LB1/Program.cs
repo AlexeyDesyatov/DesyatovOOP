@@ -60,9 +60,9 @@ class Program
         Console.WriteLine("\n\nРабота завершена. Нажмите любую клавишу для выхода...");
         Console.ReadKey();
 
-        // ➕ Добавляем блок: ввод → добавление в список → вывод
+        // ввод - добавление в список - вывод
         Console.WriteLine("\n\nДобавим человека вручную в Список 1:");
-        Person newperson = Person.ReadFromConsole();  
+        Person newperson = ReadFromConsole();  
         list1.Add(newperson);                     
         PrintPersonList(list1, "Список 1 (после ручного добавления)");
         Console.WriteLine("\nГотово! Нажмите любую клавишу для завершения.");
@@ -90,6 +90,87 @@ class Program
         }
     }
 
+    public static Person ReadFromConsole()
+    {
+        var person = new Person();
+
+        var actionDictionary = new Dictionary<string, Action>()
+
+            {
+                {
+                    "имя",
+                    new Action(() =>
+                    {
+                        person.Name = Console.ReadLine();
+                    })
+                },
+                {
+                     "фамилию",
+                     new Action(() =>
+                     {
+                         person.Surname = Console.ReadLine();                        
+                     })
+                },
+                {
+                     "возраст",
+                     new Action(() =>
+                     {
+                         if (int.TryParse(Console.ReadLine(), out int age))
+                         {
+                             person.Age = age;
+                         }
+                         else
+                         {
+                             throw new Exception("Введённая строка" +
+                                 "не может быть преобразована в целое число!");
+                         }
+                     })
+                },
+                {
+                     "пол (1 — Мужчина, 2 — Женщина)",
+                      new Action(() =>
+                      {
+                          string input = Console.ReadLine();
+                          switch (input)
+                          {
+                              case "1":
+                                  person.Gender = Gender.Male;
+                                  break;
+                              case "2":
+                                  person.Gender = Gender.Female;
+                                  break;
+                              default:
+                                  throw new Exception("Некорректный ввод пола!" +
+                                      " Введите 1 или 2.");
+                          }
+                      })
+                }
+            };
+
+        foreach (var actionHandler in actionDictionary)
+        {
+            ActionHandler(actionHandler.Value, actionHandler.Key);
+        }
+
+        return person;
+    }
+    private static void ActionHandler(Action action, string fieldName)
+    {
+        while (true)
+        {
+            try
+            {
+                Console.Write($"Введите {fieldName}: ");
+                action.Invoke();
+                return;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine($" Ошибка: {exception.Message}" +
+                    $" Попробуйте снова.");
+            }
+        }
+    }
 
 
 }
