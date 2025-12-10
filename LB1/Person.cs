@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
+
+
 
 namespace LB1
 {
@@ -63,7 +61,16 @@ namespace LB1
                 {
                     throw new Exception("Имя не может быть пустым!");
                 }
-                _name = value;
+
+                if (!Regex.IsMatch(value, @"^[а-яА-ЯёЁa-zA-Z]+(?:-[а-яА-ЯёЁa-zA-Z]+)?$"))
+                {
+                    throw new ArgumentException("Имя может содержать только русские " +
+                        "или английские буквы. Запись двойного имени через '-'");
+                }
+
+                System.Globalization.TextInfo textInfo =
+                    System.Globalization.CultureInfo.CurrentCulture.TextInfo;
+                _name = textInfo.ToTitleCase(value.ToLower());
             }
         }
 
@@ -78,8 +85,16 @@ namespace LB1
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new Exception("Фамилия не может быть пустой!");
-                }   
-                _surname = value;
+                }
+
+                if (!Regex.IsMatch(value, @"^[а-яА-ЯёЁa-zA-Z]+(?:-[а-яА-ЯёЁa-zA-Z]+)?$"))
+                {
+                    throw new ArgumentException("Фамилия может содержать только русские " +
+                        "или английские буквы. Запись двойной фамилии через '-'");
+                }
+                System.Globalization.TextInfo textInfo =
+                    System.Globalization.CultureInfo.CurrentCulture.TextInfo;
+                _surname = textInfo.ToTitleCase(value.ToLower());
             }
         }
 

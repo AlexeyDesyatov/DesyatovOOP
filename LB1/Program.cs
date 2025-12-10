@@ -41,7 +41,7 @@ class Program
         // Копируем второго человека из первого списка в конец второго
         Console.WriteLine("\n\nНажмите любую клавишу, чтобы скопировать 2-го человека из Списка 1 в Список 2...");
         Console.ReadKey();
-        Person personToCopy = list1.Index(1); 
+        Person personToCopy = list1.GetByIndex(1); 
         list2.Add(personToCopy);
         PrintPersonList(list1, "Список 1 (после копирования)");
         PrintPersonList(list2, "Список 2 (после копирования)");

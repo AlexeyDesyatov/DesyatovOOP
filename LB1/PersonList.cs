@@ -56,7 +56,7 @@ namespace LB1
         /// <summary>
         /// Возвращает человека по указанному индексу.
         /// </summary>
-        public Person Index(int index)
+        public Person GetByIndex(int index)
         {
             return _persons[index];
         }
