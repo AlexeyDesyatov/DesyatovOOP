@@ -27,46 +27,53 @@ class Program
         }
 
         // Выводим исходное состояние
-        Console.WriteLine("Нажмите любую клавишу, чтобы показать начальное состояние...");
-        Console.ReadKey();
+        Pause("показать начальное состояние");
         PrintPersonList(list1, "Список 1");
         PrintPersonList(list2, "Список 2");
 
         // Добавляем нового человека в первый список
-        Console.WriteLine("\n\nНажмите любую клавишу, чтобы добавить нового человека в Список 1...");
-        Console.ReadKey();
+        Pause("добавить нового человека в Список 1");
         list1.Add(new Person("Ольга", "Смирнова", 27, Gender.Female));
         PrintPersonList(list1, "Список 1 (после добавления)");
 
         // Копируем второго человека из первого списка в конец второго
-        Console.WriteLine("\n\nНажмите любую клавишу, чтобы скопировать 2-го человека из Списка 1 в Список 2...");
-        Console.ReadKey();
-        Person personToCopy = list1.GetByIndex(1); 
+        Pause("скопировать 2-го человека из Списка 1 в Список 2");
+        Person personToCopy = list1.GetByIndex(1);
         list2.Add(personToCopy);
         PrintPersonList(list1, "Список 1 (после копирования)");
         PrintPersonList(list2, "Список 2 (после копирования)");
 
         // Удаляем второго человека из первого списка
-        Console.WriteLine("\n\nНажмите любую клавишу, чтобы удалить 2-го человека из Списка 1...");
-        Console.ReadKey();
+        Pause("удалить 2-го человека из Списка 1");
         list1.RemoveAt(1); // Удаляем по индексу
         PrintPersonList(list1, "Список 1 (после удаления)");
         PrintPersonList(list2, "Список 2 (остался без изменений)");
 
         // Очищаем второй список
-        Console.WriteLine("\n\nНажмите любую клавишу, чтобы очистить Список 2...");
-        Console.ReadKey();
+        Pause("очистить Список 2");
         list2.Clear();
         PrintPersonList(list2, "Список 2 (очищен)");
-        Console.WriteLine("\n\nРабота завершена. Нажмите любую клавишу для выхода...");
+        Console.WriteLine("\nРабота завершена." +
+            " Нажмите любую клавишу для выхода...");
         Console.ReadKey();
 
         // Ввод, добавление в список, вывод
-        Console.WriteLine("\n\nДобавим человека вручную в Список 1:");
-        Person newperson = ReadFromConsole();  
-        list1.Add(newperson);                     
+        Console.WriteLine("\nДобавим человека вручную в Список 1:");
+        Person newperson = ReadFromConsole();
+        list1.Add(newperson);
         PrintPersonList(list1, "Список 1 (после ручного добавления)");
         Console.WriteLine("\nГотово! Нажмите любую клавишу для завершения.");
+        Console.ReadKey();
+    }
+
+    /// <summary>
+    /// Выводит приглашение
+    /// </summary>
+    /// <param name="nextAction">описание дальнейшего действия</param>
+    static void Pause(string nextAction)
+    {
+        Console.WriteLine($"\nНажмите любую клавишу," +
+            $" чтобы продолжить и {nextAction}");
         Console.ReadKey();
     }
 
@@ -127,7 +134,7 @@ class Program
                          else
                          {
                              throw new Exception("Введённая строка" +
-                                 "не может быть преобразована в целое число!");
+                                 "не может быть преобразована в целое число");
                          }
                      })
                 },
@@ -145,7 +152,7 @@ class Program
                                   person.Gender = Gender.Female;
                                   break;
                               default:
-                                  throw new Exception("Некорректный ввод пола!" +
+                                  throw new Exception("Некорректный ввод пола" +
                                       " Введите 1 или 2.");
                           }
                       })

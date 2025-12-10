@@ -45,7 +45,7 @@ namespace LB1
         }
 
         /// <summary>
-        /// Создаение нового экземпляра класса Person со значениями по умолчанию.
+        /// Создаение нового экземпляра класса Person по умолчанию.
         /// </summary>
         public Person() : this("Ivan", "Ivanov", 18, Gender.Female) { }
 
@@ -62,10 +62,13 @@ namespace LB1
                     throw new Exception("Имя не может быть пустым!");
                 }
 
-                if (!Regex.IsMatch(value, @"^[а-яА-ЯёЁa-zA-Z]+(?:-[а-яА-ЯёЁa-zA-Z]+)?$"))
+                if (!Regex.IsMatch(value,
+                    @"^[а-яА-ЯёЁa-zA-Z]+(?:-[а-яА-ЯёЁa-zA-Z]+)?$"))
                 {
-                    throw new ArgumentException("Имя может содержать только русские " +
-                        "или английские буквы. Запись двойного имени через '-'");
+                    throw new ArgumentException(
+                        "Имя может содержать только русские" +
+                        " или английские буквы. " +
+                        "Запись двойного имени через '-'");
                 }
 
                 System.Globalization.TextInfo textInfo =
@@ -87,10 +90,13 @@ namespace LB1
                     throw new Exception("Фамилия не может быть пустой!");
                 }
 
-                if (!Regex.IsMatch(value, @"^[а-яА-ЯёЁa-zA-Z]+(?:-[а-яА-ЯёЁa-zA-Z]+)?$"))
+                if (!Regex.IsMatch(value,
+                    @"^[а-яА-ЯёЁa-zA-Z]+(?:-[а-яА-ЯёЁa-zA-Z]+)?$"))
                 {
-                    throw new ArgumentException("Фамилия может содержать только русские " +
-                        "или английские буквы. Запись двойной фамилии через '-'");
+                    throw new ArgumentException(
+                        "Фамилия может содержать только русские " +
+                        "или английские буквы." +
+                        " Запись двойной фамилии через '-'");
                 }
                 System.Globalization.TextInfo textInfo =
                     System.Globalization.CultureInfo.CurrentCulture.TextInfo;
