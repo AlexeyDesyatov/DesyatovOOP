@@ -10,8 +10,7 @@ namespace LB1
     /// Представляет список объектов и базовые операции управления.
     /// </summary>
     internal class PersonList
-    {
-        
+    {      
         private List<Person> _persons;
 
         /// <summary>
@@ -28,7 +27,6 @@ namespace LB1
         public void Add(Person person)
         {
             _persons.Add(person);
-
         }
 
         /// <summary>
@@ -37,7 +35,6 @@ namespace LB1
         public void Clear()
         {
             _persons.Clear();
-
         }
 
         /// <summary>
@@ -46,7 +43,6 @@ namespace LB1
         public void Remove(Person person)
         {
             _persons.Remove(person);
-
         }
 
         /// <summary>
@@ -55,7 +51,6 @@ namespace LB1
         public void RemoveAt(int index)
         {
             _persons.RemoveAt(index);
-
         }
 
         /// <summary>
@@ -64,7 +59,6 @@ namespace LB1
         public Person Index(int index)
         {
             return _persons[index];
-
         }
 
         /// <summary>
@@ -73,7 +67,6 @@ namespace LB1
         public int IndexOf(Person person)
         {
             return _persons.IndexOf(person);
-
         }
 
         /// <summary>
@@ -82,7 +75,6 @@ namespace LB1
         public int Count()
         {
             return _persons.Count;
-
         }
 
         /// <summary>
@@ -91,11 +83,6 @@ namespace LB1
         public List<Person> Persons
         {
             get { return _persons; }
-
         }
-
-
-
     }
-
 }

@@ -3,16 +3,18 @@ using System;
 
 class Program
 {
+    /// <summary>
+    /// Главное тело программы.
+    /// </summary>
+    /// <param name="args">аргумент</param>
     static void Main(string[] args)
     {
         PersonList list1 = new PersonList();
         PersonList list2 = new PersonList();
 
         Console.WriteLine("Генерация начальных данных с помощью Person.GetRandomPerson()...");
-
         
         // Заполняем list1 тремя случайными персонами
-        
         for (int i = 0; i < 3; i++)
         {
             list1.Add(Person.GetRandomPerson());
@@ -24,20 +26,19 @@ class Program
             list2.Add(Person.GetRandomPerson());
         }
 
-        
-        // Пункт b: Выводим исходное состояние
+        // Выводим исходное состояние
         Console.WriteLine("Нажмите любую клавишу, чтобы показать начальное состояние...");
         Console.ReadKey();
         PrintPersonList(list1, "Список 1");
         PrintPersonList(list2, "Список 2");
 
-        // Пункт c: Добавляем нового человека в первый список
+        // Добавляем нового человека в первый список
         Console.WriteLine("\n\nНажмите любую клавишу, чтобы добавить нового человека в Список 1...");
         Console.ReadKey();
         list1.Add(new Person("Ольга", "Смирнова", 27, Gender.Female));
         PrintPersonList(list1, "Список 1 (после добавления)");
 
-        // Пункт d: Копируем второго человека из первого списка в конец второго
+        // Копируем второго человека из первого списка в конец второго
         Console.WriteLine("\n\nНажмите любую клавишу, чтобы скопировать 2-го человека из Списка 1 в Список 2...");
         Console.ReadKey();
         Person personToCopy = list1.Index(1); 
@@ -45,14 +46,14 @@ class Program
         PrintPersonList(list1, "Список 1 (после копирования)");
         PrintPersonList(list2, "Список 2 (после копирования)");
 
-        // Пункт e: Удаляем второго человека из первого списка
+        // Удаляем второго человека из первого списка
         Console.WriteLine("\n\nНажмите любую клавишу, чтобы удалить 2-го человека из Списка 1...");
         Console.ReadKey();
         list1.RemoveAt(1); // Удаляем по индексу
         PrintPersonList(list1, "Список 1 (после удаления)");
         PrintPersonList(list2, "Список 2 (остался без изменений)");
 
-        // Пункт f: Очищаем второй список
+        // Очищаем второй список
         Console.WriteLine("\n\nНажмите любую клавишу, чтобы очистить Список 2...");
         Console.ReadKey();
         list2.Clear();
@@ -60,19 +61,20 @@ class Program
         Console.WriteLine("\n\nРабота завершена. Нажмите любую клавишу для выхода...");
         Console.ReadKey();
 
-        // ввод - добавление в список - вывод
+        // Ввод, добавление в список, вывод
         Console.WriteLine("\n\nДобавим человека вручную в Список 1:");
         Person newperson = ReadFromConsole();  
         list1.Add(newperson);                     
         PrintPersonList(list1, "Список 1 (после ручного добавления)");
         Console.WriteLine("\nГотово! Нажмите любую клавишу для завершения.");
         Console.ReadKey();
-
     }
 
     /// <summary>
     /// Выводит содержимое списка людей в консоль.
     /// </summary>
+    /// <param name="list">список людей</param>
+    /// <param name="listName">название списка</param>
     public static void PrintPersonList(PersonList list, string listName)
     {
         Console.WriteLine($"\n=== {listName} ===");
@@ -84,18 +86,21 @@ class Program
                 Gender.Female => "Женщина",
                 _ => "Неизвестно"
             };
-
             Console.WriteLine($"Имя: {person.Name}, Фамилия: {person.Surname}," +
                               $" Возраст: {person.Age}, Пол: {genderStr}");
         }
     }
 
+    /// <summary>
+    /// Ввод пользователя с консоли.
+    /// </summary>
+    /// <returns>возвращает объект класса Person</returns>
+    /// <exception cref="Exception">создается при неверном вводе</exception>
     public static Person ReadFromConsole()
     {
         var person = new Person();
 
         var actionDictionary = new Dictionary<string, Action>()
-
             {
                 {
                     "имя",
@@ -154,6 +159,12 @@ class Program
 
         return person;
     }
+
+    /// <summary>
+    /// При возникновении исключения выводит сообщение и повторяет ввод.
+    /// </summary>
+    /// <param name="action">Действие, ввод и присваивание</param>
+    /// <param name="fieldName">Название поля</param>
     private static void ActionHandler(Action action, string fieldName)
     {
         while (true)
@@ -171,6 +182,4 @@ class Program
             }
         }
     }
-
-
 }

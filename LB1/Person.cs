@@ -7,23 +7,37 @@ using System.Threading.Tasks;
 namespace LB1
 {
     /// <summary>
-    /// Хранение и обработка персональных данных
+    /// Хранение и обработка персональных данных.
     /// </summary>
     public class Person
     {
-
+        /// <summary>
+        /// Имя человека
+        /// </summary>
         private string _name;
+
+        /// <summary>
+        /// Фамилия человека
+        /// </summary>
         private string _surname;
+
+        /// <summary>
+        /// Возраст человека
+        /// </summary>
         private int _age;
+
+        /// <summary>
+        /// Пол человека
+        /// </summary>
         private Gender _gender;
 
         /// <summary>
-        /// Инициализируем новый класс
+        /// Инициализируем новый экземпляр класса Person.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="surname"></param>
-        /// <param name="age"></param>
-        /// <param name="gender"></param>
+        /// <param name="name">Имя</param>
+        /// <param name="surname">Фамилия</param>
+        /// <param name="age">Возраст</param>
+        /// <param name="gender">Пол</param>
         public Person(string name, string surname, int age, Gender gender)
         {
             Name = name;
@@ -32,9 +46,13 @@ namespace LB1
             Gender = gender; 
         }
 
-        public Person() : this("Ivan", "Ivanov", 18, Gender.Female) { }
         /// <summary>
-        /// Получение и валидация имени
+        /// Создаение нового экземпляра класса Person со значениями по умолчанию.
+        /// </summary>
+        public Person() : this("Ivan", "Ivanov", 18, Gender.Female) { }
+
+        /// <summary>
+        /// Получение и валидация имени.
         /// </summary>
         public string Name
         {
@@ -50,7 +68,7 @@ namespace LB1
         }
 
         /// <summary>
-        /// Получение и валидация фамилии
+        /// Получение и валидация фамилии.
         /// </summary>
         public string Surname
         {
@@ -66,7 +84,7 @@ namespace LB1
         }
 
         /// <summary>
-        /// Получение и валидация возраста
+        /// Получение и валидация возраста.
         /// </summary>
         public int Age
         {
@@ -85,7 +103,7 @@ namespace LB1
         }
 
         /// <summary>
-        /// Получение и валидация пола
+        /// Получение и валидация пола.
         /// </summary>
         public Gender Gender
         {
@@ -99,6 +117,7 @@ namespace LB1
         /// <summary>
         /// Генерирует случайного человека с данными для тестирования.
         /// </summary>
+        /// <returns>Возвращает новый экземпляр класса Person</returns>
         public static Person GetRandomPerson()
         {
             Random random = new Random();
@@ -136,10 +155,5 @@ namespace LB1
 
             return new Person(name, surname, age, gender);
         }
-
-
-        
-
-
     }
 }
