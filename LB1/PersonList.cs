@@ -10,7 +10,8 @@ namespace LB1
     /// Представляет список объектов и базовые операции управления.
     /// </summary>
     internal class PersonList
-    {      
+    {
+        //TODO: XML
         private List<Person> _persons;
 
         /// <summary>
@@ -82,7 +83,10 @@ namespace LB1
         /// </summary>
         public List<Person> Persons
         {
-            get { return _persons; }
+            get 
+            { 
+                return _persons; 
+            }
         }
     }
 }

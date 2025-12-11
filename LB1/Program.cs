@@ -1,12 +1,15 @@
 ﻿using LB1;
 using System;
 
+//TODO: RSDN
 class Program
 {
+    //TOOD: refactor
     /// <summary>
     /// Главное тело программы.
     /// </summary>
     /// <param name="args">аргумент</param>
+    /// //TODO: RSDN
     static void Main(string[] args)
     {
         PersonList list1 = new PersonList();
@@ -108,56 +111,57 @@ class Program
         var person = new Person();
 
         var actionDictionary = new Dictionary<string, Action>()
+        {
             {
+                "имя",
+                new Action(() =>
                 {
-                    "имя",
-                    new Action(() =>
-                    {
-                        person.Name = Console.ReadLine();
-                    })
-                },
-                {
-                     "фамилию",
-                     new Action(() =>
+                    person.Name = Console.ReadLine();
+                })
+            },
+            {
+                 "фамилию",
+                 new Action(() =>
+                 {
+                     person.Surname = Console.ReadLine();                        
+                 })
+            },
+            {
+                 "возраст",
+                 new Action(() =>
+                 {
+                     if (int.TryParse(Console.ReadLine(), out int age))
                      {
-                         person.Surname = Console.ReadLine();                        
-                     })
-                },
-                {
-                     "возраст",
-                     new Action(() =>
+                         person.Age = age;
+                     }
+                     else
                      {
-                         if (int.TryParse(Console.ReadLine(), out int age))
-                         {
-                             person.Age = age;
-                         }
-                         else
-                         {
-                             throw new Exception("Введённая строка " +
-                                 "не может быть преобразована в число");
-                         }
-                     })
-                },
-                {
-                     "пол (1 — Мужчина, 2 — Женщина)",
-                      new Action(() =>
+                         throw new Exception("Введённая строка " +
+                             "не может быть преобразована в число");
+                     }
+                 })
+            },
+            {
+                 "пол (1 — Мужчина, 2 — Женщина)",
+                  new Action(() =>
+                  {
+                      string input = Console.ReadLine();
+                      switch (input)
                       {
-                          string input = Console.ReadLine();
-                          switch (input)
-                          {
-                              case "1":
-                                  person.Gender = Gender.Male;
-                                  break;
-                              case "2":
-                                  person.Gender = Gender.Female;
-                                  break;
-                              default:
-                                  throw new Exception("Некорректный ввод" +
-                                      " Введите 1 или 2.");
-                          }
-                      })
-                }
-            };
+                          //TODO: {}
+                          case "1":
+                              person.Gender = Gender.Male;
+                              break;
+                          case "2":
+                              person.Gender = Gender.Female;
+                              break;
+                          default:
+                              throw new Exception("Некорректный ввод" +
+                                  " Введите 1 или 2.");
+                      }
+                  })
+            }
+        };
 
         foreach (var actionHandler in actionDictionary)
         {

@@ -1,7 +1,5 @@
 ﻿using System.Text.RegularExpressions;
 
-
-
 namespace LB1
 {
     /// <summary>
@@ -63,6 +61,7 @@ namespace LB1
                 }
 
                 if (!Regex.IsMatch(value,
+                    //TODO: duplication
                     @"^[а-яА-ЯёЁa-zA-Z]+(?:-[а-яА-ЯёЁa-zA-Z]+)?$"))
                 {
                     throw new ArgumentException(
@@ -91,6 +90,7 @@ namespace LB1
                 }
 
                 if (!Regex.IsMatch(value,
+                    //TODO: duplication
                     @"^[а-яА-ЯёЁa-zA-Z]+(?:-[а-яА-ЯёЁa-zA-Z]+)?$"))
                 {
                     throw new ArgumentException(
@@ -158,8 +158,11 @@ namespace LB1
                                          "Попова", "Волкова", "Соколова", 
                                          "Лебедева", "Морозова" };
 
-            var gender = random.Next(2) == 0 ? Gender.Male : Gender.Female;
+            var gender = random.Next(2) == 0 
+                ? Gender.Male 
+                : Gender.Female;
 
+            //TODO: RSDN
             string name, surname;
             int age = random.Next(0, 123);
 
