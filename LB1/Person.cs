@@ -68,6 +68,7 @@ namespace Model
             set
             {
                 _surname = Validate(value, "Фамилия");
+                EnsureLanguage();
             }
         }
 
@@ -102,13 +103,26 @@ namespace Model
             }
         }
 
-        //TODO: XML
+        //TODO: XML+
+        /// <summary>
+        /// Проверка строки, содержащей только кириллические символы
+        /// </summary>
         private const string RussianPattern = @"^[а-яА-ЯёЁ]+(?:-[а-яА-ЯёЁ]+)?$";
 
-        //TODO: XML
+        //TODO: XML+
+        /// <summary>
+        /// Проверка строки, содержащей только латинские символы
+        /// </summary>
         private const string LatinPattern = @"^[a-zA-Z]+(?:-[a-zA-Z]+)?$";
 
-        //TODO: XML
+        //TODO: XML+
+        /// <summary>
+        /// Проверяет корректность входной строки по заданным правилам
+        /// </summary>
+        /// <param name="value">Проверяемая строка</param>
+        /// <param name="fieldName">Название поля</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">при неверном вводе</exception>
         private static string Validate(string value, string fieldName)
         {
             if (string.IsNullOrEmpty(value))
@@ -130,6 +144,24 @@ namespace Model
             var textInfo = 
                 System.Globalization.CultureInfo.CurrentCulture.TextInfo;
             return textInfo.ToTitleCase(value.ToLowerInvariant());
+        }
+
+        private void EnsureLanguage()
+        {
+            bool nameIsRussian = Regex.IsMatch(_name, RussianPattern);
+            bool surnameIsRussian = Regex.IsMatch(_surname, RussianPattern);
+
+            if (nameIsRussian != surnameIsRussian)
+            {
+                string nameLang =
+                    nameIsRussian ? "русском" : "английском";
+                string surnameLang =
+                    surnameIsRussian ? "русском" : "английском";
+                throw new InvalidOperationException(
+                    $"Язык имени ({nameLang})" +
+                    $" и фамилии ({surnameLang}) не совпадает. " +
+                    "Имя и фамилия должны быть на одном языке.");
+            }
         }
 
         /// <summary>pattern

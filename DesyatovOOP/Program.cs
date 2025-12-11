@@ -4,11 +4,11 @@ using Model;
 
 namespace Lb1
 {
-    //TODO: RSDN
+    //TODO: RSDN+
     /// <summary>
     /// Точка входа в консольное приложение.
     /// </summary>
-    class Program
+    public class Program
     {
         /// <summary>
         /// Главное тело программы.
@@ -69,7 +69,7 @@ namespace Lb1
             Person newperson = ReadFromConsole();
             list1.Add(newperson);
             PrintPersonList(list1, "Список 1 (после ручного добавления)");
-            Console.WriteLine("\nГотово! Нажмите любую клавишу для завершения.");
+            Console.WriteLine("\nГотово! Нажмите любую клавишу.");
             Console.ReadKey();
         }
 
@@ -100,8 +100,9 @@ namespace Lb1
                     Gender.Female => "Женщина",
                     _ => "Неизвестно"
                 };
-                Console.WriteLine($"Имя: {person.Name}, Фамилия: {person.Surname}," +
-                                  $" Возраст: {person.Age}, Пол: {genderStr}");
+                Console.WriteLine($"Имя: {person.Name}," +
+                    $" Фамилия: {person.Surname}," +
+                    $" Возраст: {person.Age}," + $" Пол: {genderStr}");
             }
         }
 
@@ -109,7 +110,7 @@ namespace Lb1
         /// Ввод пользователя с консоли.
         /// </summary>
         /// <returns>возвращает объект класса Person</returns>
-        /// <exception cref="Exception">создается при неверном вводе</exception>
+        /// <exception cref="Exception">создание при неверном вводе</exception>
         public static Person ReadFromConsole()
         {
             var person = new Person();
