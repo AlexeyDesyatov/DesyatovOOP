@@ -103,19 +103,16 @@ namespace Model
             }
         }
 
-        //TODO: XML+
         /// <summary>
         /// Проверка строки, содержащей только кириллические символы
         /// </summary>
         private const string RussianPattern = @"^[а-яА-ЯёЁ]+(?:-[а-яА-ЯёЁ]+)?$";
 
-        //TODO: XML+
         /// <summary>
         /// Проверка строки, содержащей только латинские символы
         /// </summary>
         private const string LatinPattern = @"^[a-zA-Z]+(?:-[a-zA-Z]+)?$";
 
-        //TODO: XML+
         /// <summary>
         /// Проверяет корректность входной строки по заданным правилам
         /// </summary>

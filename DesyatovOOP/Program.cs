@@ -4,7 +4,6 @@ using Model;
 
 namespace Lb1
 {
-    //TODO: RSDN+
     /// <summary>
     /// Точка входа в консольное приложение.
     /// </summary>
