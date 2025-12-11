@@ -1,7 +1,10 @@
 ﻿using LB1;
 using System;
 
-//TODO: RSDN
+//TODO: RSDN +
+/// <summary>
+/// Точка входа в консольное приложение.
+/// </summary>
 class Program
 {
     //TOOD: refactor
@@ -148,16 +151,23 @@ class Program
                       string input = Console.ReadLine();
                       switch (input)
                       {
-                          //TODO: {}
+                          //TODO: {} +
                           case "1":
+                          {
                               person.Gender = Gender.Male;
                               break;
+                          }
                           case "2":
+                          {
                               person.Gender = Gender.Female;
                               break;
+                          }
                           default:
+                          {
                               throw new Exception("Некорректный ввод" +
                                   " Введите 1 или 2.");
+                          }
+
                       }
                   })
             }

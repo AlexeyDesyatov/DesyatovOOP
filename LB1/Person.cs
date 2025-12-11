@@ -55,24 +55,8 @@ namespace LB1
             get { return _name; }
             set
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new Exception("Имя не может быть пустым!");
-                }
-
-                if (!Regex.IsMatch(value,
-                    //TODO: duplication
-                    @"^[а-яА-ЯёЁa-zA-Z]+(?:-[а-яА-ЯёЁa-zA-Z]+)?$"))
-                {
-                    throw new ArgumentException(
-                        "Имя может содержать только русские" +
-                        " или английские буквы. " +
-                        "Запись двойного имени через '-'");
-                }
-
-                System.Globalization.TextInfo textInfo =
-                    System.Globalization.CultureInfo.CurrentCulture.TextInfo;
-                _name = textInfo.ToTitleCase(value.ToLower());
+                //TODO: duplication +
+                _name = ValidateName(value, "Имя");
             }
         }
 
@@ -135,7 +119,33 @@ namespace LB1
             }
         }
 
-        /// <summary>
+        private const string RussianPattern = @"^[а-яА-ЯёЁ]+(?:-[а-яА-ЯёЁ]+)?$";
+        private const string LatinPattern = @"^[a-zA-Z]+(?:-[a-zA-Z]+)?$";
+
+        private static string ValidateName(string value, string fieldName)
+        {
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentException(
+                    $"{fieldName} не может быть пустым " +
+                    $"или состоять только из пробелов.");
+
+            bool isRussian = Regex.IsMatch(value, RussianPattern);
+            bool isLatin = Regex.IsMatch(value, LatinPattern);
+
+            if (!isRussian && !isLatin)
+            {
+                throw new ArgumentException(
+                    $"{fieldName} должно содержать только русские буквы" +
+                    $" ИЛИ только английские буквы. " +
+                    $"Двойное имя/фамилия допускается через дефис.",
+                    nameof(value));
+            }
+
+            var textInfo = System.Globalization.CultureInfo.CurrentCulture.TextInfo;
+            return textInfo.ToTitleCase(value.ToLowerInvariant());
+        }
+
+        /// <summary>pattern
         /// Генерирует случайного человека с данными для тестирования.
         /// </summary>
         /// <returns>Возвращает новый экземпляр класса Person</returns>
@@ -162,20 +172,16 @@ namespace LB1
                 ? Gender.Male 
                 : Gender.Female;
 
-            //TODO: RSDN
-            string name, surname;
+            //TODO: RSDN +
             int age = random.Next(0, 123);
 
-            if (gender == Gender.Male)
-            {
-                name = maleNames[random.Next(maleNames.Length)];
-                surname = surnamesMale[random.Next(surnamesMale.Length)];
-            }
-            else
-            {
-                name = femaleNames[random.Next(femaleNames.Length)];
-                surname = surnamesFemale[random.Next(surnamesFemale.Length)];
-            }
+            string name = gender == Gender.Male
+                ? maleNames[random.Next(maleNames.Length)]
+                : femaleNames[random.Next(femaleNames.Length)];
+
+            string surname = gender == Gender.Male
+                ? surnamesMale[random.Next(surnamesMale.Length)]
+                : surnamesFemale[random.Next(surnamesFemale.Length)];
 
             return new Person(name, surname, age, gender);
         }

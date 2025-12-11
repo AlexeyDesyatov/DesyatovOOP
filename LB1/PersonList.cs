@@ -11,7 +11,10 @@ namespace LB1
     /// </summary>
     internal class PersonList
     {
-        //TODO: XML
+        //TODO: XML +
+        /// <summary>
+        /// Список объектов класса Person 
+        /// </summary>
         private List<Person> _persons;
 
         /// <summary>
