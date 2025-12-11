@@ -55,7 +55,6 @@ namespace Model
             get { return _name; }
             set
             {
-                //TODO: duplication +
                 _name = Validate(value, "Имя");
             }
         }
@@ -68,7 +67,6 @@ namespace Model
             get { return _surname; }
             set
             {
-                //TODO: duplication +
                 _surname = Validate(value, "Фамилия");
             }
         }
@@ -104,9 +102,13 @@ namespace Model
             }
         }
 
+        //TODO: XML
         private const string RussianPattern = @"^[а-яА-ЯёЁ]+(?:-[а-яА-ЯёЁ]+)?$";
+
+        //TODO: XML
         private const string LatinPattern = @"^[a-zA-Z]+(?:-[a-zA-Z]+)?$";
 
+        //TODO: XML
         private static string Validate(string value, string fieldName)
         {
             if (string.IsNullOrEmpty(value))
@@ -157,7 +159,6 @@ namespace Model
                 ? Gender.Male 
                 : Gender.Female;
 
-            //TODO: RSDN +
             int age = random.Next(0, 123);
 
             string name = gender == Gender.Male

@@ -4,18 +4,16 @@ using Model;
 
 namespace Lb1
 {
-    //TODO: RSDN +
+    //TODO: RSDN
     /// <summary>
     /// Точка входа в консольное приложение.
     /// </summary>
     class Program
     {
-        //TOOD: refactor
         /// <summary>
         /// Главное тело программы.
         /// </summary>
         /// <param name="args">аргумент</param>
-        /// //TODO: RSDN +
         public static void Main(string[] args)
         {
             PersonList list1 = new PersonList();
@@ -154,7 +152,6 @@ namespace Lb1
                       string input = Console.ReadLine();
                       switch (input)
                       {
-                          //TODO: {} +
                           case "1":
                           {
                               person.Gender = Gender.Male;

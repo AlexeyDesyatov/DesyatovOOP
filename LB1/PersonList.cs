@@ -11,7 +11,6 @@ namespace Model
     /// </summary>
     public class PersonList
     {
-        //TODO: XML +
         /// <summary>
         /// Список объектов класса Person 
         /// </summary>
