@@ -56,7 +56,7 @@ namespace LB1
             set
             {
                 //TODO: duplication +
-                _name = ValidateName(value, "Имя");
+                _name = Validate(value, "Имя");
             }
         }
 
@@ -68,23 +68,8 @@ namespace LB1
             get { return _surname; }
             set
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new Exception("Фамилия не может быть пустой!");
-                }
-
-                if (!Regex.IsMatch(value,
-                    //TODO: duplication
-                    @"^[а-яА-ЯёЁa-zA-Z]+(?:-[а-яА-ЯёЁa-zA-Z]+)?$"))
-                {
-                    throw new ArgumentException(
-                        "Фамилия может содержать только русские " +
-                        "или английские буквы." +
-                        " Запись двойной фамилии через '-'");
-                }
-                System.Globalization.TextInfo textInfo =
-                    System.Globalization.CultureInfo.CurrentCulture.TextInfo;
-                _surname = textInfo.ToTitleCase(value.ToLower());
+                //TODO: duplication +
+                _surname = Validate(value, "Фамилия");
             }
         }
 
@@ -122,7 +107,7 @@ namespace LB1
         private const string RussianPattern = @"^[а-яА-ЯёЁ]+(?:-[а-яА-ЯёЁ]+)?$";
         private const string LatinPattern = @"^[a-zA-Z]+(?:-[a-zA-Z]+)?$";
 
-        private static string ValidateName(string value, string fieldName)
+        private static string Validate(string value, string fieldName)
         {
             if (string.IsNullOrEmpty(value))
                 throw new ArgumentException(
@@ -135,13 +120,13 @@ namespace LB1
             if (!isRussian && !isLatin)
             {
                 throw new ArgumentException(
-                    $"{fieldName} должно содержать только русские буквы" +
+                    $"{fieldName} может содержать только русские буквы" +
                     $" ИЛИ только английские буквы. " +
-                    $"Двойное имя/фамилия допускается через дефис.",
-                    nameof(value));
+                    $"Двойное имя/фамилия допускается через дефис.");
             }
 
-            var textInfo = System.Globalization.CultureInfo.CurrentCulture.TextInfo;
+            var textInfo = 
+                System.Globalization.CultureInfo.CurrentCulture.TextInfo;
             return textInfo.ToTitleCase(value.ToLowerInvariant());
         }
 
