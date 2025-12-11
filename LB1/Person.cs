@@ -47,7 +47,7 @@ namespace LB1
         /// <summary>
         /// Создаение нового экземпляра класса Person по умолчанию.
         /// </summary>
-        public Person() : this("Ivan", "Ivanov", 18, Gender.Female) { }
+        public Person() : this("Ivan", "Ivanov", 18, Gender.Male) { }
 
         /// <summary>
         /// Получение и валидация имени.
