@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LB1
+namespace Model
 {
     /// <summary>
     /// Представляет список объектов и базовые операции управления.
     /// </summary>
-    internal class PersonList
+    public class PersonList
     {
         //TODO: XML +
         /// <summary>

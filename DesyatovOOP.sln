@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.9.34728.123
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesyatovOOP", "DesyatovOOP\DesyatovOOP.csproj", "{B363CDF6-9154-4A6C-9634-6E612E854E43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LB1", "LB1\LB1.csproj", "{6C374ED1-55E7-480A-A4DE-12C0A85E3683}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "LB1\Model.csproj", "{6C374ED1-55E7-480A-A4DE-12C0A85E3683}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

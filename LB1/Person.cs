@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace LB1
+namespace Model
 {
     /// <summary>
     /// Хранение и обработка персональных данных.
