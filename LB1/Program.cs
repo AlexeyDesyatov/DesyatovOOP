@@ -12,7 +12,7 @@ class Program
         PersonList list1 = new PersonList();
         PersonList list2 = new PersonList();
 
-        Console.WriteLine("Генерация начальных данных с помощью Person.GetRandomPerson()...");
+        Console.WriteLine("Генерация начальных данных");
         
         // Заполняем list1 тремя случайными персонами
         for (int i = 0; i < 3; i++)
@@ -133,8 +133,8 @@ class Program
                          }
                          else
                          {
-                             throw new Exception("Введённая строка" +
-                                 "не может быть преобразована в целое число");
+                             throw new Exception("Введённая строка " +
+                                 "не может быть преобразована в число");
                          }
                      })
                 },
@@ -152,7 +152,7 @@ class Program
                                   person.Gender = Gender.Female;
                                   break;
                               default:
-                                  throw new Exception("Некорректный ввод пола" +
+                                  throw new Exception("Некорректный ввод" +
                                       " Введите 1 или 2.");
                           }
                       })
