@@ -153,13 +153,8 @@ namespace Model
 
             if (nameIsRussian != surnameIsRussian)
             {
-                string nameLang =
-                    nameIsRussian ? "русском" : "английском";
-                string surnameLang =
-                    surnameIsRussian ? "русском" : "английском";
                 throw new InvalidOperationException(
-                    $"Язык имени ({nameLang})" +
-                    $" и фамилии ({surnameLang}) не совпадает. " +
+                    $"Язык имени и фамилии не совпадает. " +
                     "Имя и фамилия должны быть на одном языке.");
             }
         }
