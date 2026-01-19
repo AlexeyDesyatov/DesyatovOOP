@@ -1,94 +1,199 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
-namespace LB1
+namespace Model
 {
     /// <summary>
-    /// Хранение и обработка персональных данных
+    /// Хранение и обработка персональных данных.
     /// </summary>
     public class Person
     {
         /// <summary>
-        /// Варианты пола
+        /// Имя человека
         /// </summary>
-        public enum Gender
-        {
-            Male,
-            Female,
-            NonBinary
-        }
-
         private string _name;
+
+        /// <summary>
+        /// Фамилия человека
+        /// </summary>
         private string _surname;
+
+        /// <summary>
+        /// Возраст человека
+        /// </summary>
         private int _age;
+
+        /// <summary>
+        /// Пол человека
+        /// </summary>
         private Gender _gender;
 
         /// <summary>
-        /// Инициализируем новый класс
+        /// Инициализируем новый экземпляр класса Person.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="surname"></param>
-        /// <param name="age"></param>
-        /// <param name="gendr"></param>
+        /// <param name="name">Имя</param>
+        /// <param name="surname">Фамилия</param>
+        /// <param name="age">Возраст</param>
+        /// <param name="gender">Пол</param>
         public Person(string name, string surname, int age, Gender gender)
         {
             Name = name;
             Surname = surname;
             Age = age;
-            Gendr = gender; 
+            Gender = gender; 
         }
 
         /// <summary>
-        /// Получение и валидация имени
+        /// Создаение нового экземпляра класса Person по умолчанию.
+        /// </summary>
+        public Person() : this("Ivan", "Ivanov", 18, Gender.Male) { }
+
+        /// <summary>
+        /// Получение и валидация имени.
         /// </summary>
         public string Name
         {
             get { return _name; }
             set
             {
-                _name = value;
+                _name = Validate(value, "Имя");
             }
         }
 
         /// <summary>
-        /// Получение и валидация фамилии
+        /// Получение и валидация фамилии.
         /// </summary>
         public string Surname
         {
             get { return _surname; }
             set
             {
-                _surname = value;
+                _surname = Validate(value, "Фамилия");
+                EnsureLanguage();
             }
         }
 
         /// <summary>
-        /// Получение и валидация возраста
+        /// Получение и валидация возраста.
         /// </summary>
         public int Age
         {
             get { return _age; }
             set
             {
+                const int minAge = 0;
+                const int maxAge = 123;
+                if (value < minAge || value > maxAge)
+                {
+                    throw new Exception($"{nameof(Age)} должен быть от " +
+                        $"{minAge} до {maxAge}!");
+                }
                 _age = value;
             }
         }
 
         /// <summary>
-        /// Получение и валидация пола
+        /// Получение и валидация пола.
         /// </summary>
-        public Gender Gendr
+        public Gender Gender
         {
             get { return _gender; }
             set
-            {
+            {               
                 _gender = value;
             }
         }
 
-    }
+        /// <summary>
+        /// Проверка строки, содержащей только кириллические символы
+        /// </summary>
+        private const string RussianPattern = @"^[а-яА-ЯёЁ]+(?:-[а-яА-ЯёЁ]+)?$";
 
+        /// <summary>
+        /// Проверка строки, содержащей только латинские символы
+        /// </summary>
+        private const string LatinPattern = @"^[a-zA-Z]+(?:-[a-zA-Z]+)?$";
+
+        /// <summary>
+        /// Проверяет корректность входной строки по заданным правилам
+        /// </summary>
+        /// <param name="value">Проверяемая строка</param>
+        /// <param name="fieldName">Название поля</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">при неверном вводе</exception>
+        private static string Validate(string value, string fieldName)
+        {
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentException(
+                    $"{fieldName} не может быть пустым " +
+                    $"или состоять только из пробелов.");
+
+            bool isRussian = Regex.IsMatch(value, RussianPattern);
+            bool isLatin = Regex.IsMatch(value, LatinPattern);
+
+            if (!isRussian && !isLatin)
+            {
+                throw new ArgumentException(
+                    $"{fieldName} может содержать только русские буквы" +
+                    $" ИЛИ только английские буквы. " +
+                    $"Двойное имя/фамилия допускается через дефис.");
+            }
+
+            var textInfo = 
+                System.Globalization.CultureInfo.CurrentCulture.TextInfo;
+            return textInfo.ToTitleCase(value.ToLowerInvariant());
+        }
+
+        private void EnsureLanguage()
+        {
+            bool nameIsRussian = Regex.IsMatch(_name, RussianPattern);
+            bool surnameIsRussian = Regex.IsMatch(_surname, RussianPattern);
+
+            if (nameIsRussian != surnameIsRussian)
+            {
+                throw new InvalidOperationException(
+                    $"Язык имени и фамилии не совпадает. " +
+                    "Имя и фамилия должны быть на одном языке.");
+            }
+        }
+
+        /// <summary>pattern
+        /// Генерирует случайного человека с данными для тестирования.
+        /// </summary>
+        /// <returns>Возвращает новый экземпляр класса Person</returns>
+        public static Person GetRandomPerson()
+        {
+            Random random = new Random();
+
+            string[] maleNames = { "Алексей", "Дмитрий", "Иван", "Сергей",
+                                    "Андрей", "Максим", "Егор", "Артём" };
+
+            string[] femaleNames = { "Анна", "Елена", "Мария",
+                                      "Ольга", "Татьяна", "Наталья",
+                                      "Дарья", "Полина" };
+
+            string[] surnamesMale = { "Иванов", "Смирнов", "Кузнецов",
+                                       "Попов", "Волков", "Соколов", 
+                                       "Лебедев", "Морозов" };
+
+            string[] surnamesFemale = { "Иванова", "Смирнова", "Кузнецова",
+                                         "Попова", "Волкова", "Соколова", 
+                                         "Лебедева", "Морозова" };
+
+            var gender = random.Next(2) == 0 
+                ? Gender.Male 
+                : Gender.Female;
+
+            int age = random.Next(0, 123);
+
+            string name = gender == Gender.Male
+                ? maleNames[random.Next(maleNames.Length)]
+                : femaleNames[random.Next(femaleNames.Length)];
+
+            string surname = gender == Gender.Male
+                ? surnamesMale[random.Next(surnamesMale.Length)]
+                : surnamesFemale[random.Next(surnamesFemale.Length)];
+
+            return new Person(name, surname, age, gender);
+        }
+    }
 }
