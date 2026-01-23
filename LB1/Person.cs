@@ -43,7 +43,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Создаение нового экземпляра класса Person по умолчанию.
+        /// Создание нового экземпляра класса Person по умолчанию.
         /// </summary>
         public Person() : this("Ivan", "Ivanov", 18, Gender.Male) { }
 
