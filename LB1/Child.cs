@@ -82,6 +82,14 @@ namespace Model
                 _studyPlace = value;
             }
         }
+        /// <summary>
+        /// Получение информации 
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        public override void GetInfo()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

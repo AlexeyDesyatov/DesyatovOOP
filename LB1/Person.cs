@@ -5,7 +5,7 @@ namespace Model
     /// <summary>
     /// Хранение и обработка персональных данных.
     /// </summary>
-    public class Person
+    public abstract class Person
     {
         /// <summary>
         /// Имя человека
@@ -179,6 +179,13 @@ namespace Model
                                          "Попова", "Волкова", "Соколова", 
                                          "Лебедева", "Морозова" };
 
+            string[] workPlaces = {"Газпромнефть", "Росатом", "VK", "Сбер",
+                                   "X5 Group", "РЖД", "Ростелеком", "АО СО ЕЭС"};
+
+            string[] studyPlaces = {"Школа 31", "Детский сад Ладушки", "Школа 1",
+                                    "МАОУ СОШ 25", "Лицей ТПУ", "Детский сад 96",
+                                    "Детский сад Солнышко"};
+
             var gender = random.Next(2) == 0 
                 ? Gender.Male 
                 : Gender.Female;
@@ -193,7 +200,28 @@ namespace Model
                 ? surnamesMale[random.Next(surnamesMale.Length)]
                 : surnamesFemale[random.Next(surnamesFemale.Length)];
 
-            return new Person(name, surname, age, gender);
+            string studyPlace = studyPlaces[random.Next(studyPlaces.Length)];
+
+            string workPlace = workPlaces[random.Next(workPlaces.Length)];
+
+            string passportSeries = random.Next(1000, 10000).ToString(); 
+            string passportNumber = random.Next(100000, 1000000).ToString(); 
+            string passport = $"{passportSeries} {passportNumber}";
+
+            if (age>18)
+            {
+                return new Adult(name, surname, age, gender, passport, workPlace, null);
+            }
+              
+            else
+            {
+                return new Child(name, surname, age, gender, null, null, studyPlace);
+            }
+                
         }
+
+        public abstract void GetInfo();
+
+        
     }
 }

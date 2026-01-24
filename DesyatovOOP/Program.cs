@@ -39,7 +39,8 @@ namespace Lb1
 
             // Добавляем нового человека в первый список
             Pause("добавить нового человека в Список 1");
-            list1.Add(new Person("Ольга", "Смирнова", 27, Gender.Female));
+            list1.Add(new Adult("Ольга", "Смирнова", 27, Gender.Female,
+                "1234 123456", "TPU", null));
             PrintPersonList(list1, "Список 1 (после добавления)");
 
             // Копируем второго человека из первого списка в конец второго
@@ -112,7 +113,7 @@ namespace Lb1
         /// <exception cref="Exception">создание при неверном вводе</exception>
         public static Person ReadFromConsole()
         {
-            var person = new Person();
+            var person = new Adult();
 
             var actionDictionary = new Dictionary<string, Action>()
         {
