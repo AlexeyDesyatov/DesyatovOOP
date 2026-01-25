@@ -86,9 +86,11 @@ namespace Model
         /// Получение информации 
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        public override void GetInfo()
+        public override string GetInfo()
         {
-            throw new NotImplementedException();
+            return $"Ребёнок: {Name} {Surname}, возраст: {Age}, учится в: {Study}" +
+                   (Mother != null ? $", мать: {Mother.Name} {Mother.Surname}" : "") +
+                   (Father != null ? $", отец: {Father.Name} {Father.Surname}" : "");
         }
     }
 

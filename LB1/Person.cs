@@ -220,7 +220,7 @@ namespace Model
                 
         }
 
-        public abstract void GetInfo();
+        public abstract string GetInfo();
 
         
     }

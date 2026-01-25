@@ -45,7 +45,8 @@ namespace Model
         /// <summary>
         /// Создание нового экземпляра класса Adult по умолчанию.
         /// </summary>
-        public Adult() : this("Ivan", "Ivanov", 18, Gender.Male, "1234 123456", "SO.UPS", null ) { }
+        public Adult() : this("Ivan", "Ivanov", 18, Gender.Male, "1234 123456",
+                              "SO.UPS", null ) { }
 
         /// <summary>
         /// Получение и валидация паспортных данных
@@ -87,9 +88,12 @@ namespace Model
         /// Получение информации
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
-        public override void GetInfo()
+        public override string GetInfo()
         {
-            throw new NotImplementedException();
+            return $"Взрослый: {Name} {Surname}, возраст: {Age}," +
+                $" паспорт: {Passport}," + $"работает в: {Workplace}" 
+                + (Partner != null ? $", женат/замужем за {Partner.Name}" +
+                $" {Partner.Surname}" : ", не состоит в браке");
         }
     }
 
