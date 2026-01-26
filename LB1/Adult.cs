@@ -98,6 +98,11 @@ namespace Model
                 base.Age = value;   
             }
         }
+        protected override string GenderRole => Gender switch
+        {
+            Gender.Male => "Мужчина",
+            Gender.Female => "Женщина"
+        };
 
         /// <summary>
         /// Получение информации
@@ -105,8 +110,9 @@ namespace Model
         /// <exception cref="NotImplementedException"></exception>
         public override string GetInfo()
         {
-            return $"Взрослый: {Name} {Surname}, возраст: {Age}," +
-                $" паспорт: {Passport}," + $"работает в: {Workplace}" 
+            string basic = GetBasicInfo();
+
+            return $"(Взрослый {basic}, паспорт: {Passport}, " + $"работает в компании: {Workplace}" 
                 + (Partner != null ? $", женат/замужем за {Partner.Name}" +
                 $" {Partner.Surname}" : ", не состоит в браке");
         }

@@ -108,6 +108,11 @@ namespace Model
         protected const int AdultAge = 18;
 
         /// <summary>
+        /// Определение пола
+        /// </summary>
+        protected abstract string GenderRole { get; }
+
+        /// <summary>
         /// Проверка строки, содержащей только кириллические символы
         /// </summary>
         private const string RussianPattern = @"^[а-яА-ЯёЁ]+(?:-[а-яА-ЯёЁ]+)?$";
@@ -161,6 +166,11 @@ namespace Model
         }
 
         public abstract string GetInfo();
-      
+
+        protected string GetBasicInfo()
+        {
+            return $"- пол: {GenderRole}) {Name} {Surname}, возраст: {Age}";
+        }
+
     }
 }

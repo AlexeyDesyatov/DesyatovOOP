@@ -17,7 +17,7 @@ namespace Model
         /// Заполняет данные для случайного человека.
         /// </summary>
         /// <returns>Возвращает новый экземпляр класса Person</returns>
-        public static void GetRandomPerson(PersonBase person)
+        public static void FillRandomPerson(PersonBase person)
         {
             string[] maleNames = { "Алексей", "Дмитрий", "Иван", "Сергей",
                                     "Андрей", "Максим", "Егор", "Артём" };
@@ -38,8 +38,6 @@ namespace Model
                 ? Gender.Male
                 : Gender.Female;
 
-            int age = random.Next(0, 123);
-
             string name = gender == Gender.Male
                 ? maleNames[random.Next(maleNames.Length)]
                 : femaleNames[random.Next(femaleNames.Length)];
@@ -50,7 +48,6 @@ namespace Model
 
             person.Name = name;
             person.Surname = surname;
-            person.Age = age;
             person.Gender = gender;
 
         }
@@ -61,6 +58,8 @@ namespace Model
         /// <param name="adult">Взрослый</param>
         public static void FillAdult(Adult adult)
         {
+            int age = random.Next(18, 123);
+
             string[] workPlaces = {"Газпромнефть", "Росатом", "VK", "Сбер",
                                    "X5 Group", "РЖД", "Ростелеком", "АО СО ЕЭС"};
 
@@ -72,6 +71,7 @@ namespace Model
 
             string passport = $"{passportSeries} {passportNumber}";
 
+            adult.Age = age;
             adult.Passport = passport;
             adult.Workplace = workPlace;
             adult.Partner = null;
@@ -82,13 +82,16 @@ namespace Model
         /// </summary>
         /// <param name="child">Ребенок</param>
         public static void FillChild(Child child)
-        { 
+        {
+            int age = random.Next(0, 17);
+
             string[] studyPlaces = {"Школа 31", "Детский сад Ладушки", "Школа 1",
                                     "МАОУ СОШ 25", "Лицей ТПУ", "Детский сад 96",
                                     "Детский сад Солнышко"};
 
             string studyPlace = studyPlaces[random.Next(studyPlaces.Length)];
 
+            child.Age = age;
             child.Study = studyPlace;
             child.Mother = null;
             child.Father = null;
@@ -101,7 +104,7 @@ namespace Model
         public static Adult GetRandomAdult()
         {
             Adult adult = new Adult();
-            GetRandomPerson(adult);
+            FillRandomPerson(adult);
             FillAdult(adult);   
             return adult;
         }
@@ -113,9 +116,20 @@ namespace Model
         public static Child GetRandomChild()
         {
             Child child = new Child();
-            GetRandomPerson(child); 
+            FillRandomPerson(child); 
             FillChild(child);
             return child;
+        }
+
+        /// <summary>
+        /// Генерирует случайную персону
+        /// </summary>
+        /// <returns></returns>
+        public static PersonBase GetRandomPerson()
+        {
+            return random.Next(2) == 0
+            ? GetRandomAdult()
+            : GetRandomChild();
         }
     }
 }

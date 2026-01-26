@@ -98,14 +98,21 @@ namespace Model
             }
         }
 
+        protected override string GenderRole => Gender switch
+        {
+            Gender.Male => "Мальчик",
+            Gender.Female => "Девочка"
+        };
+
         /// <summary>
         /// Получение информации 
         /// </summary>
         /// <exception cref="NotImplementedException"></exception>
         public override string GetInfo()
         {
-            return $"Ребёнок: {Name} {Surname}, возраст: {Age}, учится в: {Study}" +
-                   (Mother != null ? $", мать: {Mother.Name} {Mother.Surname}" : "") +
+            string basic = GetBasicInfo();
+
+            return $"(Ребёнок {basic}, место учебы: {Study}" + (Mother != null ? $", мать: {Mother.Name} {Mother.Surname}" : "") +
                    (Father != null ? $", отец: {Father.Name} {Father.Surname}" : "");
         }
     }

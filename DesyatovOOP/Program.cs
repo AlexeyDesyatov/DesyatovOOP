@@ -23,13 +23,13 @@ namespace Lb1
             // Заполняем list1 тремя случайными персонами
             for (int i = 0; i < 3; i++)
             {
-                list1.Add(PersonGenerator.GetRandomAdult());
+                list1.Add(PersonGenerator.GetRandomPerson());
             }
 
             // Заполняем list2 тремя случайными персонами
             for (int i = 0; i < 3; i++)
             {
-                list2.Add(PersonGenerator.GetRandomAdult());
+                list2.Add(PersonGenerator.GetRandomPerson());
             }
 
             // Выводим исходное состояние
@@ -94,15 +94,7 @@ namespace Lb1
             Console.WriteLine($"\n=== {listName} ===");
             foreach (PersonBase person in list.Persons)
             {
-                string genderStr = person.Gender switch
-                {
-                    Gender.Male => "Мужчина",
-                    Gender.Female => "Женщина",
-                    _ => "Неизвестно"
-                };
-                Console.WriteLine($"Имя: {person.Name}," +
-                    $" Фамилия: {person.Surname}," +
-                    $" Возраст: {person.Age}," + $" Пол: {genderStr}");
+                Console.WriteLine(person.GetInfo());
             }
         }
 
