@@ -14,20 +14,20 @@ namespace Model
         /// <summary>
         /// Список объектов класса Person 
         /// </summary>
-        private List<Person> _persons;
+        private List<PersonBase> _persons;
 
         /// <summary>
         /// Инициализирует новый экземпляр класса с пустым списком.
         /// </summary>
         public PersonList()
         {
-            _persons = new List<Person>();
+            _persons = new List<PersonBase>();
         }
 
         /// <summary>
         /// Добавляет указанного человека в конец списка.
         /// </summary>
-        public void Add(Person person)
+        public void Add(PersonBase person)
         {
             _persons.Add(person);
         }
@@ -43,7 +43,7 @@ namespace Model
         /// <summary>
         /// Удаляет первое вхождение указанного человека из списка.
         /// </summary>
-        public void Remove(Person person)
+        public void Remove(PersonBase person)
         {
             _persons.Remove(person);
         }
@@ -59,7 +59,7 @@ namespace Model
         /// <summary>
         /// Возвращает человека по указанному индексу.
         /// </summary>
-        public Person GetByIndex(int index)
+        public PersonBase GetByIndex(int index)
         {
             return _persons[index];
         }
@@ -67,7 +67,7 @@ namespace Model
         /// <summary>
         /// Определяет индекс первого вхождения указанного человека в списке.
         /// </summary>
-        public int IndexOf(Person person)
+        public int IndexOf(PersonBase person)
         {
             return _persons.IndexOf(person);
         }
@@ -83,7 +83,7 @@ namespace Model
         /// <summary>
         /// Возвращает список.
         /// </summary>
-        public List<Person> Persons
+        public List<PersonBase> Persons
         {
             get 
             { 

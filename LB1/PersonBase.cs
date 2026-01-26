@@ -5,7 +5,7 @@ namespace Model
     /// <summary>
     /// Хранение и обработка персональных данных.
     /// </summary>
-    public abstract class Person
+    public abstract class PersonBase
     {
         /// <summary>
         /// Имя человека
@@ -34,7 +34,7 @@ namespace Model
         /// <param name="surname">Фамилия</param>
         /// <param name="age">Возраст</param>
         /// <param name="gender">Пол</param>
-        public Person(string name, string surname, int age, Gender gender)
+        public PersonBase(string name, string surname, int age, Gender gender)
         {
             Name = name;
             Surname = surname;
@@ -45,7 +45,7 @@ namespace Model
         /// <summary>
         /// Создание нового экземпляра класса Person по умолчанию.
         /// </summary>
-        public Person() : this("Ivan", "Ivanov", 18, Gender.Male) { }
+        public PersonBase() : this("Ivan", "Ivanov", 18, Gender.Male) { }
 
         /// <summary>
         /// Получение и валидация имени.
@@ -75,7 +75,7 @@ namespace Model
         /// <summary>
         /// Получение и валидация возраста.
         /// </summary>
-        public int Age
+        public virtual int Age
         {
             get { return _age; }
             set
@@ -102,6 +102,10 @@ namespace Model
                 _gender = value;
             }
         }
+        /// <summary>
+        /// Проверка возраста
+        /// </summary>
+        protected const int AdultAge = 18;
 
         /// <summary>
         /// Проверка строки, содержащей только кириллические символы
@@ -156,72 +160,7 @@ namespace Model
             }
         }
 
-        /// <summary>pattern
-        /// Генерирует случайного человека с данными для тестирования.
-        /// </summary>
-        /// <returns>Возвращает новый экземпляр класса Person</returns>
-        public static Person GetRandomPerson()
-        {
-            Random random = new Random();
-
-            string[] maleNames = { "Алексей", "Дмитрий", "Иван", "Сергей",
-                                    "Андрей", "Максим", "Егор", "Артём" };
-
-            string[] femaleNames = { "Анна", "Елена", "Мария",
-                                      "Ольга", "Татьяна", "Наталья",
-                                      "Дарья", "Полина" };
-
-            string[] surnamesMale = { "Иванов", "Смирнов", "Кузнецов",
-                                       "Попов", "Волков", "Соколов", 
-                                       "Лебедев", "Морозов" };
-
-            string[] surnamesFemale = { "Иванова", "Смирнова", "Кузнецова",
-                                         "Попова", "Волкова", "Соколова", 
-                                         "Лебедева", "Морозова" };
-
-            string[] workPlaces = {"Газпромнефть", "Росатом", "VK", "Сбер",
-                                   "X5 Group", "РЖД", "Ростелеком", "АО СО ЕЭС"};
-
-            string[] studyPlaces = {"Школа 31", "Детский сад Ладушки", "Школа 1",
-                                    "МАОУ СОШ 25", "Лицей ТПУ", "Детский сад 96",
-                                    "Детский сад Солнышко"};
-
-            var gender = random.Next(2) == 0 
-                ? Gender.Male 
-                : Gender.Female;
-
-            int age = random.Next(0, 123);
-
-            string name = gender == Gender.Male
-                ? maleNames[random.Next(maleNames.Length)]
-                : femaleNames[random.Next(femaleNames.Length)];
-
-            string surname = gender == Gender.Male
-                ? surnamesMale[random.Next(surnamesMale.Length)]
-                : surnamesFemale[random.Next(surnamesFemale.Length)];
-
-            string studyPlace = studyPlaces[random.Next(studyPlaces.Length)];
-
-            string workPlace = workPlaces[random.Next(workPlaces.Length)];
-
-            string passportSeries = random.Next(1000, 10000).ToString(); 
-            string passportNumber = random.Next(100000, 1000000).ToString(); 
-            string passport = $"{passportSeries} {passportNumber}";
-
-            if (age>18)
-            {
-                return new Adult(name, surname, age, gender, passport, workPlace, null);
-            }
-              
-            else
-            {
-                return new Child(name, surname, age, gender, null, null, studyPlace);
-            }
-                
-        }
-
         public abstract string GetInfo();
-
-        
+      
     }
 }

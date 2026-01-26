@@ -6,7 +6,7 @@ namespace Model
     /// <summary>
     /// Хранение и обработка данных взрослого человека
     /// </summary>
-    public class Adult : Person
+    public class Adult : PersonBase
     {
         /// <summary>
         /// Серия и номер паспорта
@@ -81,6 +81,21 @@ namespace Model
             set
             {
                 _partner = value;
+            }
+        }
+
+        /// <summary>
+        /// Получение и валидация возраста
+        /// </summary>
+        public override int Age
+        {
+            get { return base.Age; }
+            set
+            {
+                if (value < AdultAge)
+                    throw new ArgumentException($"Возраст взрослого" +
+                        $" должен быть от {AdultAge} лет");
+                base.Age = value;   
             }
         }
 

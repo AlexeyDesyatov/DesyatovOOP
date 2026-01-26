@@ -23,13 +23,13 @@ namespace Lb1
             // Заполняем list1 тремя случайными персонами
             for (int i = 0; i < 3; i++)
             {
-                list1.Add(Person.GetRandomPerson());
+                list1.Add(PersonGenerator.GetRandomAdult());
             }
 
             // Заполняем list2 тремя случайными персонами
             for (int i = 0; i < 3; i++)
             {
-                list2.Add(Person.GetRandomPerson());
+                list2.Add(PersonGenerator.GetRandomAdult());
             }
 
             // Выводим исходное состояние
@@ -45,7 +45,7 @@ namespace Lb1
 
             // Копируем второго человека из первого списка в конец второго
             Pause("скопировать 2-го человека из Списка 1 в Список 2");
-            Person personToCopy = list1.GetByIndex(1);
+            PersonBase personToCopy = list1.GetByIndex(1);
             list2.Add(personToCopy);
             PrintPersonList(list1, "Список 1 (после копирования)");
             PrintPersonList(list2, "Список 2 (после копирования)");
@@ -66,7 +66,7 @@ namespace Lb1
 
             // Ввод, добавление в список, вывод
             Console.WriteLine("\nДобавим человека вручную в Список 1:");
-            Person newperson = ReadFromConsole();
+            PersonBase newperson = ReadFromConsole();
             list1.Add(newperson);
             PrintPersonList(list1, "Список 1 (после ручного добавления)");
             Console.WriteLine("\nГотово! Нажмите любую клавишу.");
@@ -92,7 +92,7 @@ namespace Lb1
         public static void PrintPersonList(PersonList list, string listName)
         {
             Console.WriteLine($"\n=== {listName} ===");
-            foreach (Person person in list.Persons)
+            foreach (PersonBase person in list.Persons)
             {
                 string genderStr = person.Gender switch
                 {
@@ -111,7 +111,7 @@ namespace Lb1
         /// </summary>
         /// <returns>возвращает объект класса Person</returns>
         /// <exception cref="Exception">создание при неверном вводе</exception>
-        public static Person ReadFromConsole()
+        public static PersonBase ReadFromConsole()
         {
             var person = new Adult();
 

@@ -6,7 +6,7 @@ namespace Model
     /// <summary>
     /// Хранение и обработка данных ребенка
     /// </summary>
-    public class Child : Person
+    public class Child : PersonBase
     {
         /// <summary>
         /// Мать
@@ -82,6 +82,22 @@ namespace Model
                 _studyPlace = value;
             }
         }
+
+        /// <summary>
+        /// Получение и валидация возраста
+        /// </summary>
+        public override int Age
+        {
+            get { return base.Age; }
+            set
+            {
+                if (value > AdultAge)
+                    throw new ArgumentException($"Возраст ребенка" +
+                        $" должен быть менее {AdultAge} лет ");
+                base.Age = value;
+            }
+        }
+
         /// <summary>
         /// Получение информации 
         /// </summary>
