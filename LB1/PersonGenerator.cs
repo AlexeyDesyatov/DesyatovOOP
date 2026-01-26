@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    /// <summary>
+    /// Представляет статические методы для генерации взрослого или ребенка
+    /// </summary>
     public class PersonGenerator
     {
         private static Random random = new Random();
 
         /// <summary>pattern
-        /// Генерирует случайного человека с данными для тестирования.
+        /// Заполняет данные для случайного человека.
         /// </summary>
         /// <returns>Возвращает новый экземпляр класса Person</returns>
         public static void GetRandomPerson(PersonBase person)
@@ -52,10 +55,12 @@ namespace Model
 
         }
 
-        public static Adult GetRandomAdult()
+        /// <summary>
+        /// Заполняет данные для взрослого
+        /// </summary>
+        /// <param name="adult">Взрослый</param>
+        public static void FillAdult(Adult adult)
         {
-            Adult adult = new Adult();
-
             string[] workPlaces = {"Газпромнефть", "Росатом", "VK", "Сбер",
                                    "X5 Group", "РЖД", "Ростелеком", "АО СО ЕЭС"};
 
@@ -70,15 +75,14 @@ namespace Model
             adult.Passport = passport;
             adult.Workplace = workPlace;
             adult.Partner = null;
-
-            return adult;
-
         }
 
-        public static PersonBase GetRandomChild()
-        {
-            Child child = new Child();
-
+        /// <summary>
+        /// Заполняет данные для ребенка
+        /// </summary>
+        /// <param name="child">Ребенок</param>
+        public static void FillChild(Child child)
+        { 
             string[] studyPlaces = {"Школа 31", "Детский сад Ладушки", "Школа 1",
                                     "МАОУ СОШ 25", "Лицей ТПУ", "Детский сад 96",
                                     "Детский сад Солнышко"};
@@ -88,9 +92,30 @@ namespace Model
             child.Study = studyPlace;
             child.Mother = null;
             child.Father = null;
+        }
 
+        /// <summary>
+        /// Генерирует случайного взрослого
+        /// </summary>
+        /// <returns></returns>
+        public static Adult GetRandomAdult()
+        {
+            Adult adult = new Adult();
+            GetRandomPerson(adult);
+            FillAdult(adult);   
+            return adult;
+        }
+
+        /// <summary>
+        /// Генерирует случайного ребенка
+        /// </summary>
+        /// <returns></returns>
+        public static Child GetRandomChild()
+        {
+            Child child = new Child();
+            GetRandomPerson(child); 
+            FillChild(child);
             return child;
-
         }
     }
 }

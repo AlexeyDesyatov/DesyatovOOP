@@ -91,7 +91,7 @@ namespace Model
             get { return base.Age; }
             set
             {
-                if (value > AdultAge)
+                if (value >= AdultAge)
                     throw new ArgumentException($"Возраст ребенка" +
                         $" должен быть менее {AdultAge} лет ");
                 base.Age = value;
