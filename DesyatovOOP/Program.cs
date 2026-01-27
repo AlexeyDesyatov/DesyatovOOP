@@ -63,14 +63,6 @@ namespace Lb1
             Console.WriteLine("\nРабота завершена." +
                 " Нажмите любую клавишу для выхода...");
             Console.ReadKey();
-
-            // Ввод, добавление в список, вывод
-            Console.WriteLine("\nДобавим человека вручную в Список 1:");
-            PersonBase newperson = ReadFromConsole();
-            list1.Add(newperson);
-            PrintPersonList(list1, "Список 1 (после ручного добавления)");
-            Console.WriteLine("\nГотово! Нажмите любую клавишу.");
-            Console.ReadKey();
         }
 
         /// <summary>
@@ -95,105 +87,6 @@ namespace Lb1
             foreach (PersonBase person in list.Persons)
             {
                 Console.WriteLine(person.GetInfo());
-            }
-        }
-
-        /// <summary>
-        /// Ввод пользователя с консоли.
-        /// </summary>
-        /// <returns>возвращает объект класса Person</returns>
-        /// <exception cref="Exception">создание при неверном вводе</exception>
-        public static PersonBase ReadFromConsole()
-        {
-            var person = new Adult();
-
-            var actionDictionary = new Dictionary<string, Action>()
-        {
-            {
-                "имя",
-                new Action(() =>
-                {
-                    person.Name = Console.ReadLine();
-                })
-            },
-            {
-                 "фамилию",
-                 new Action(() =>
-                 {
-                     person.Surname = Console.ReadLine();
-                 })
-            },
-            {
-                 "возраст",
-                 new Action(() =>
-                 {
-                     if (int.TryParse(Console.ReadLine(), out int age))
-                     {
-                         person.Age = age;
-                     }
-                     else
-                     {
-                         throw new Exception("Введённая строка " +
-                             "не может быть преобразована в число");
-                     }
-                 })
-            },
-            {
-                 "пол (1 — Мужчина, 2 — Женщина)",
-                  new Action(() =>
-                  {
-                      string input = Console.ReadLine();
-                      switch (input)
-                      {
-                          case "1":
-                          {
-                              person.Gender = Gender.Male;
-                              break;
-                          }
-                          case "2":
-                          {
-                              person.Gender = Gender.Female;
-                              break;
-                          }
-                          default:
-                          {
-                              throw new Exception("Некорректный ввод" +
-                                  " Введите 1 или 2.");
-                          }
-
-                      }
-                  })
-            }
-        };
-
-            foreach (var actionHandler in actionDictionary)
-            {
-                ActionHandler(actionHandler.Value, actionHandler.Key);
-            }
-
-            return person;
-        }
-
-        /// <summary>
-        /// При возникновении исключения выводит сообщение и повторяет ввод.
-        /// </summary>
-        /// <param name="action">Действие, ввод и присваивание</param>
-        /// <param name="fieldName">Название поля</param>
-        private static void ActionHandler(Action action, string fieldName)
-        {
-            while (true)
-            {
-                try
-                {
-                    Console.Write($"Введите {fieldName}: ");
-                    action.Invoke();
-                    return;
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine($" Ошибка: {exception.Message}" +
-                        $" Попробуйте снова.");
-                }
             }
         }
     }

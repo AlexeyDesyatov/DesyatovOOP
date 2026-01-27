@@ -83,7 +83,7 @@ namespace Model
         /// <param name="child">Ребенок</param>
         public static void FillChild(Child child)
         {
-            int age = random.Next(0, 17);
+            int age = random.Next(0, 18);
 
             string[] studyPlaces = {"Школа 31", "Детский сад Ладушки", "Школа 1",
                                     "МАОУ СОШ 25", "Лицей ТПУ", "Детский сад 96",
