@@ -16,50 +16,23 @@ namespace Lb1
         public static void Main(string[] args)
         {
             PersonList list1 = new PersonList();
-            PersonList list2 = new PersonList();
 
             Console.WriteLine("Генерация начальных данных");
 
-            // Заполняем list1 тремя случайными персонами
-            for (int i = 0; i < 3; i++)
+            // Заполняем list1 семью случайными персонами
+            for (int i = 0; i < 7; i++)
             {
                 list1.Add(PersonGenerator.GetRandomPerson());
             }
 
-            // Заполняем list2 тремя случайными персонами
-            for (int i = 0; i < 3; i++)
-            {
-                list2.Add(PersonGenerator.GetRandomPerson());
-            }
-
             // Выводим исходное состояние
             Pause("показать начальное состояние");
-            PrintPersonList(list1, "Список 1");
-            PrintPersonList(list2, "Список 2");
+            PrintPersonList(list1, "Список ");
 
-            // Добавляем нового человека в первый список
-            Pause("добавить нового человека в Список 1");
-            list1.Add(new Adult("Ольга", "Смирнова", 27, Gender.Female,
-                "1234 123456", "TPU", null));
-            PrintPersonList(list1, "Список 1 (после добавления)");
-
-            // Копируем второго человека из первого списка в конец второго
-            Pause("скопировать 2-го человека из Списка 1 в Список 2");
-            PersonBase personToCopy = list1.GetByIndex(1);
-            list2.Add(personToCopy);
-            PrintPersonList(list1, "Список 1 (после копирования)");
-            PrintPersonList(list2, "Список 2 (после копирования)");
-
-            // Удаляем второго человека из первого списка
-            Pause("удалить 2-го человека из Списка 1");
-            list1.RemoveAt(1); // Удаляем по индексу
-            PrintPersonList(list1, "Список 1 (после удаления)");
-            PrintPersonList(list2, "Список 2 (остался без изменений)");
-
-            // Очищаем второй список
-            Pause("очистить Список 2");
-            list2.Clear();
-            PrintPersonList(list2, "Список 2 (очищен)");
+            // Очищаем список
+            Pause("очистить Список ");
+            list1.Clear();
+            PrintPersonList(list1, "Список (очищен)");
             Console.WriteLine("\nРабота завершена." +
                 " Нажмите любую клавишу для выхода...");
             Console.ReadKey();

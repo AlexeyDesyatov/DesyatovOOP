@@ -112,10 +112,15 @@ namespace Model
         {
             string basic = GetBasicInfo();
 
-            return $"(Взрослый {basic}, паспорт: {Passport}, " + $"работает в компании: {Workplace}" 
-                + (Partner != null ? $", женат/замужем за {Partner.Name}" +
-                $" {Partner.Surname}" : ", не состоит в браке");
+            string workplaceInfo = string.IsNullOrEmpty(Workplace) 
+                ? "Безработный" 
+                : $"{Workplace}";
+
+            string status = Partner != null
+                ? $" женат/замужем за {Partner.Name}{Partner.Surname}"
+                : " не состоит в браке";
+
+            return $"(Взрослый {basic}, паспорт: {Passport}, место работы: {workplaceInfo} семейный статус: {status}";
         }
     }
-
 }

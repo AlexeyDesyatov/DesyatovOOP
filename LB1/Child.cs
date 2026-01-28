@@ -112,8 +112,15 @@ namespace Model
         {
             string basic = GetBasicInfo();
 
-            return $"(Ребёнок {basic}, место учебы: {Study}" + (Mother != null ? $", мать: {Mother.Name} {Mother.Surname}" : "") +
-                   (Father != null ? $", отец: {Father.Name} {Father.Surname}" : "");
+            string motherInfo = Mother != null
+                ? $"{Mother.Name} {Mother.Surname}"
+                : "не указана";
+
+            string fatherInfo = Father != null
+                ? $"{Father.Name} {Father.Surname}"
+                : "не указан";
+
+            return $"(Ребёнок {basic}, мать: {motherInfo} отец: {fatherInfo} место учебы: { Study}";
         }
     }
 
