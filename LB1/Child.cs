@@ -80,7 +80,7 @@ namespace Model
             get { return _studyPlace; }
             set
             {
-                _studyPlace = value;
+                _studyPlace = ValidateText(value, "Место учебы");
             }
         }
 

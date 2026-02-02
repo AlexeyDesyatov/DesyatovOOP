@@ -73,6 +73,21 @@ namespace Model
         }
 
         /// <summary>
+        /// Минимальный возраст
+        /// </summary>
+        public virtual int MinAge { get; } = 0;
+
+        /// <summary>
+        /// Максимальный возраст
+        /// </summary>
+        public virtual int MaxAge { get; } = 123;
+
+        /// <summary>
+        /// Возраст совершеннолетия
+        /// </summary>
+        protected const int AdultAge = 18;
+
+        /// <summary>
         /// Получение и валидация возраста.
         /// </summary>
         public virtual int Age
@@ -80,12 +95,10 @@ namespace Model
             get { return _age; }
             set
             {
-                const int minAge = 0;
-                const int maxAge = 123;
-                if (value < minAge || value > maxAge)
+                if (value < MinAge || value > MaxAge)
                 {
                     throw new Exception($"{nameof(Age)} должен быть от " +
-                        $"{minAge} до {maxAge}!");
+                        $"{MinAge} до {MaxAge}!");
                 }
                 _age = value;
             }
@@ -102,10 +115,6 @@ namespace Model
                 _gender = value;
             }
         }
-        /// <summary>
-        /// Проверка возраста
-        /// </summary>
-        protected const int AdultAge = 18;
 
         /// <summary>
         /// Определение пола
@@ -133,7 +142,7 @@ namespace Model
         {
             if (string.IsNullOrEmpty(value))
                 throw new ArgumentException(
-                    $"{fieldName} не может быть пустым " +
+                    $"Поле {fieldName} не может быть пустым " +
                     $"или состоять только из пробелов.");
 
             bool isRussian = Regex.IsMatch(value, RussianPattern);
@@ -167,6 +176,16 @@ namespace Model
                     $"Язык имени и фамилии не совпадает. " +
                     "Имя и фамилия должны быть на одном языке.");
             }
+        }
+
+        protected static string ValidateText(string value, string fieldName)
+        {
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentException(
+                    $"Поле {fieldName} не может быть пустым " +
+                    $"или состоять только из пробелов.");
+
+            return value;
         }
 
         /// <summary>

@@ -55,8 +55,8 @@ namespace Model
         {
             get { return _passportData; }
             set 
-            { 
-                _passportData = value;
+            {
+                _passportData = ValidatePassport(value);
             }
         }
 
@@ -121,11 +121,25 @@ namespace Model
                 : $"{Workplace}";
 
             string status = Partner != null
-                ? $" женат/замужем за {Partner.Name}{Partner.Surname}"
+                ? $" женат/замужем за {Partner.Name} {Partner.Surname}"
                 : " не состоит в браке";
 
             return $"(Взрослый {basic}, паспорт: {Passport}," +
                 $" место работы: {workplaceInfo} семейный статус: {status}";
+        }
+
+        private static string ValidatePassport(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentException("Паспортные данные" +
+                    " не могут быть пустыми.");
+
+            if (!Regex.IsMatch(value, @"^\d{4} \d{6}$"))
+                throw new ArgumentException(
+                    "Неверный формат паспорта." +
+                    " Пример корректного значения: '1234 123456'");
+
+            return value;
         }
     }
 }

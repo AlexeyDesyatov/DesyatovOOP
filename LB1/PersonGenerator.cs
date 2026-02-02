@@ -19,7 +19,8 @@ namespace Model
         /// <summary>pattern
         /// Заполняет данные для случайного человека
         /// <param name="person"></param>
-        public static void FillRandomPerson(PersonBase person)
+        public static void FillRandomPerson(PersonBase person,
+            Gender? gender = null)
         {
             string[] maleNames = { "Алексей", "Дмитрий", "Иван", "Сергей",
                                     "Андрей", "Максим", "Егор", "Артём" };
@@ -36,22 +37,21 @@ namespace Model
                                          "Попова", "Волкова", "Соколова",
                                          "Лебедева", "Морозова" };
 
-            var gender = random.Next(2) == 0
-                ? Gender.Male
-                : Gender.Female;
+            person.Gender = gender ?? (Gender)random.Next(2);
 
-            string name = gender == Gender.Male
-                ? maleNames[random.Next(maleNames.Length)]
-                : femaleNames[random.Next(femaleNames.Length)];
-
-            string surname = gender == Gender.Male
-                ? surnamesMale[random.Next(surnamesMale.Length)]
-                : surnamesFemale[random.Next(surnamesFemale.Length)];
-
-            person.Name = name;
-            person.Surname = surname;
-            person.Gender = gender;
-
+            switch (person.Gender)
+            {
+                case Gender.Male:
+                    person.Name = maleNames[random.Next(maleNames.Length)];
+                    person.Surname = 
+                        surnamesMale[random.Next(surnamesMale.Length)];
+                    break;
+                case Gender.Female:
+                    person.Name = femaleNames[random.Next(femaleNames.Length)];
+                    person.Surname = 
+                        surnamesFemale[random.Next(surnamesFemale.Length)];
+                    break;
+            }
         }
 
         /// <summary>
@@ -76,7 +76,16 @@ namespace Model
             adult.Age = age;
             adult.Passport = passport;
             adult.Workplace = workPlace;
-            adult.Partner = null;
+
+            if (random.Next(2) == 0)
+            {
+                var partnerGender =
+                    adult.Gender == Gender.Male
+                    ? Gender.Female
+                    : Gender.Male;
+
+                adult.Partner = GetRandomAdult(partnerGender);
+            }
         }
 
         /// <summary>
@@ -95,18 +104,34 @@ namespace Model
 
             child.Age = age;
             child.Study = studyPlace;
-            child.Mother = null;
-            child.Father = null;
+
+            Adult father = GetRandomAdult(Gender.Male);
+            child.Father = father;
+
+            Adult mother = GetRandomAdult(Gender.Female);
+            child.Mother = mother;
+
+            mother.Surname = father.Surname + "а";
+
+            switch (child.Gender)
+            {
+                case Gender.Male:
+                    child.Surname = father.Surname;
+                    break;
+                case Gender.Female:
+                    child.Surname = mother.Surname;
+                    break;
+            }
         }
 
         /// <summary>
         /// Генерирует случайного взрослого
         /// </summary>
         /// <returns></returns>
-        public static Adult GetRandomAdult()
+        public static Adult GetRandomAdult(Gender? gender = null)
         {
             Adult adult = new Adult();
-            FillRandomPerson(adult);
+            FillRandomPerson(adult, gender);
             FillAdult(adult);   
             return adult;
         }
