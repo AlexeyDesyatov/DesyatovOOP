@@ -98,6 +98,10 @@ namespace Model
                 base.Age = value;   
             }
         }
+        
+        /// <summary>
+        /// Получение навания пола
+        /// </summary>
         protected override string GenderRole => Gender switch
         {
             Gender.Male => "Мужчина",
@@ -120,7 +124,8 @@ namespace Model
                 ? $" женат/замужем за {Partner.Name}{Partner.Surname}"
                 : " не состоит в браке";
 
-            return $"(Взрослый {basic}, паспорт: {Passport}, место работы: {workplaceInfo} семейный статус: {status}";
+            return $"(Взрослый {basic}, паспорт: {Passport}," +
+                $" место работы: {workplaceInfo} семейный статус: {status}";
         }
     }
 }

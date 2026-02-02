@@ -152,6 +152,10 @@ namespace Model
             return textInfo.ToTitleCase(value.ToLowerInvariant());
         }
 
+        /// <summary>
+        /// Проверяет корректность языка
+        /// </summary>
+        /// <exception cref="InvalidOperationException"></exception>
         private void EnsureLanguage()
         {
             bool nameIsRussian = Regex.IsMatch(_name, RussianPattern);
@@ -165,12 +169,19 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Получение информации
+        /// </summary>
+        /// <returns></returns>
         public abstract string GetInfo();
 
+        /// <summary>
+        /// Формирование строки с базовой информацией
+        /// </summary>
+        /// <returns></returns>
         protected string GetBasicInfo()
         {
             return $"- пол: {GenderRole}) {Name} {Surname}, возраст: {Age}";
         }
-
     }
 }

@@ -45,7 +45,8 @@ namespace Model
         /// <summary>
         /// Создание нового экземпляра класса Child по умолчанию.
         /// </summary>
-        public Child() : this("Ivan", "Ivanov", 10, Gender.Male, null, null, "Школа 31") { }
+        public Child() : this("Ivan", "Ivanov", 10, Gender.Male, null, null,
+            "Школа 31") { }
 
         /// <summary>
         /// Получение и валидация матери
@@ -98,6 +99,9 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Получние названия пола
+        /// </summary>
         protected override string GenderRole => Gender switch
         {
             Gender.Male => "Мальчик",
@@ -120,7 +124,8 @@ namespace Model
                 ? $"{Father.Name} {Father.Surname}"
                 : "не указан";
 
-            return $"(Ребёнок {basic}, мать: {motherInfo} отец: {fatherInfo} место учебы: { Study}";
+            return $"(Ребёнок {basic}, мать: {motherInfo} " +
+                $"отец: {fatherInfo} место учебы: { Study}";
         }
     }
 

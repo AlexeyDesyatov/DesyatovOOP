@@ -11,12 +11,14 @@ namespace Model
     /// </summary>
     public class PersonGenerator
     {
+        /// <summary>
+        /// Общий экземпляр класса Random
+        /// </summary>
         private static Random random = new Random();
 
         /// <summary>pattern
-        /// Заполняет данные для случайного человека.
-        /// </summary>
-        /// <returns>Возвращает новый экземпляр класса Person</returns>
+        /// Заполняет данные для случайного человека
+        /// <param name="person"></param>
         public static void FillRandomPerson(PersonBase person)
         {
             string[] maleNames = { "Алексей", "Дмитрий", "Иван", "Сергей",
