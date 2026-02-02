@@ -200,7 +200,7 @@ namespace Model
         /// <returns></returns>
         protected string GetBasicInfo()
         {
-            return $"- пол: {GenderRole}) {Name} {Surname}, возраст: {Age}";
+            return $"{Name} {Surname} \n Пол: {GenderRole}, возраст: {Age}";
         }
     }
 }

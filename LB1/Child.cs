@@ -124,8 +124,8 @@ namespace Model
                 ? $"{Father.Name} {Father.Surname}"
                 : "не указан";
 
-            return $"(Ребёнок {basic}, мать: {motherInfo} " +
-                $"отец: {fatherInfo} место учебы: { Study}";
+            return $" Ребёнок \n {basic}, \n Мать: {motherInfo} " +
+                $" \n Отец: {fatherInfo} \n Место учебы: { Study}";
         }
     }
 

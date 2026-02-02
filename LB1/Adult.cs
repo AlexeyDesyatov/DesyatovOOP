@@ -121,11 +121,11 @@ namespace Model
                 : $"{Workplace}";
 
             string status = Partner != null
-                ? $" женат/замужем за {Partner.Name} {Partner.Surname}"
+                ? $"женат/замужем за {Partner.Name} {Partner.Surname}"
                 : " не состоит в браке";
 
-            return $"(Взрослый {basic}, паспорт: {Passport}," +
-                $" место работы: {workplaceInfo} семейный статус: {status}";
+            return $" Взрослый \n {basic}\n Паспорт: {Passport}," +
+                $" \n Место работы: {workplaceInfo} \n Семейный статус: {status}";
         }
 
         private static string ValidatePassport(string value)

@@ -51,9 +51,6 @@ namespace Lb1
                 }
             }
 
-            Pause("Очистить Список");
-            list.Clear();
-            PrintPersonList(list, "Список (очищен)");
             Console.WriteLine("\nРабота завершена." +
                 " Нажмите любую клавишу для выхода...");
             Console.ReadKey();
@@ -78,9 +75,14 @@ namespace Lb1
         public static void PrintPersonList(PersonList list, string listName)
         {
             Console.WriteLine($"\n=== {listName} ===");
+
+            int number = 1;
             foreach (PersonBase person in list.Persons)
             {
+                Console.WriteLine($"              Человек номер {number}");
                 Console.WriteLine(person.GetInfo());
+                Console.WriteLine();
+                number++;
             }
         }
     }
