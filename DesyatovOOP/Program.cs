@@ -15,24 +15,45 @@ namespace Lb1
         /// <param name="args">аргумент</param>
         public static void Main(string[] args)
         {
-            PersonList list1 = new PersonList();
+            PersonList list = new PersonList();
 
             Console.WriteLine("Генерация начальных данных");
 
-            // Заполняем list1 семью случайными персонами
             for (int i = 0; i < 7; i++)
             {
-                list1.Add(PersonGenerator.GetRandomPerson());
+                list.Add(PersonGenerator.GetRandomPerson());
             }
 
-            // Выводим исходное состояние
-            Pause("показать начальное состояние");
-            PrintPersonList(list1, "Список ");
+            Pause("Показать начальное состояние");
+            PrintPersonList(list, "Список ");
 
-            // Очищаем список
-            Pause("очистить Список ");
-            list1.Clear();
-            PrintPersonList(list1, "Список (очищен)");
+            Pause("Определить типа четвертого человека");
+            if (list.Count() > 3)
+            {
+                var fourthPerson = list.GetByIndex(3);
+                string typeName = fourthPerson is Adult ? "Взрослый" : "Ребенок";
+                Console.WriteLine($"Тип четвертого человека: {typeName}");
+
+                switch (fourthPerson)
+                {
+                    case Adult adult:
+                        {
+                            Console.WriteLine($"Демонстрация свойства: Место работы - " +
+                                $"{adult.Workplace}");
+                            break;
+                        }
+                    case Child child:
+                        {
+                            Console.WriteLine($"Демонстрация совйства: Место учебы - " +
+                                $"{child.Study}");
+                            break;
+                        }
+                }
+            }
+
+            Pause("Очистить Список");
+            list.Clear();
+            PrintPersonList(list, "Список (очищен)");
             Console.WriteLine("\nРабота завершена." +
                 " Нажмите любую клавишу для выхода...");
             Console.ReadKey();
