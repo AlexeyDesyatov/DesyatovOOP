@@ -57,6 +57,7 @@ namespace Model
             set 
             {
                 _passportData = ValidatePassport(value);
+                ValidateText(value, $"{Passport}");
             }
         }
 
@@ -125,9 +126,16 @@ namespace Model
                 : " не состоит в браке";
 
             return $" Взрослый \n {basic}\n Паспорт: {Passport}," +
-                $" \n Место работы: {workplaceInfo} \n Семейный статус: {status}";
+                $" \n Место работы: {workplaceInfo} \n " +
+                $"Семейный статус: {status}";
         }
 
+        /// <summary>
+        /// Проверка корректности ввода паспортных данных
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         private static string ValidatePassport(string value)
         {
             if (string.IsNullOrEmpty(value))

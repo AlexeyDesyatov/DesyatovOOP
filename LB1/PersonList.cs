@@ -86,8 +86,8 @@ namespace Model
         public List<PersonBase> Persons
         {
             get 
-            { 
-                return _persons; 
+            {
+                return new List<PersonBase>(_persons);
             }
         }
     }

@@ -178,6 +178,13 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Проверяет корректность ввода данных
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="fieldName"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         protected static string ValidateText(string value, string fieldName)
         {
             if (string.IsNullOrEmpty(value))

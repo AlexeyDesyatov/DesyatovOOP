@@ -31,20 +31,25 @@ namespace Lb1
             if (list.Count() > 3)
             {
                 var fourthPerson = list.GetByIndex(3);
-                string typeName = fourthPerson is Adult ? "Взрослый" : "Ребенок";
+
+                string typeName = 
+                    fourthPerson is Adult ? "Взрослый" : "Ребенок";
+
                 Console.WriteLine($"Тип четвертого человека: {typeName}");
 
                 switch (fourthPerson)
                 {
                     case Adult adult:
                         {
-                            Console.WriteLine($"Демонстрация свойства: Место работы - " +
+                            Console.WriteLine($"Демонстрация свойства: " +
+                                $"Место работы - " +
                                 $"{adult.Workplace}");
                             break;
                         }
                     case Child child:
                         {
-                            Console.WriteLine($"Демонстрация совйства: Место учебы - " +
+                            Console.WriteLine($"Демонстрация совйства: " +
+                                $"Место учебы - " +
                                 $"{child.Study}");
                             break;
                         }
