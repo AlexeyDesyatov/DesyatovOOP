@@ -56,6 +56,10 @@ namespace Model
             get { return _mother; }
             set
             {
+                if (value != null && value.Gender != Gender.Female)
+                    throw new ArgumentException(
+                        $"Некорректный пол матери: ожидается женский пол");
+
                 _mother = value;
             }
         }
@@ -68,6 +72,10 @@ namespace Model
             get { return _father; }
             set
             {
+                if (value != null && value.Gender != Gender.Male)
+                    throw new ArgumentException(
+                        $"Некорректный пол отца: ожидается мужской пол");
+
                 _father = value;
             }
         }

@@ -63,7 +63,7 @@ namespace Model
             int age = random.Next(18, 123);
 
             string[] workPlaces = {"Газпромнефть", "Росатом", "VK", "Сбер",
-                                   "X5 Group", "РЖД", "Ростелеком", "АО СО ЕЭС"};
+                                   "X5 Group", "РЖД", "Ростелеком", "АО СО ЕЭС", null};
 
             string workPlace = workPlaces[random.Next(workPlaces.Length)];
 
@@ -84,7 +84,7 @@ namespace Model
                     ? Gender.Female
                     : Gender.Male;
 
-                adult.Partner = GetRandomAdult(partnerGender);
+                adult.Partner = GetRandomAdult(partnerGender);     
             }
         }
 

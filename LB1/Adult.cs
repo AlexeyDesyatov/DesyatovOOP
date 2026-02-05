@@ -69,7 +69,9 @@ namespace Model
             get { return _workplace; }
             set
             {
-                _workplace = value;
+                _workplace = string.IsNullOrEmpty(value)
+                ? "Безработный"
+                : $"{value}"; ;
             }
         }
         
@@ -81,7 +83,20 @@ namespace Model
             get { return _partner; }
             set
             {
+                if (value == this)
+                    throw new ArgumentException("Нельзя установить себя" +
+                        " в качестве партнёра");
+
+                if (value != null && value.Gender == this.Gender)
+                    throw new ArgumentException("Партнёр " +
+                        "должен быть противоположного пола");
+
                 _partner = value;
+
+                if (value != null)
+                {
+                    value._partner = this;
+                }
             }
         }
 
@@ -117,9 +132,7 @@ namespace Model
         {
             string basic = GetBasicInfo();
 
-            string workplaceInfo = string.IsNullOrEmpty(Workplace) 
-                ? "Безработный" 
-                : $"{Workplace}";
+            string workplaceInfo = Workplace;
 
             string status = Partner != null
                 ? $"женат/замужем за {Partner.Name} {Partner.Surname}"
