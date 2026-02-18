@@ -57,7 +57,6 @@ namespace Model
             set 
             {
                 _passportData = ValidatePassport(value);
-                ValidateText(value, $"{Passport}");
             }
         }
 
@@ -71,7 +70,7 @@ namespace Model
             {
                 _workplace = string.IsNullOrEmpty(value)
                 ? "Безработный"
-                : $"{value}"; ;
+                : $"{value}";
             }
         }
         
@@ -116,7 +115,7 @@ namespace Model
         }
         
         /// <summary>
-        /// Получение навания пола
+        /// Получение названия пола
         /// </summary>
         protected override string GenderRole => Gender switch
         {

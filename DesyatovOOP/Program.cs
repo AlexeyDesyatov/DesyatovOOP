@@ -48,7 +48,7 @@ namespace Lb1
                         }
                     case Child child:
                         {
-                            Console.WriteLine($"Демонстрация совйства: " +
+                            Console.WriteLine($"Демонстрация свойства: " +
                                 $"Место учебы - " +
                                 $"{child.Study}");
                             break;

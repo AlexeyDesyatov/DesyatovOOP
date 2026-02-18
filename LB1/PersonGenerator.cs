@@ -62,7 +62,7 @@ namespace Model
         {
             int age = random.Next(18, 123);
 
-            string[] workPlaces = {"Газпромнефть", "Росатом", "VK", "Сбер",
+            string[] workPlaces = {"Газпромнефть", "Росатом", "VK", "Сбербанк",
                                    "X5 Group", "РЖД", "Ростелеком", "АО СО ЕЭС", null};
 
             string workPlace = workPlaces[random.Next(workPlaces.Length)];

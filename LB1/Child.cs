@@ -108,7 +108,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Получние названия пола
+        /// Получение названия пола
         /// </summary>
         protected override string GenderRole => Gender switch
         {
