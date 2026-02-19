@@ -115,13 +115,17 @@ namespace Model
 
             switch (child.Gender)
             {
-                //TODO: {}
+                //TODO: {} +
                 case Gender.Male:
-                    child.Surname = father.Surname;
-                    break;
+                    {
+                        child.Surname = father.Surname;
+                        break;
+                    }
                 case Gender.Female:
-                    child.Surname = mother.Surname;
-                    break;
+                    {
+                        child.Surname = mother.Surname;
+                        break;
+                    }
             }
         }
 

@@ -34,27 +34,35 @@ namespace Lb1
 
                 string typeName = 
                     fourthPerson is Adult ? "Взрослый" : "Ребенок";
-                //TODO: polymorphism
+                //TODO: polymorphism +
                 Console.WriteLine($"Тип четвертого человека: {typeName}");
 
                 switch (fourthPerson)
                 {
-                    //TOOD: отступы
+                    //TOOD: отступы +
                     case Adult adult:
-                        {
-                            Console.WriteLine($"Демонстрация свойства: " +
-                                $"Место работы - " +
-                                $"{adult.Workplace}");
-                            break;
-                        }
+                    {
+                        Console.WriteLine($"Демонстрация свойства: " +
+                            $"Место работы - " +
+                            $"{adult.Workplace}");
+                        break;
+                    }
                     case Child child:
-                        {
-                            Console.WriteLine($"Демонстрация свойства: " +
-                                $"Место учебы - " +
-                                $"{child.Study}");
-                            break;
-                        }
+                    {
+                        Console.WriteLine($"Демонстрация свойства: " +
+                            $"Место учебы - " +
+                            $"{child.Study}");
+                        break;
+                    }
                 }
+            }
+
+            PrintPersonList(list, "Список персон");
+
+            foreach (var person in list.Persons)
+            {
+                Console.WriteLine($"Возраст {person.Age} " +
+                    $"- Хобби: {person.GetHobby()}");
             }
 
             Console.WriteLine("\nРабота завершена." +

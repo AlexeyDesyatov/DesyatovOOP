@@ -43,6 +43,11 @@ namespace Model
         }
 
         /// <summary>
+        /// Возраст совершеннолетия
+        /// </summary>
+        public override int MaxAge { get; } = 18;
+
+        /// <summary>
         /// Создание нового экземпляра класса Child по умолчанию.
         /// </summary>
         public Child() : this("Ivan", "Ivanov", 10, Gender.Male, null, null,
@@ -56,11 +61,12 @@ namespace Model
             get { return _mother; }
             set
             {
-                //TODO: {}
+                //TODO: {} +
                 if (value != null && value.Gender != Gender.Female)
+                {
                     throw new ArgumentException(
                         $"Некорректный пол матери: ожидается женский пол");
-
+                }
                 _mother = value;
             }
         }
@@ -73,11 +79,12 @@ namespace Model
             get { return _father; }
             set
             {
-                //TODO: {}
+                //TODO: {} +
                 if (value != null && value.Gender != Gender.Male)
+                {
                     throw new ArgumentException(
                         $"Некорректный пол отца: ожидается мужской пол");
-
+                }
                 _father = value;
             }
         }
@@ -102,10 +109,12 @@ namespace Model
             get { return base.Age; }
             set
             {
-                //TODO: {}
-                if (value >= AdultAge)
+                //TODO: {} +
+                if (value >= MaxAge)
+                {
                     throw new ArgumentException($"Возраст ребенка" +
-                        $" должен быть менее {AdultAge} лет ");
+                        $" должен быть менее {MaxAge} лет ");
+                }
                 base.Age = value;
             }
         }
@@ -138,5 +147,7 @@ namespace Model
             return $" Ребёнок \n {basic}, \n Мать: {motherInfo} " +
                 $" \n Отец: {fatherInfo} \n Место учебы: { Study}";
         }
+
+        public override string GetHobby() => "шахматы";
     }
 }

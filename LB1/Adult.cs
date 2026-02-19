@@ -43,6 +43,11 @@ namespace Model
         }
 
         /// <summary>
+        /// Возраст совершеннолетия
+        /// </summary>
+        public override int MinAge { get; } = 18;
+
+        /// <summary>
         /// Создание нового экземпляра класса Adult по умолчанию.
         /// </summary>
         public Adult() : this("Ivan", "Ivanov", 18, Gender.Male, "1234 123456",
@@ -82,15 +87,19 @@ namespace Model
             get { return _partner; }
             set
             {
-                //TODO: {}
+                //TODO: {} +
                 if (value == this)
+                {
                     throw new ArgumentException("Нельзя установить себя" +
-                        " в качестве партнёра");
+                                            " в качестве партнёра");
+                }
 
-                //TODO: {}
+                //TODO: {} +
                 if (value != null && value.Gender == this.Gender)
+                {
                     throw new ArgumentException("Партнёр " +
                         "должен быть противоположного пола");
+                }
 
                 _partner = value;
 
@@ -109,10 +118,12 @@ namespace Model
             get { return base.Age; }
             set
             {
-                //TODO: {}
-                if (value < AdultAge)
+                //TODO: {} +
+                if (value < MinAge)
+                {
                     throw new ArgumentException($"Возраст взрослого" +
-                        $" должен быть от {AdultAge} лет");
+                        $" должен быть от {MinAge} лет");
+                }
                 base.Age = value;   
             }
         }
@@ -164,5 +175,7 @@ namespace Model
 
             return value;
         }
+
+        public override string GetHobby() => " путешествия";
     }
 }

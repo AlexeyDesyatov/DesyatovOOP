@@ -27,7 +27,7 @@ namespace Model
         /// </summary>
         private Gender _gender;
 
-        //TODO: модификатор доступа
+        //TODO: модификатор доступа +
         /// <summary>
         /// Инициализируем новый экземпляр класса Person.
         /// </summary>
@@ -35,7 +35,7 @@ namespace Model
         /// <param name="surname">Фамилия</param>
         /// <param name="age">Возраст</param>
         /// <param name="gender">Пол</param>
-        public PersonBase(string name, string surname, int age, Gender gender)
+        protected PersonBase(string name, string surname, int age, Gender gender)
         {
             Name = name;
             Surname = surname;
@@ -43,11 +43,7 @@ namespace Model
             Gender = gender; 
         }
 
-        //TODO: remove
-        /// <summary>
-        /// Создание нового экземпляра класса Person по умолчанию.
-        /// </summary>
-        public PersonBase() : this("Ivan", "Ivanov", 18, Gender.Male) { }
+        //TODO: remove +
 
         /// <summary>
         /// Получение и валидация имени.
@@ -84,11 +80,7 @@ namespace Model
         /// </summary>
         public virtual int MaxAge { get; } = 123;
 
-        //TODO: remove
-        /// <summary>
-        /// Возраст совершеннолетия
-        /// </summary>
-        protected const int AdultAge = 18;
+        //TODO: remove +
 
         /// <summary>
         /// Получение и валидация возраста.
@@ -212,5 +204,7 @@ namespace Model
         {
             return $"{Name} {Surname} \n Пол: {GenderRole}, возраст: {Age}";
         }
+
+        public virtual string GetHobby() => "Мое хобби:";
     }
 }
