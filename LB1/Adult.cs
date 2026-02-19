@@ -162,14 +162,17 @@ namespace Model
         private static string ValidatePassport(string value)
         {
             if (string.IsNullOrEmpty(value))
+            {
                 throw new ArgumentException("Паспортные данные" +
                     " не могут быть пустыми.");
+            }
 
             if (!Regex.IsMatch(value, @"^\d{4} \d{6}$"))
+            {
                 throw new ArgumentException(
                     "Неверный формат паспорта." +
                     " Пример корректного значения: '1234 123456'");
-
+            }
             return value;
         }
 
