@@ -56,6 +56,7 @@ namespace Model
             get { return _mother; }
             set
             {
+                //TODO: {}
                 if (value != null && value.Gender != Gender.Female)
                     throw new ArgumentException(
                         $"Некорректный пол матери: ожидается женский пол");
@@ -72,6 +73,7 @@ namespace Model
             get { return _father; }
             set
             {
+                //TODO: {}
                 if (value != null && value.Gender != Gender.Male)
                     throw new ArgumentException(
                         $"Некорректный пол отца: ожидается мужской пол");
@@ -100,6 +102,7 @@ namespace Model
             get { return base.Age; }
             set
             {
+                //TODO: {}
                 if (value >= AdultAge)
                     throw new ArgumentException($"Возраст ребенка" +
                         $" должен быть менее {AdultAge} лет ");
@@ -136,5 +139,4 @@ namespace Model
                 $" \n Отец: {fatherInfo} \n Место учебы: { Study}";
         }
     }
-
 }

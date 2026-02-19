@@ -82,10 +82,12 @@ namespace Model
             get { return _partner; }
             set
             {
+                //TODO: {}
                 if (value == this)
                     throw new ArgumentException("Нельзя установить себя" +
                         " в качестве партнёра");
 
+                //TODO: {}
                 if (value != null && value.Gender == this.Gender)
                     throw new ArgumentException("Партнёр " +
                         "должен быть противоположного пола");
@@ -107,6 +109,7 @@ namespace Model
             get { return base.Age; }
             set
             {
+                //TODO: {}
                 if (value < AdultAge)
                     throw new ArgumentException($"Возраст взрослого" +
                         $" должен быть от {AdultAge} лет");

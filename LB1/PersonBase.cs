@@ -27,6 +27,7 @@ namespace Model
         /// </summary>
         private Gender _gender;
 
+        //TODO: модификатор доступа
         /// <summary>
         /// Инициализируем новый экземпляр класса Person.
         /// </summary>
@@ -42,6 +43,7 @@ namespace Model
             Gender = gender; 
         }
 
+        //TODO: remove
         /// <summary>
         /// Создание нового экземпляра класса Person по умолчанию.
         /// </summary>
@@ -82,6 +84,7 @@ namespace Model
         /// </summary>
         public virtual int MaxAge { get; } = 123;
 
+        //TODO: remove
         /// <summary>
         /// Возраст совершеннолетия
         /// </summary>
