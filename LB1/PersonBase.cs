@@ -205,6 +205,10 @@ namespace Model
             return $"{Name} {Surname} \n Пол: {GenderRole}, возраст: {Age}";
         }
 
+        /// <summary>
+        /// Получение информации о хобби
+        /// </summary>
+        /// <returns></returns>
         public virtual string GetHobby() => "Мое хобби:";
     }
 }

@@ -148,6 +148,10 @@ namespace Model
                 $" \n Отец: {fatherInfo} \n Место учебы: { Study}";
         }
 
+        /// <summary>
+        /// Получение информации о хобби
+        /// </summary>
+        /// <returns></returns>
         public override string GetHobby() => "шахматы";
     }
 }

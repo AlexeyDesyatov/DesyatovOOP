@@ -44,20 +44,18 @@ namespace Lb1
                     {
                         Console.WriteLine($"Демонстрация свойства: " +
                             $"Место работы - " +
-                            $"{adult.Workplace}");
+                            $"{adult.Workplace}\n");
                         break;
                     }
                     case Child child:
                     {
                         Console.WriteLine($"Демонстрация свойства: " +
                             $"Место учебы - " +
-                            $"{child.Study}");
+                            $"{child.Study}\n");
                         break;
                     }
                 }
             }
-
-            PrintPersonList(list, "Список персон");
 
             foreach (var person in list.Persons)
             {

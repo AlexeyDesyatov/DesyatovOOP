@@ -176,6 +176,10 @@ namespace Model
             return value;
         }
 
+        /// <summary>
+        /// Получение информации о хобби
+        /// </summary>
+        /// <returns></returns>
         public override string GetHobby() => " путешествия";
     }
 }
