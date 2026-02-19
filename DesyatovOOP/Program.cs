@@ -34,12 +34,10 @@ namespace Lb1
 
                 string typeName = 
                     fourthPerson is Adult ? "Взрослый" : "Ребенок";
-                //TODO: polymorphism +
                 Console.WriteLine($"Тип четвертого человека: {typeName}");
 
                 switch (fourthPerson)
                 {
-                    //TOOD: отступы +
                     case Adult adult:
                     {
                         Console.WriteLine($"Демонстрация свойства: " +

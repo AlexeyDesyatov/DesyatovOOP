@@ -41,6 +41,7 @@ namespace Model
 
             switch (person.Gender)
             {
+                //TODO: {}
                 case Gender.Male:
                     person.Name = maleNames[random.Next(maleNames.Length)];
                     person.Surname = 
@@ -115,7 +116,7 @@ namespace Model
 
             switch (child.Gender)
             {
-                //TODO: {} +
+                //TOOD: отступы
                 case Gender.Male:
                     {
                         child.Surname = father.Surname;
@@ -160,8 +161,8 @@ namespace Model
         public static PersonBase GetRandomPerson()
         {
             return random.Next(2) == 0
-            ? GetRandomAdult()
-            : GetRandomChild();
+                ? GetRandomAdult()
+                : GetRandomChild();
         }
     }
 }

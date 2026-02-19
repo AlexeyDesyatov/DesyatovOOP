@@ -26,8 +26,7 @@ namespace Model
         /// Пол человека
         /// </summary>
         private Gender _gender;
-
-        //TODO: модификатор доступа +
+        
         /// <summary>
         /// Инициализируем новый экземпляр класса Person.
         /// </summary>
@@ -42,8 +41,6 @@ namespace Model
             Age = age;
             Gender = gender; 
         }
-
-        //TODO: remove +
 
         /// <summary>
         /// Получение и валидация имени.
@@ -80,8 +77,6 @@ namespace Model
         /// </summary>
         public virtual int MaxAge { get; } = 123;
 
-        //TODO: remove +
-
         /// <summary>
         /// Получение и валидация возраста.
         /// </summary>
@@ -99,6 +94,7 @@ namespace Model
             }
         }
 
+        //TODO: autoproperty
         /// <summary>
         /// Получение и валидация пола.
         /// </summary>

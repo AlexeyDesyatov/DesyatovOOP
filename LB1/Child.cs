@@ -61,7 +61,6 @@ namespace Model
             get { return _mother; }
             set
             {
-                //TODO: {} +
                 if (value != null && value.Gender != Gender.Female)
                 {
                     throw new ArgumentException(
@@ -79,7 +78,6 @@ namespace Model
             get { return _father; }
             set
             {
-                //TODO: {} +
                 if (value != null && value.Gender != Gender.Male)
                 {
                     throw new ArgumentException(
@@ -109,7 +107,6 @@ namespace Model
             get { return base.Age; }
             set
             {
-                //TODO: {} +
                 if (value >= MaxAge)
                 {
                     throw new ArgumentException($"Возраст ребенка" +
