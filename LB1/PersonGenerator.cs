@@ -41,17 +41,21 @@ namespace Model
 
             switch (person.Gender)
             {
-                //TODO: {}
+                //TODO: {} +
                 case Gender.Male:
+                {
                     person.Name = maleNames[random.Next(maleNames.Length)];
-                    person.Surname = 
+                    person.Surname =
                         surnamesMale[random.Next(surnamesMale.Length)];
                     break;
+                }
                 case Gender.Female:
+                {
                     person.Name = femaleNames[random.Next(femaleNames.Length)];
-                    person.Surname = 
+                    person.Surname =
                         surnamesFemale[random.Next(surnamesFemale.Length)];
                     break;
+                }
             }
         }
 
@@ -116,17 +120,17 @@ namespace Model
 
             switch (child.Gender)
             {
-                //TOOD: отступы
+                //TOOD: отступы +
                 case Gender.Male:
-                    {
-                        child.Surname = father.Surname;
-                        break;
-                    }
+                {
+                    child.Surname = father.Surname;
+                    break;
+                }
                 case Gender.Female:
-                    {
-                        child.Surname = mother.Surname;
-                        break;
-                    }
+                {
+                    child.Surname = mother.Surname;
+                    break;
+                }
             }
         }
 

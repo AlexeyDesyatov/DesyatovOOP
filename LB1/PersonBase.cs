@@ -21,11 +21,6 @@ namespace Model
         /// Возраст человека
         /// </summary>
         private int _age;
-
-        /// <summary>
-        /// Пол человека
-        /// </summary>
-        private Gender _gender;
         
         /// <summary>
         /// Инициализируем новый экземпляр класса Person.
@@ -94,18 +89,11 @@ namespace Model
             }
         }
 
-        //TODO: autoproperty
+        //TODO: autoproperty + 
         /// <summary>
-        /// Получение и валидация пола.
+        /// Получение пола.
         /// </summary>
-        public Gender Gender
-        {
-            get { return _gender; }
-            set
-            {               
-                _gender = value;
-            }
-        }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Определение пола
@@ -132,9 +120,11 @@ namespace Model
         private static string Validate(string value, string fieldName)
         {
             if (string.IsNullOrEmpty(value))
+            {
                 throw new ArgumentException(
                     $"Поле {fieldName} не может быть пустым " +
                     $"или состоять только из пробелов.");
+            }   
 
             bool isRussian = Regex.IsMatch(value, RussianPattern);
             bool isLatin = Regex.IsMatch(value, LatinPattern);
@@ -179,10 +169,11 @@ namespace Model
         protected static string ValidateText(string value, string fieldName)
         {
             if (string.IsNullOrEmpty(value))
+            {
                 throw new ArgumentException(
                     $"Поле {fieldName} не может быть пустым " +
                     $"или состоять только из пробелов.");
-
+            }
             return value;
         }
 
