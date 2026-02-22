@@ -5,7 +5,7 @@ namespace Model
     /// <summary>
     /// Хранение и обработка персональных данных.
     /// </summary>
-    public class Person
+    public abstract class PersonBase
     {
         /// <summary>
         /// Имя человека
@@ -21,12 +21,7 @@ namespace Model
         /// Возраст человека
         /// </summary>
         private int _age;
-
-        /// <summary>
-        /// Пол человека
-        /// </summary>
-        private Gender _gender;
-
+        
         /// <summary>
         /// Инициализируем новый экземпляр класса Person.
         /// </summary>
@@ -34,18 +29,13 @@ namespace Model
         /// <param name="surname">Фамилия</param>
         /// <param name="age">Возраст</param>
         /// <param name="gender">Пол</param>
-        public Person(string name, string surname, int age, Gender gender)
+        protected PersonBase(string name, string surname, int age, Gender gender)
         {
             Name = name;
             Surname = surname;
             Age = age;
             Gender = gender; 
         }
-
-        /// <summary>
-        /// Создаение нового экземпляра класса Person по умолчанию.
-        /// </summary>
-        public Person() : this("Ivan", "Ivanov", 18, Gender.Male) { }
 
         /// <summary>
         /// Получение и валидация имени.
@@ -73,35 +63,42 @@ namespace Model
         }
 
         /// <summary>
+        /// Минимальный возраст
+        /// </summary>
+        public virtual int MinAge { get; } = 0;
+
+        /// <summary>
+        /// Максимальный возраст
+        /// </summary>
+        public virtual int MaxAge { get; } = 123;
+
+        /// <summary>
         /// Получение и валидация возраста.
         /// </summary>
-        public int Age
+        public virtual int Age
         {
             get { return _age; }
             set
             {
-                const int minAge = 0;
-                const int maxAge = 123;
-                if (value < minAge || value > maxAge)
+                if (value < MinAge || value > MaxAge)
                 {
                     throw new Exception($"{nameof(Age)} должен быть от " +
-                        $"{minAge} до {maxAge}!");
+                        $"{MinAge} до {MaxAge}!");
                 }
                 _age = value;
             }
         }
 
+        //TODO: autoproperty + 
         /// <summary>
-        /// Получение и валидация пола.
+        /// Получение пола.
         /// </summary>
-        public Gender Gender
-        {
-            get { return _gender; }
-            set
-            {               
-                _gender = value;
-            }
-        }
+        public Gender Gender { get; set; }
+
+        /// <summary>
+        /// Определение пола
+        /// </summary>
+        protected abstract string GenderRole { get; }
 
         /// <summary>
         /// Проверка строки, содержащей только кириллические символы
@@ -123,9 +120,11 @@ namespace Model
         private static string Validate(string value, string fieldName)
         {
             if (string.IsNullOrEmpty(value))
+            {
                 throw new ArgumentException(
-                    $"{fieldName} не может быть пустым " +
+                    $"Поле {fieldName} не может быть пустым " +
                     $"или состоять только из пробелов.");
+            }   
 
             bool isRussian = Regex.IsMatch(value, RussianPattern);
             bool isLatin = Regex.IsMatch(value, LatinPattern);
@@ -143,6 +142,10 @@ namespace Model
             return textInfo.ToTitleCase(value.ToLowerInvariant());
         }
 
+        /// <summary>
+        /// Проверяет корректность языка
+        /// </summary>
+        /// <exception cref="InvalidOperationException"></exception>
         private void EnsureLanguage()
         {
             bool nameIsRussian = Regex.IsMatch(_name, RussianPattern);
@@ -156,44 +159,43 @@ namespace Model
             }
         }
 
-        /// <summary>pattern
-        /// Генерирует случайного человека с данными для тестирования.
+        /// <summary>
+        /// Проверяет корректность ввода данных
         /// </summary>
-        /// <returns>Возвращает новый экземпляр класса Person</returns>
-        public static Person GetRandomPerson()
+        /// <param name="value"></param>
+        /// <param name="fieldName"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        protected static string ValidateText(string value, string fieldName)
         {
-            Random random = new Random();
-
-            string[] maleNames = { "Алексей", "Дмитрий", "Иван", "Сергей",
-                                    "Андрей", "Максим", "Егор", "Артём" };
-
-            string[] femaleNames = { "Анна", "Елена", "Мария",
-                                      "Ольга", "Татьяна", "Наталья",
-                                      "Дарья", "Полина" };
-
-            string[] surnamesMale = { "Иванов", "Смирнов", "Кузнецов",
-                                       "Попов", "Волков", "Соколов", 
-                                       "Лебедев", "Морозов" };
-
-            string[] surnamesFemale = { "Иванова", "Смирнова", "Кузнецова",
-                                         "Попова", "Волкова", "Соколова", 
-                                         "Лебедева", "Морозова" };
-
-            var gender = random.Next(2) == 0 
-                ? Gender.Male 
-                : Gender.Female;
-
-            int age = random.Next(0, 123);
-
-            string name = gender == Gender.Male
-                ? maleNames[random.Next(maleNames.Length)]
-                : femaleNames[random.Next(femaleNames.Length)];
-
-            string surname = gender == Gender.Male
-                ? surnamesMale[random.Next(surnamesMale.Length)]
-                : surnamesFemale[random.Next(surnamesFemale.Length)];
-
-            return new Person(name, surname, age, gender);
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentException(
+                    $"Поле {fieldName} не может быть пустым " +
+                    $"или состоять только из пробелов.");
+            }
+            return value;
         }
+
+        /// <summary>
+        /// Получение информации
+        /// </summary>
+        /// <returns></returns>
+        public abstract string GetInfo();
+
+        /// <summary>
+        /// Формирование строки с базовой информацией
+        /// </summary>
+        /// <returns></returns>
+        protected string GetBasicInfo()
+        {
+            return $"{Name} {Surname} \n Пол: {GenderRole}, возраст: {Age}";
+        }
+
+        /// <summary>
+        /// Получение информации о хобби
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GetHobby() => "Мое хобби:";
     }
 }

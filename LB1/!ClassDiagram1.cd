@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Model.Adult" Collapsed="true">
+    <Position X="5.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAQAAAICAAAgFAAAAAAAAAAAEAAAAAAAQAAAAg=</HashCode>
+      <FileName>Adult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Child" Collapsed="true">
+    <Position X="9.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAICAAAEEAABAAAAAAAAEAAAAABAAAgAAA=</HashCode>
+      <FileName>Child.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.PersonBase" Collapsed="true">
+    <Position X="7.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAsAEAAACICACIAUAAAQQABBAAAEgAAAAAAAAEAIA=</HashCode>
+      <FileName>PersonBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.PersonGenerator" Collapsed="true">
+    <Position X="11.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAgAAAAIAAAAAAAAgAAAACAAAAAAAAAIAQAAAAAAAA=</HashCode>
+      <FileName>PersonGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.PersonList" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAAAAAAAAAAAAAAACBAQAAAAAAAACCAAAAAFAAAA=</HashCode>
+      <FileName>PersonList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
