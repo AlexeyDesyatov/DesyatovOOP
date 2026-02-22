@@ -17,9 +17,20 @@ namespace Var5
         string Name { get; set; }
 
         /// <summary>
+        /// Приоритет скидки
+        /// </summary>
+        int Priority { get; set; }
+
+        /// <summary>
+        /// Расчет стоимости
+        /// </summary>
+        /// <returns></returns>
+        double GetDiscountPrice();
+
+        /// <summary>
         /// Расчет скидки
         /// </summary>
         /// <returns></returns>
-        double Calculate();
+        double GetDiscountValue();
     }
 }
