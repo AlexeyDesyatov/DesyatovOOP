@@ -6,14 +6,24 @@ using System.Threading.Tasks;
 
 namespace Var5
 {
+    /// <summary>
+    /// Хранение и обработка данных
+    /// </summary>
     public abstract class DiscountBase : IDiscount
     {
-
+        /// <summary>
+        /// Наименование скидки
+        /// </summary>
         private string _name;
 
+        /// <summary>
+        /// Приоритет скидки
+        /// </summary>
         private int _priority;
 
-
+        /// <summary>
+        /// Данные о скидках
+        /// </summary>
         public static readonly Dictionary<int, 
             (string Name, int Priority)> Discount = new()
         {
@@ -21,24 +31,39 @@ namespace Var5
             { 2, ("Сертификат", 5) }
         };
 
+        /// <summary>
+        /// Наименование
+        /// </summary>
         public string Name
         {
             get => _name;
             set => SetName(value);
         }
 
+        /// <summary>
+        /// Приоритет
+        /// </summary>
         public int Priority
         {
             get => _priority;
             set => SetPriority(value);
         }
 
+        /// <summary>
+        /// Получение и валидация наименования
+        /// </summary>
+        /// <param name="value"></param>
         private void SetName(string value)
         {
             ValidateString(value, "Наименование скидки");
             _name = value;
         }
 
+        /// <summary>
+        /// Получение и валидация приоритета
+        /// </summary>
+        /// <param name="value"></param>
+        /// <exception cref="IncorrectArgumentException"></exception>
         private void SetPriority(int value)
         {
             if (value < 0)
@@ -49,7 +74,12 @@ namespace Var5
             _priority = value;
         }
 
-
+        /// <summary>
+        /// Валидация строки
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="fieldName"></param>
+        /// <exception cref="IncorrectArgumentException"></exception>
         private static void ValidateString(string value, string fieldName)
         {
             if (string.IsNullOrWhiteSpace(value))
@@ -59,8 +89,16 @@ namespace Var5
             }
         }
 
+        /// <summary>
+        /// Расчет стоимости
+        /// </summary>
+        /// <returns></returns>
         public abstract double GetDiscountPrice();
 
+        /// <summary>
+        /// Расчет скидки
+        /// </summary>
+        /// <returns></returns>
         public abstract double GetDiscountValue();
 
     }
