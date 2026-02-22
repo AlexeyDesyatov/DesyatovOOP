@@ -9,7 +9,7 @@ namespace Var5
     /// <summary>
     /// Исключение
     /// </summary>
-    internal class IncorrectArgumentException : Exception
+    public class IncorrectArgumentException : Exception
     {
         /// <summary>
         /// Конструктор

@@ -9,7 +9,7 @@ namespace Var5
     /// <summary>
     /// Процентная скидка
     /// </summary>
-    internal class PercentDiscount : DiscountBase
+    public class PercentDiscount : DiscountBase
     {
         /// <summary>
         /// Поле для процента скидки
