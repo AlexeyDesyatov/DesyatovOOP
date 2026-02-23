@@ -14,11 +14,6 @@ namespace Var5
         private double _certificateAmount;
 
         /// <summary>
-        /// Поле для исходной цены
-        /// </summary>
-        private double _originalPrice;
-
-        /// <summary>
         /// Получение и валидация скидки по сертификату
         /// </summary>
         public double CertificateAmount
@@ -32,23 +27,6 @@ namespace Var5
                         "Сумма сертификата должна быть положительной.");
                 }
                 _certificateAmount = value;
-            }
-        }
-
-        /// <summary>
-        /// Получение и валидация исходной цены
-        /// </summary>
-        public double OriginalPrice
-        {
-            get => _originalPrice;
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new IncorrectArgumentException(
-                        "Цена должна быть положительной.");
-                }
-                _originalPrice = value;
             }
         }
 
@@ -67,7 +45,7 @@ namespace Var5
         /// <returns></returns>
         public override double GetDiscountPrice()
         {
-            return _originalPrice - GetDiscountValue();
+            return OriginPrice - GetDiscountValue();
         }
     }
 }

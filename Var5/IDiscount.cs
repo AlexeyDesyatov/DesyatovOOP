@@ -22,6 +22,11 @@ namespace Var5
         int Priority { get; set; }
 
         /// <summary>
+        /// Исходная цена
+        /// </summary>
+        double OriginPrice { get; set; }
+
+        /// <summary>
         /// Расчет стоимости
         /// </summary>
         /// <returns></returns>

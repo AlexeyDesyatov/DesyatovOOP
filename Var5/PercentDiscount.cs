@@ -15,11 +15,6 @@ namespace Var5
         /// Поле для процента скидки
         /// </summary>
         private double _percent;
-
-        /// <summary>
-        /// Поле для исходной цены
-        /// </summary>
-        private double _originPrice;
         
         /// <summary>
         /// Минимально допустимое значение процента скидки
@@ -49,29 +44,12 @@ namespace Var5
         }
 
         /// <summary>
-        /// Получение и валидация исходной цены
-        /// </summary>
-        public double OriginPrice
-        {
-            get => _originPrice;
-            set
-            {
-                if (value <= 0)
-                {
-                    throw new IncorrectArgumentException(
-                        "Цена должна быть положительной.");
-                }
-                _originPrice = value;
-            }
-        }
-
-        /// <summary>
         /// Расчет стоимости
         /// </summary>
         /// <returns></returns>
         public override double GetDiscountValue()
         {
-            return _originPrice * _percent / 100;
+            return OriginPrice * _percent / 100;
         }
 
         /// <summary>
@@ -80,7 +58,7 @@ namespace Var5
         /// <returns></returns>
         public override double GetDiscountPrice()
         {
-            return _originPrice - GetDiscountValue();
+            return OriginPrice - GetDiscountValue();
         }
     }
 }

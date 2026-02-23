@@ -17,11 +17,6 @@ namespace ConsoleLoader
             public Action<IDiscount> PropertyHandlingAction { get; }
 
             /// <summary>
-            /// Список ожидаемых типов исключений
-            /// </summary>
-            public List<Type> ExceptionTypes { get; }
-
-            /// <summary>
             /// Название свойства для вывода пользователю
             /// </summary>
             public string PropertyName { get; }
@@ -31,11 +26,9 @@ namespace ConsoleLoader
             /// </summary>
             public PropertyHandlerDTO(
                 string propertyName,
-                List<Type> exceptionTypes,
                 Action<IDiscount> propertyHandlingAction)
             {
                 PropertyName = propertyName;
-                ExceptionTypes = exceptionTypes;
                 PropertyHandlingAction = propertyHandlingAction;
             }
         }
@@ -45,7 +38,6 @@ namespace ConsoleLoader
         /// </summary>
         public static void Main()
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.WriteLine("=== Система расчёта скидок (Вариант 5) ===\n");
 
             var discountList = new List<IDiscount>();
@@ -76,53 +68,19 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Создаёт скидку, отображает результат и возвращает объект
+        /// Создаёт объект, отображает результат и возвращает объект
         /// </summary>
         private static T CreateAndShowDiscount<T>(List<PropertyHandlerDTO> handlers)
-            where T : DiscountBase, new()
-        {
-            var discount = CreateDiscount<T>(handlers);
-            ShowDiscountResult(discount);
-            return (T)discount;
-        }
-
-        /// <summary>
-        /// Создание объекта скидки с обработчиками свойств
-        /// </summary>
-        private static T CreateDiscount<T>(List<PropertyHandlerDTO> handlers)
             where T : DiscountBase, new()
         {
             var discount = new T();
             foreach (var handler in handlers)
             {
-                HandlePropertyWithRetry(discount, handler);
+                Console.Write($"{handler.PropertyName}: ");
+                handler.PropertyHandlingAction(discount);
             }
+            ShowDiscountResult(discount);
             return (T)discount;
-        }
-
-        /// <summary>
-        /// Обработчик ввода свойства с повтором при ошибке
-        /// </summary>
-        private static void HandlePropertyWithRetry(
-            IDiscount discount,
-            PropertyHandlerDTO handler)
-        {
-            while (true)
-            {
-                Console.Write($"\n{handler.PropertyName}: ");
-                try
-                {
-                    handler.PropertyHandlingAction(discount);
-                    return;
-                }
-                catch (Exception ex) when (handler.ExceptionTypes.Contains(ex.GetType()))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($" {ex.Message}");
-                    Console.ResetColor();
-                    Console.WriteLine(" Повторите ввод...");
-                }
-            }
         }
 
         /// <summary>
@@ -130,26 +88,31 @@ namespace ConsoleLoader
         /// </summary>
         private static List<PropertyHandlerDTO> GetCommonHandlers()
         {
-            var exceptionTypes = new List<Type> { typeof(IncorrectArgumentException) };
-
             return new List<PropertyHandlerDTO>
             {
-                new PropertyHandlerDTO("Название скидки", exceptionTypes,
+                new PropertyHandlerDTO("Название скидки",
                     d =>
                     {
                         var input = Console.ReadLine();
                         if (string.IsNullOrWhiteSpace(input))
                             throw new IncorrectArgumentException("Название не может быть пустым.");
-                        d.Name = CapitalizeFirstLetter(input);
+                        d.Name = input;
                     }),
 
-                new PropertyHandlerDTO("Приоритет (целое число ≥ 0)",
-                    new List<Type> { typeof(IncorrectArgumentException), typeof(FormatException) },
+                new PropertyHandlerDTO("Приоритет (целое число больше 0)",
                     d =>
                     {
                         if (!int.TryParse(Console.ReadLine(), out int priority))
                             throw new FormatException();
                         d.Priority = priority;
+                    }),
+
+                new PropertyHandlerDTO("Исходная цена (руб.)",
+                    d =>
+                    {
+                        if (!double.TryParse(Console.ReadLine(), out double price))
+                            throw new FormatException();
+                        d.OriginPrice = price;
                     })
             };
         }
@@ -160,35 +123,13 @@ namespace ConsoleLoader
         private static List<PropertyHandlerDTO> GetPropertyHandlersForPercent()
         {
             var handlers = GetCommonHandlers();
-            var numericExceptions = new List<Type>
-            {
-                typeof(IncorrectArgumentException),
-                typeof(FormatException)
-            };
 
-            handlers.Add(new PropertyHandlerDTO("Исходная цена (руб.)", numericExceptions,
+            handlers.Add(new PropertyHandlerDTO("Процент скидки (0–100)",
                 d =>
                 {
                     if (d is PercentDiscount percentDiscount)
                     {
-                        if (!double.TryParse(Console.ReadLine(),
-                                NumberStyles.Number,
-                                CultureInfo.InvariantCulture,
-                                out double price))
-                            throw new FormatException();
-                        percentDiscount.OriginPrice = price;
-                    }
-                }));
-
-            handlers.Add(new PropertyHandlerDTO("Процент скидки (0–100)", numericExceptions,
-                d =>
-                {
-                    if (d is PercentDiscount percentDiscount)
-                    {
-                        if (!double.TryParse(Console.ReadLine(),
-                                NumberStyles.Number,
-                                CultureInfo.InvariantCulture,
-                                out double percent))
+                        if (!double.TryParse(Console.ReadLine(), out double percent))
                             throw new FormatException();
                         percentDiscount.Percent = percent;
                     }
@@ -203,35 +144,13 @@ namespace ConsoleLoader
         private static List<PropertyHandlerDTO> GetPropertyHandlersForCertificate()
         {
             var handlers = GetCommonHandlers();
-            var numericExceptions = new List<Type>
-            {
-                typeof(IncorrectArgumentException),
-                typeof(FormatException)
-            };
 
-            handlers.Add(new PropertyHandlerDTO("Исходная цена (руб.)", numericExceptions,
+            handlers.Add(new PropertyHandlerDTO("Сумма сертификата (руб.)",
                 d =>
                 {
                     if (d is CertificateDiscount certDiscount)
                     {
-                        if (!double.TryParse(Console.ReadLine(),
-                                NumberStyles.Number,
-                                CultureInfo.InvariantCulture,
-                                out double price))
-                            throw new FormatException();
-                        certDiscount.OriginalPrice = price;
-                    }
-                }));
-
-            handlers.Add(new PropertyHandlerDTO("Сумма сертификата (руб.)", numericExceptions,
-                d =>
-                {
-                    if (d is CertificateDiscount certDiscount)
-                    {
-                        if (!double.TryParse(Console.ReadLine(),
-                                NumberStyles.Number,
-                                CultureInfo.InvariantCulture,
-                                out double amount))
+                        if (!double.TryParse(Console.ReadLine(), out double amount))
                             throw new FormatException();
                         certDiscount.CertificateAmount = amount;
                     }
@@ -252,14 +171,12 @@ namespace ConsoleLoader
 
             while (true)
             {
-                Console.Write("\nВаш выбор (1-3): ");
+                Console.Write("\nВаш выбор: ");
                 if (int.TryParse(Console.ReadLine(), out int choice) && choice is >= 1 and <= 3)
                 {
                     return choice;
                 }
-                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine(" Введите число от 1 до 3");
-                Console.ResetColor();
             }
         }
 
@@ -268,56 +185,9 @@ namespace ConsoleLoader
         /// </summary>
         private static void ShowDiscountResult(IDiscount discount)
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("\n" + new string('=', 40));
             Console.WriteLine($"  Скидка: {discount.Name} (приоритет: {discount.Priority})");
             Console.WriteLine($" Размер скидки: {discount.GetDiscountValue():F2} руб.");
             Console.WriteLine($" Итоговая цена: {discount.GetDiscountPrice():F2} руб.");
-            Console.WriteLine(new string('=', 40));
-            Console.ResetColor();
-        }
-
-        /// <summary>
-        /// Показать все созданные скидки
-        /// </summary>
-        private static void ShowAllDiscounts(List<IDiscount> discounts)
-        {
-            if (discounts.Count == 0)
-            {
-                Console.WriteLine(" Список пуст. Создайте хотя бы одну скидку.");
-                return;
-            }
-
-            Console.WriteLine("\n Все созданные скидки:");
-            for (int i = 0; i < discounts.Count; i++)
-            {
-                var d = discounts[i];
-                Console.WriteLine($"\n[{i + 1}] {d.Name} | Приоритет: {d.Priority}");
-                Console.WriteLine($"    Скидка: {d.GetDiscountValue():F2} руб. | Итого: {d.GetDiscountPrice():F2} руб.");
-            }
-        }
-
-        /// <summary>
-        /// Преобразование первой буквы каждого слова в заглавную
-        /// </summary>
-        private static string CapitalizeFirstLetter(string text)
-        {
-            if (string.IsNullOrWhiteSpace(text)) return text;
-
-            var culture = CultureInfo.CurrentCulture;
-            var words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            var result = new List<string>();
-
-            foreach (var word in words)
-            {
-                if (word.Length > 0)
-                {
-                    result.Add(char.ToUpper(word[0], culture) +
-                              word.Substring(1).ToLower(culture));
-                }
-            }
-
-            return string.Join(" ", result);
         }
     }
 }

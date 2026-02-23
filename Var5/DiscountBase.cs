@@ -22,6 +22,11 @@ namespace Var5
         private int _priority;
 
         /// <summary>
+        /// Исходная цена
+        /// </summary>
+        private double _originPrice;
+
+        /// <summary>
         /// Данные о скидках
         /// </summary>
         public static readonly Dictionary<int, 
@@ -49,6 +54,12 @@ namespace Var5
             set => SetPriority(value);
         }
 
+        public double OriginPrice
+        {
+            get => _originPrice;
+            set => SetPrice(value);
+        }
+
         /// <summary>
         /// Получение и валидация наименования
         /// </summary>
@@ -72,6 +83,21 @@ namespace Var5
                     "Приоритет скидки не может быть отрицательным.");
             }
             _priority = value;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <exception cref="IncorrectArgumentException"></exception>
+        private void SetPrice(double value)
+        {
+            if (value < 0)
+            {
+                throw new IncorrectArgumentException(
+                    "Цена не может быть отрицательной.");
+            }
+            _originPrice = value;
         }
 
         /// <summary>
