@@ -58,7 +58,7 @@ namespace Var5
         /// <returns></returns>
         public override double GetDiscountValue()
         {
-            return _originalPrice - _certificateAmount;
+            return _certificateAmount;
         }
 
         /// <summary>
