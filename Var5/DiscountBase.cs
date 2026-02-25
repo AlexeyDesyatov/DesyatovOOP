@@ -17,11 +17,6 @@ namespace Var5
         private string _name;
 
         /// <summary>
-        /// Приоритет скидки
-        /// </summary>
-        private int _priority;
-
-        /// <summary>
         /// Исходная цена
         /// </summary>
         private double _originPrice;
@@ -45,15 +40,6 @@ namespace Var5
             set => SetName(value);
         }
 
-        /// <summary>
-        /// Приоритет
-        /// </summary>
-        public int Priority
-        {
-            get => _priority;
-            set => SetPriority(value);
-        }
-
         public double OriginPrice
         {
             get => _originPrice;
@@ -68,21 +54,6 @@ namespace Var5
         {
             ValidateString(value, "Наименование скидки");
             _name = value;
-        }
-
-        /// <summary>
-        /// Получение и валидация приоритета
-        /// </summary>
-        /// <param name="value"></param>
-        /// <exception cref="IncorrectArgumentException"></exception>
-        private void SetPriority(int value)
-        {
-            if (value < 0)
-            {
-                throw new IncorrectArgumentException(
-                    "Приоритет скидки не может быть отрицательным.");
-            }
-            _priority = value;
         }
 
         /// <summary>

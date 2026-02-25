@@ -17,11 +17,6 @@ namespace Var5
         string Name { get; set; }
 
         /// <summary>
-        /// Приоритет скидки
-        /// </summary>
-        int Priority { get; set; }
-
-        /// <summary>
         /// Исходная цена
         /// </summary>
         double OriginPrice { get; set; }

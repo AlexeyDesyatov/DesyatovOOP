@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Var5
 {
+    /// <summary>
+    /// Класс скидки по сертификату
+    /// </summary>
     public class CertificateDiscount : DiscountBase
     {
         /// <summary>
