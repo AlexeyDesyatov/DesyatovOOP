@@ -10,33 +10,6 @@ namespace ConsoleLoader
     public class Program
     {
         /// <summary>
-        /// Класс конструктора
-        /// </summary>
-        public class Constructor
-        {
-            /// <summary>
-            /// Делегат для выполнения ввода свойства
-            /// </summary>
-            public Action<IDiscount> ConstructorAction { get; }
-
-            /// <summary>
-            /// Название свойства для вывода пользователю
-            /// </summary>
-            public string ConstructorName { get; }
-
-            /// <summary>
-            /// Конструктор
-            /// </summary>
-            public Constructor(
-                string constructorName,
-                Action<IDiscount> constructorAction)
-            {
-                ConstructorName = constructorName;
-                ConstructorAction = constructorAction;
-            }
-        }
-
-        /// <summary>
         /// Точка входа
         /// </summary>
         public static void Main()
@@ -191,6 +164,33 @@ namespace ConsoleLoader
                 $" {discount.GetDiscountValue():F2} руб.");
             Console.WriteLine($" Итоговая цена:" +
                 $" {discount.GetDiscountPrice():F2} руб.");
+        }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        public class Constructor
+        {
+            /// <summary>
+            /// Делегат для выполнения ввода свойства
+            /// </summary>
+            public Action<IDiscount> ConstructorAction { get; }
+
+            /// <summary>
+            /// Название свойства для вывода пользователю
+            /// </summary>
+            public string ConstructorName { get; }
+
+            /// <summary>
+            /// Конструктор
+            /// </summary>
+            public Constructor(
+                string constructorName,
+                Action<IDiscount> constructorAction)
+            {
+                ConstructorName = constructorName;
+                ConstructorAction = constructorAction;
+            }
         }
     }
 }
