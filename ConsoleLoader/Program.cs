@@ -24,6 +24,7 @@ namespace ConsoleLoader
 
                 switch (SelectDiscountType())
                 {
+                    //TODO: {}
                     case 1: 
                         discount = CreateAndShowDiscount<PercentDiscount>
                             (GetPropertyHandlersForPercent());
@@ -70,6 +71,7 @@ namespace ConsoleLoader
                     d =>
                     {
                         var input = Console.ReadLine();
+                        //TODO: {}
                         if (string.IsNullOrWhiteSpace(input))
                             throw new IncorrectArgumentException
                             ("Название не может быть пустым.");
@@ -79,6 +81,7 @@ namespace ConsoleLoader
                 new Constructor("Исходная цена (руб.)",
                     d =>
                     {
+                        //TODO: {}
                         if (!double.TryParse(Console.ReadLine(),
                             out double price))
                             throw new FormatException();
@@ -99,6 +102,7 @@ namespace ConsoleLoader
                 {
                     if (d is PercentDiscount percentDiscount)
                     {
+                        //TODO: {}
                         if (!double.TryParse(Console.ReadLine(),
                             out double percent))
                             throw new FormatException();
@@ -121,6 +125,7 @@ namespace ConsoleLoader
                 {
                     if (d is CertificateDiscount certDiscount)
                     {
+                        //TODO: {}
                         if (!double.TryParse(Console.ReadLine(),
                             out double amount))
                             throw new FormatException();
@@ -166,6 +171,7 @@ namespace ConsoleLoader
                 $" {discount.GetDiscountPrice():F2} руб.");
         }
 
+        //TODO: remove
         /// <summary>
         /// Конструктор
         /// </summary>

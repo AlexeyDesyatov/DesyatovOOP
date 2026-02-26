@@ -16,11 +16,13 @@ namespace Var5
         /// </summary>
         private double _percent;
         
+        //TODO: RSDN
         /// <summary>
         /// Минимально допустимое значение процента скидки
         /// </summary>
         int MinPercent = 0;
 
+        //TODO: RSDN
         /// <summary>
         /// Максимально допустимое значение процента скидки
         /// </summary>
@@ -52,6 +54,7 @@ namespace Var5
             return OriginPrice * _percent / 100;
         }
 
+        //TODO: refactor
         /// <summary>
         /// Расчет скидки
         /// </summary>

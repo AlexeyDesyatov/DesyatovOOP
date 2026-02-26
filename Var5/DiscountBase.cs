@@ -21,6 +21,7 @@ namespace Var5
         /// </summary>
         private double _originPrice;
 
+        //TODO: polymorphism
         /// <summary>
         /// Данные о скидках
         /// </summary>

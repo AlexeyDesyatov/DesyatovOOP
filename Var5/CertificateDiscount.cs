@@ -42,6 +42,7 @@ namespace Var5
             return _certificateAmount;
         }
 
+        //TODO: refactor
         /// <summary>
         /// Расчет скидки
         /// </summary>
