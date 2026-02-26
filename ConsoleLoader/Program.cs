@@ -52,14 +52,14 @@ namespace ConsoleLoader
                 switch (SelectDiscountType())
                 {
                     case 1: 
-                        discount = CreateAndShowDiscount<PercentDiscount>(
-                            GetPropertyHandlersForPercent());
+                        discount = CreateAndShowDiscount<PercentDiscount>
+                            (GetPropertyHandlersForPercent());
                         discountList.Add(discount);
                         break;
 
                     case 2: 
-                        discount = CreateAndShowDiscount<CertificateDiscount>(
-                            GetPropertyHandlersForCertificate());
+                        discount = CreateAndShowDiscount<CertificateDiscount>
+                            (GetPropertyHandlersForCertificate());
                         discountList.Add(discount);
                         break;
 
@@ -98,14 +98,16 @@ namespace ConsoleLoader
                     {
                         var input = Console.ReadLine();
                         if (string.IsNullOrWhiteSpace(input))
-                            throw new IncorrectArgumentException("Название не может быть пустым.");
+                            throw new IncorrectArgumentException
+                            ("Название не может быть пустым.");
                         d.Name = input;
                     }),
 
                 new Constructor("Исходная цена (руб.)",
                     d =>
                     {
-                        if (!double.TryParse(Console.ReadLine(), out double price))
+                        if (!double.TryParse(Console.ReadLine(),
+                            out double price))
                             throw new FormatException();
                         d.OriginPrice = price;
                     })
@@ -124,7 +126,8 @@ namespace ConsoleLoader
                 {
                     if (d is PercentDiscount percentDiscount)
                     {
-                        if (!double.TryParse(Console.ReadLine(), out double percent))
+                        if (!double.TryParse(Console.ReadLine(),
+                            out double percent))
                             throw new FormatException();
                         percentDiscount.Percent = percent;
                     }
@@ -145,7 +148,8 @@ namespace ConsoleLoader
                 {
                     if (d is CertificateDiscount certDiscount)
                     {
-                        if (!double.TryParse(Console.ReadLine(), out double amount))
+                        if (!double.TryParse(Console.ReadLine(),
+                            out double amount))
                             throw new FormatException();
                         certDiscount.CertificateAmount = amount;
                     }
@@ -167,7 +171,8 @@ namespace ConsoleLoader
             while (true)
             {
                 Console.Write("\nВаш выбор: ");
-                if (int.TryParse(Console.ReadLine(), out int choice) && choice is >= 1 and <= 3)
+                if (int.TryParse(Console.ReadLine(), out int choice)
+                    && choice is >= 1 and <= 3)
                 {
                     return choice;
                 }
@@ -180,9 +185,12 @@ namespace ConsoleLoader
         /// </summary>
         private static void ShowDiscountResult(IDiscount discount)
         {
-            Console.WriteLine($" Скидка: {discount.Name}");
-            Console.WriteLine($" Размер скидки: {discount.GetDiscountValue():F2} руб.");
-            Console.WriteLine($" Итоговая цена: {discount.GetDiscountPrice():F2} руб.");
+            Console.WriteLine($" Скидка: " +
+                $"{discount.Name}");
+            Console.WriteLine($" Размер скидки:" +
+                $" {discount.GetDiscountValue():F2} руб.");
+            Console.WriteLine($" Итоговая цена:" +
+                $" {discount.GetDiscountPrice():F2} руб.");
         }
     }
 }
