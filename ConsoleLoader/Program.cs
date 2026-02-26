@@ -37,7 +37,7 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Точка входа в приложение
+        /// Точка входа
         /// </summary>
         public static void Main()
         {

@@ -40,6 +40,9 @@ namespace Var5
             set => SetName(value);
         }
 
+        /// <summary>
+        /// Исходная цена
+        /// </summary>
         public double OriginPrice
         {
             get => _originPrice;
@@ -57,7 +60,7 @@ namespace Var5
         }
 
         /// <summary>
-        /// 
+        /// Валидация цены
         /// </summary>
         /// <param name="value"></param>
         /// <exception cref="IncorrectArgumentException"></exception>
