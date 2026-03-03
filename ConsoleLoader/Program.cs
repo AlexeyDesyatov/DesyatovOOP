@@ -24,22 +24,26 @@ namespace ConsoleLoader
 
                 switch (SelectDiscountType())
                 {
-                    //TODO: {}
-                    case 1: 
-                        discount = CreateAndShowDiscount<PercentDiscount>
+                    //TODO: {} +
+                    case 1:
+                        {
+                            discount = CreateAndShowDiscount<PercentDiscount>
                             (GetPropertyHandlersForPercent());
-                        discountList.Add(discount);
-                        break;
-
-                    case 2: 
-                        discount = CreateAndShowDiscount<CertificateDiscount>
+                            discountList.Add(discount);
+                            break;
+                        }
+                    case 2:
+                        {
+                            discount = CreateAndShowDiscount<CertificateDiscount>
                             (GetPropertyHandlersForCertificate());
-                        discountList.Add(discount);
-                        break;
-
+                            discountList.Add(discount);
+                            break;
+                        }
                     case 3:
-                        Console.WriteLine("Завершение работы...");
-                        return;
+                        {
+                            Console.WriteLine("Завершение работы...");
+                            return;
+                        }
                 }
             }
         }
@@ -47,14 +51,14 @@ namespace ConsoleLoader
         /// <summary>
         /// Создаёт объект, отображает результат и возвращает объект
         /// </summary>
-        private static T CreateAndShowDiscount<T>(List<Constructor> handlers)
+        private static T CreateAndShowDiscount<T>(List<PropertyHandler> handlers)
             where T : DiscountBase, new()
         {
             var discount = new T();
             foreach (var handler in handlers)
             {
-                Console.Write($"{handler.ConstructorName}: ");
-                handler.ConstructorAction(discount);
+                Console.Write($"{handler.PropertyName}: ");
+                handler.SetAction(discount);
             }
             ShowDiscountResult(discount);
             return (T)discount;
@@ -63,28 +67,32 @@ namespace ConsoleLoader
         /// <summary>
         /// Общие обработчики для всех типов скидок
         /// </summary>
-        private static List<Constructor> GetCommonHandlers()
+        private static List<PropertyHandler> GetCommonHandlers()
         {
-            return new List<Constructor>
+            return new List<PropertyHandler>
             {
-                new Constructor("Название скидки",
+                new PropertyHandler("Название скидки",
                     d =>
                     {
                         var input = Console.ReadLine();
-                        //TODO: {}
+                        //TODO: {} +
                         if (string.IsNullOrWhiteSpace(input))
+                        {
                             throw new IncorrectArgumentException
                             ("Название не может быть пустым.");
+                        }
                         d.Name = input;
                     }),
 
-                new Constructor("Исходная цена (руб.)",
+                new PropertyHandler("Исходная цена (руб.)",
                     d =>
                     {
-                        //TODO: {}
+                        //TODO: {} +
                         if (!double.TryParse(Console.ReadLine(),
                             out double price))
+                        {
                             throw new FormatException();
+                        }
                         d.OriginPrice = price;
                     })
             };
@@ -93,19 +101,22 @@ namespace ConsoleLoader
         /// <summary>
         /// Обработчики для процентной скидки
         /// </summary>
-        private static List<Constructor> GetPropertyHandlersForPercent()
+        private static List<PropertyHandler> GetPropertyHandlersForPercent()
         {
             var handlers = GetCommonHandlers();
 
-            handlers.Add(new Constructor("Процент скидки (0–100)",
+            handlers.Add(new PropertyHandler("Процент скидки (0–100)",
                 d =>
                 {
                     if (d is PercentDiscount percentDiscount)
                     {
-                        //TODO: {}
+                        //TODO: {} +
                         if (!double.TryParse(Console.ReadLine(),
                             out double percent))
+                        {
                             throw new FormatException();
+
+                        }
                         percentDiscount.Percent = percent;
                     }
                 }));
@@ -116,23 +127,24 @@ namespace ConsoleLoader
         /// <summary>
         /// Обработчики для скидки по сертификату
         /// </summary>
-        private static List<Constructor> GetPropertyHandlersForCertificate()
+        private static List<PropertyHandler> GetPropertyHandlersForCertificate()
         {
             var handlers = GetCommonHandlers();
 
-            handlers.Add(new Constructor("Сумма сертификата (руб.)",
+            handlers.Add(new PropertyHandler("Сумма сертификата (руб.)",
                 d =>
                 {
                     if (d is CertificateDiscount certDiscount)
                     {
-                        //TODO: {}
+                        //TODO: {} +
                         if (!double.TryParse(Console.ReadLine(),
                             out double amount))
+                        {
                             throw new FormatException();
+                        }
                         certDiscount.CertificateAmount = amount;
                     }
                 }));
-
             return handlers;
         }
 
@@ -170,33 +182,6 @@ namespace ConsoleLoader
             Console.WriteLine($" Итоговая цена:" +
                 $" {discount.GetDiscountPrice():F2} руб.");
         }
-
-        //TODO: remove
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        public class Constructor
-        {
-            /// <summary>
-            /// Делегат для выполнения ввода свойства
-            /// </summary>
-            public Action<IDiscount> ConstructorAction { get; }
-
-            /// <summary>
-            /// Название свойства для вывода пользователю
-            /// </summary>
-            public string ConstructorName { get; }
-
-            /// <summary>
-            /// Конструктор
-            /// </summary>
-            public Constructor(
-                string constructorName,
-                Action<IDiscount> constructorAction)
-            {
-                ConstructorName = constructorName;
-                ConstructorAction = constructorAction;
-            }
-        }
+        //TODO: remove +
     }
 }

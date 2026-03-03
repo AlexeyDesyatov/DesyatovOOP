@@ -16,17 +16,17 @@ namespace Var5
         /// </summary>
         private double _percent;
         
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Минимально допустимое значение процента скидки
         /// </summary>
-        int MinPercent = 0;
+        private const int MinPercent = 0;
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Максимально допустимое значение процента скидки
         /// </summary>
-        int MaxPercent = 100;
+        private const int MaxPercent = 100;
 
         /// <summary>
         /// Получение и валидация процента скидки
@@ -53,15 +53,6 @@ namespace Var5
         {
             return OriginPrice * _percent / 100;
         }
-
-        //TODO: refactor
-        /// <summary>
-        /// Расчет скидки
-        /// </summary>
-        /// <returns></returns>
-        public override double GetDiscountPrice()
-        {
-            return OriginPrice - GetDiscountValue();
-        }
+        //TODO: refactor +
     }
 }

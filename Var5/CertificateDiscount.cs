@@ -42,14 +42,6 @@ namespace Var5
             return _certificateAmount;
         }
 
-        //TODO: refactor
-        /// <summary>
-        /// Расчет скидки
-        /// </summary>
-        /// <returns></returns>
-        public override double GetDiscountPrice()
-        {
-            return OriginPrice - GetDiscountValue();
-        }
+        //TODO: refactor +
     }
 }

@@ -94,7 +94,10 @@ namespace Var5
         /// Расчет стоимости
         /// </summary>
         /// <returns></returns>
-        public abstract double GetDiscountPrice();
+        public virtual double GetDiscountPrice()
+        {
+            return OriginPrice - GetDiscountValue();
+        }
 
         /// <summary>
         /// Расчет скидки
