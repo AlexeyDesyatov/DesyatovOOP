@@ -43,5 +43,9 @@ namespace Var5
         }
 
         //TODO: refactor +
+        public override double GetDiscountPrice()
+        {
+            return Math.Max(0, OriginPrice - GetDiscountValue());
+        }
     }
 }

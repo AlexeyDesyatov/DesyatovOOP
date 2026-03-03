@@ -74,26 +74,46 @@ namespace ConsoleLoader
                 new PropertyHandler("Название скидки",
                     d =>
                     {
-                        var input = Console.ReadLine();
-                        //TODO: {} +
-                        if (string.IsNullOrWhiteSpace(input))
-                        {
-                            throw new IncorrectArgumentException
-                            ("Название не может быть пустым.");
+                        while (true)
+                        {   
+                            var input = Console.ReadLine();
+                            //TODO: {} +
+                            if (!string.IsNullOrWhiteSpace(input))
+                            {
+                                d.Name = input;
+                                break;
+                            }
+                            Console.Write(" Ошибка!" +
+                                " Название не может быть пустым. ");
                         }
-                        d.Name = input;
                     }),
 
                 new PropertyHandler("Исходная цена (руб.)",
                     d =>
                     {
-                        //TODO: {} +
-                        if (!double.TryParse(Console.ReadLine(),
-                            out double price))
+                        while (true)
                         {
-                            throw new FormatException();
+                            //TODO: {} +
+                            if (double.TryParse(Console.ReadLine(),
+                                out double price))
+                            {
+                                try
+                                {
+                                    d.OriginPrice = price;
+                                    break;
+                                }
+                                catch (IncorrectArgumentException ex)
+                                {
+                                    Console.Write($" Ошибка!" +
+                                        $" {ex.Message} Повторите ввод: ");
+                                }
+                            }
+                            else
+                            {
+                                Console.Write(" Ошибка!" +
+                                    " Введите корректное число: ");
+                            }
                         }
-                        d.OriginPrice = price;
                     })
             };
         }
@@ -110,14 +130,29 @@ namespace ConsoleLoader
                 {
                     if (d is PercentDiscount percentDiscount)
                     {
-                        //TODO: {} +
-                        if (!double.TryParse(Console.ReadLine(),
-                            out double percent))
+                        while (true)
                         {
-                            throw new FormatException();
-
+                            //TODO: {} +
+                            if (double.TryParse(Console.ReadLine(),
+                                out double percent))
+                            {
+                                try
+                                {
+                                    percentDiscount.Percent = percent; 
+                                    break; 
+                                }
+                                catch (IncorrectArgumentException ex)
+                                {
+                                    Console.Write($" Ошибка!" +
+                                        $" {ex.Message} Повторите ввод: ");
+                                }
+                            }
+                            else
+                            {
+                                Console.Write(" Ошибка!" +
+                                    " Введите корректное число: ");
+                            }
                         }
-                        percentDiscount.Percent = percent;
                     }
                 }));
 
@@ -136,13 +171,29 @@ namespace ConsoleLoader
                 {
                     if (d is CertificateDiscount certDiscount)
                     {
-                        //TODO: {} +
-                        if (!double.TryParse(Console.ReadLine(),
-                            out double amount))
+                        while (true)
                         {
-                            throw new FormatException();
+                            //TODO: {} +
+                            if (double.TryParse(Console.ReadLine(),
+                                out double amount))
+                            {
+                                try
+                                {
+                                    certDiscount.CertificateAmount = amount;
+                                    break; 
+                                }
+                                catch (IncorrectArgumentException ex)
+                                {
+                                    Console.Write($" Ошибка!" +
+                                        $" {ex.Message} Повторите ввод: ");
+                                }
+                            }
+                            else
+                            {
+                                Console.Write(" Ошибка!" +
+                                    " Введите корректное число: ");
+                            }
                         }
-                        certDiscount.CertificateAmount = amount;
                     }
                 }));
             return handlers;
