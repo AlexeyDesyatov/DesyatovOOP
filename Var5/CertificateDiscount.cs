@@ -17,6 +17,11 @@ namespace Var5
         private double _certificateAmount;
 
         /// <summary>
+        /// Название типа скидки
+        /// </summary>
+        public override string DiscountType => "Сертификат";
+
+        /// <summary>
         /// Получение и валидация скидки по сертификату
         /// </summary>
         public double CertificateAmount

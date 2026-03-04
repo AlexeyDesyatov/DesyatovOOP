@@ -15,7 +15,12 @@ namespace Var5
         /// Поле для процента скидки
         /// </summary>
         private double _percent;
-        
+
+        /// <summary>
+        /// Название типа скидки
+        /// </summary>
+        public override string DiscountType => "Процентная";
+
         //TODO: RSDN +
         /// <summary>
         /// Минимально допустимое значение процента скидки

@@ -21,16 +21,11 @@ namespace Var5
         /// </summary>
         private double _originPrice;
 
-        //TODO: polymorphism
+        //TODO: polymorphism +
         /// <summary>
         /// Данные о скидках
         /// </summary>
-        public static readonly Dictionary<int, 
-            (string Name, int Priority)> Discount = new()
-        {
-            { 1, ("Процентная", 10) },
-            { 2, ("Сертификат", 5) }
-        };
+        public virtual string DiscountType { get; }
 
         /// <summary>
         /// Наименование
