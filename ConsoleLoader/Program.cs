@@ -149,7 +149,6 @@ namespace ConsoleLoader
             return new List<PropertyHandler>
             {
                 CreateStringHandler("Название скидки",
-                //TODO: RSDN +
                 (discount, value) => discount.Name = value, errorMessage: " Ошибка! " +
                     "Название не может быть пустым. "),
                 CreateHandler("Исходная цена (руб.)",
@@ -166,10 +165,8 @@ namespace ConsoleLoader
             var handlers = GetCommonHandlers();
 
             handlers.Add(CreateHandler("Процент скидки (0–100)",
-                //TODO: RSDN +
                 (discount, value) =>
                 {
-                    //TODO: {} +
                     if (discount is PercentDiscount percentDiscount)
                     {
                         percentDiscount.Percent = value;
@@ -188,11 +185,8 @@ namespace ConsoleLoader
             var handlers = GetCommonHandlers();
 
             handlers.Add(CreateHandler("Сумма сертификата (руб.)",
-                //TODO: RSDN +
                 (discount, value) =>
                 {
-                    //TODO: {} +
-                    //TODO: RSDN +
                     if (discount is CertificateDiscount certDiscount)
                     {
                         certDiscount.CertificateAmount = value;

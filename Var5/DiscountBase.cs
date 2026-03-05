@@ -84,14 +84,12 @@ namespace Var5
             }
         }
 
-        //TODO: to property +
         /// <summary>
         /// Расчет стоимости
         /// </summary>
         /// <returns></returns>
         public virtual double DiscountPrice => OriginPrice - DiscountValue;
 
-        //TODO: to property +
         /// <summary>
         /// Расчет скидки
         /// </summary>
