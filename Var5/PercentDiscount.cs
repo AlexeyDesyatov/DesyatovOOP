@@ -21,13 +21,11 @@ namespace Var5
         /// </summary>
         public override string DiscountType => "Процентная";
 
-        //TODO: RSDN +
         /// <summary>
         /// Минимально допустимое значение процента скидки
         /// </summary>
         private const int MinPercent = 0;
 
-        //TODO: RSDN +
         /// <summary>
         /// Максимально допустимое значение процента скидки
         /// </summary>
@@ -43,6 +41,7 @@ namespace Var5
             {
                 if (value < MinPercent || value > MaxPercent)
                 {
+                    //TODO: magic (to const)
                     throw new IncorrectArgumentException(
                         "Процент скидки должен быть от 0 до 100.");
                 }
@@ -58,6 +57,5 @@ namespace Var5
         {
             return OriginPrice * _percent / 100;
         }
-        //TODO: refactor +
     }
 }

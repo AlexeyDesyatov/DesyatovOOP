@@ -47,7 +47,7 @@ namespace Var5
             return _certificateAmount;
         }
 
-        //TODO: refactor +
+        //TODO: XML
         public override double GetDiscountPrice()
         {
             return Math.Max(0, OriginPrice - GetDiscountValue());

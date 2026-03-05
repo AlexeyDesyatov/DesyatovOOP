@@ -24,11 +24,11 @@ namespace ConsoleLoader
 
                 switch (SelectDiscountType())
                 {
-                    //TODO: {} +
+                    //TODO: отступы
                     case 1:
                         {
                             discount = CreateAndShowDiscount<PercentDiscount>
-                            (GetPropertyHandlersForPercent());
+                                (GetPropertyHandlersForPercent());
                             discountList.Add(discount);
                             break;
                         }
@@ -67,17 +67,18 @@ namespace ConsoleLoader
         /// <summary>
         /// Общие обработчики для всех типов скидок
         /// </summary>
+        /// //TODO: XML
         private static List<PropertyHandler> GetCommonHandlers()
         {
             return new List<PropertyHandler>
             {
+                //TODO: duplication
                 new PropertyHandler("Название скидки",
                     d =>
                     {
                         while (true)
                         {   
                             var input = Console.ReadLine();
-                            //TODO: {} +
                             if (!string.IsNullOrWhiteSpace(input))
                             {
                                 d.Name = input;
@@ -87,13 +88,12 @@ namespace ConsoleLoader
                                 " Название не может быть пустым. ");
                         }
                     }),
-
+                //TODO: duplication
                 new PropertyHandler("Исходная цена (руб.)",
                     d =>
                     {
                         while (true)
                         {
-                            //TODO: {} +
                             if (double.TryParse(Console.ReadLine(),
                                 out double price))
                             {
@@ -128,11 +128,11 @@ namespace ConsoleLoader
             handlers.Add(new PropertyHandler("Процент скидки (0–100)",
                 d =>
                 {
+                    //TODO: duplication
                     if (d is PercentDiscount percentDiscount)
                     {
                         while (true)
                         {
-                            //TODO: {} +
                             if (double.TryParse(Console.ReadLine(),
                                 out double percent))
                             {
@@ -169,11 +169,11 @@ namespace ConsoleLoader
             handlers.Add(new PropertyHandler("Сумма сертификата (руб.)",
                 d =>
                 {
+                    //TODO: duplication
                     if (d is CertificateDiscount certDiscount)
                     {
                         while (true)
                         {
-                            //TODO: {} +
                             if (double.TryParse(Console.ReadLine(),
                                 out double amount))
                             {
@@ -233,6 +233,5 @@ namespace ConsoleLoader
             Console.WriteLine($" Итоговая цена:" +
                 $" {discount.GetDiscountPrice():F2} руб.");
         }
-        //TODO: remove +
     }
 }
