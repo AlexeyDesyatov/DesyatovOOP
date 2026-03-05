@@ -41,9 +41,10 @@ namespace Var5
             {
                 if (value < MinPercent || value > MaxPercent)
                 {
-                    //TODO: magic (to const)
+                    //TODO: magic (to const)+
                     throw new IncorrectArgumentException(
-                        "Процент скидки должен быть от 0 до 100.");
+                        $"Процент скидки должен быть " +
+                        $"от {MinPercent} до {MaxPercent}.");
                 }
                 _percent = value;
             }

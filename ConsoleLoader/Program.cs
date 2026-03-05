@@ -24,26 +24,26 @@ namespace ConsoleLoader
 
                 switch (SelectDiscountType())
                 {
-                    //TODO: отступы
+                    //TODO: отступы +
                     case 1:
-                        {
-                            discount = CreateAndShowDiscount<PercentDiscount>
-                                (GetPropertyHandlersForPercent());
-                            discountList.Add(discount);
-                            break;
-                        }
+                    {
+                        discount = CreateAndShowDiscount<PercentDiscount>
+                            (HandlersForPercent());
+                        discountList.Add(discount);
+                        break;
+                    }
                     case 2:
-                        {
-                            discount = CreateAndShowDiscount<CertificateDiscount>
-                            (GetPropertyHandlersForCertificate());
-                            discountList.Add(discount);
-                            break;
-                        }
+                    {
+                        discount = CreateAndShowDiscount<CertificateDiscount>
+                            (HandlersForCertificate());
+                        discountList.Add(discount);
+                        break;
+                    }
                     case 3:
-                        {
-                            Console.WriteLine("Завершение работы...");
-                            return;
-                        }
+                    {
+                        Console.WriteLine("Завершение работы...");
+                        return;
+                    }
                 }
             }
         }
@@ -51,13 +51,16 @@ namespace ConsoleLoader
         /// <summary>
         /// Создаёт объект, отображает результат и возвращает объект
         /// </summary>
-        private static T CreateAndShowDiscount<T>(List<PropertyHandler> handlers)
+        /// <typeparam name="T">Тип</typeparam>
+        /// <param name="handlers">Список</param>
+        /// <returns>Экземпляр скидки с данными</returns>
+        private static T CreateAndShowDiscount<T>(List<PropertyHandler>
+                handlers)
             where T : DiscountBase, new()
         {
             var discount = new T();
             foreach (var handler in handlers)
             {
-                Console.Write($"{handler.PropertyName}: ");
                 handler.SetAction(discount);
             }
             ShowDiscountResult(discount);
@@ -65,95 +68,111 @@ namespace ConsoleLoader
         }
 
         /// <summary>
-        /// Общие обработчики для всех типов скидок
+        /// Метод для обработки чисел
         /// </summary>
-        /// //TODO: XML
+        /// <param name="propertyName">Название</param>
+        /// <param name="setter">Установка значения</param>
+        /// <returns>Новый экземпляр PropertyHandler</returns>
+        private static PropertyHandler CreateHandler(
+            string propertyName,
+            Action<IDiscount, double> setter)
+        {
+            return new PropertyHandler(
+                propertyName,
+                discount =>
+                {
+                    while (true)
+                    { 
+                        Console.Write($"{propertyName}: ");
+                        if (double.TryParse(Console.ReadLine(),
+                            NumberStyles.Any,
+                            CultureInfo.InvariantCulture,
+                            out double value))
+                        {
+                            try
+                            {
+                                setter(discount, value);
+                                break;
+                            }
+                            catch (IncorrectArgumentException ex)
+                            {
+                                Console.Write($" Ошибка! " +
+                                    $"{ex.Message} Повторите ввод: ");
+                            }
+                        }
+                        else
+                        {
+                            Console.Write(" Ошибка!" +
+                                " Введите корректное число: ");
+                        }
+                    }
+                });
+        }
+
+        /// <summary>
+        /// Метод для обработки строки
+        /// </summary>
+        /// <param name="propertyName">Название</param>
+        /// <param name="setter">Установка значения</param>
+        /// <param name="errorMessage">Сообщение об ошибке</param>
+        /// <returns>Новый экземпляр PropertyHandler</returns>
+        private static PropertyHandler CreateStringHandler(
+            string propertyName,
+            Action<IDiscount, string> setter,
+            string? errorMessage = null)
+        {
+            return new PropertyHandler(
+                propertyName,
+                discount =>
+                {
+                    while (true)
+                    {
+                        Console.Write($"{propertyName}: ");
+                        var input = Console.ReadLine();
+
+                        if (!string.IsNullOrWhiteSpace(input))
+                        {
+                            setter(discount, input);
+                            break;
+                        }
+                        Console.Write(errorMessage ?? " Ошибка!" +
+                            " Введите корректное значение: ");
+                    }
+                });
+        }
+
+        /// //TODO: XML +
+        /// <summary>
+        /// Список обработчиков
+        /// </summary>
+        /// <returns>Список PropertyHandler</returns>
         private static List<PropertyHandler> GetCommonHandlers()
         {
             return new List<PropertyHandler>
             {
-                //TODO: duplication
-                new PropertyHandler("Название скидки",
-                    d =>
-                    {
-                        while (true)
-                        {   
-                            var input = Console.ReadLine();
-                            if (!string.IsNullOrWhiteSpace(input))
-                            {
-                                d.Name = input;
-                                break;
-                            }
-                            Console.Write(" Ошибка!" +
-                                " Название не может быть пустым. ");
-                        }
-                    }),
-                //TODO: duplication
-                new PropertyHandler("Исходная цена (руб.)",
-                    d =>
-                    {
-                        while (true)
-                        {
-                            if (double.TryParse(Console.ReadLine(),
-                                out double price))
-                            {
-                                try
-                                {
-                                    d.OriginPrice = price;
-                                    break;
-                                }
-                                catch (IncorrectArgumentException ex)
-                                {
-                                    Console.Write($" Ошибка!" +
-                                        $" {ex.Message} Повторите ввод: ");
-                                }
-                            }
-                            else
-                            {
-                                Console.Write(" Ошибка!" +
-                                    " Введите корректное число: ");
-                            }
-                        }
-                    })
+                //TODO: duplication +
+                CreateStringHandler("Название скидки",
+                (d, value) => d.Name = value, errorMessage: " Ошибка! " +
+                    "Название не может быть пустым. "),
+                //TODO: duplication +
+                CreateHandler("Исходная цена (руб.)",
+                    (d, value) => d.OriginPrice = value)
             };
         }
 
         /// <summary>
         /// Обработчики для процентной скидки
         /// </summary>
-        private static List<PropertyHandler> GetPropertyHandlersForPercent()
+        /// <returns>Список PropertyHandler</returns>
+        private static List<PropertyHandler> HandlersForPercent()
         {
             var handlers = GetCommonHandlers();
 
-            handlers.Add(new PropertyHandler("Процент скидки (0–100)",
-                d =>
+            handlers.Add(CreateHandler("Процент скидки (0–100)",
+                (d, value) =>
                 {
-                    //TODO: duplication
                     if (d is PercentDiscount percentDiscount)
-                    {
-                        while (true)
-                        {
-                            if (double.TryParse(Console.ReadLine(),
-                                out double percent))
-                            {
-                                try
-                                {
-                                    percentDiscount.Percent = percent; 
-                                    break; 
-                                }
-                                catch (IncorrectArgumentException ex)
-                                {
-                                    Console.Write($" Ошибка!" +
-                                        $" {ex.Message} Повторите ввод: ");
-                                }
-                            }
-                            else
-                            {
-                                Console.Write(" Ошибка!" +
-                                    " Введите корректное число: ");
-                            }
-                        }
-                    }
+                        percentDiscount.Percent = value;
                 }));
 
             return handlers;
@@ -162,39 +181,16 @@ namespace ConsoleLoader
         /// <summary>
         /// Обработчики для скидки по сертификату
         /// </summary>
-        private static List<PropertyHandler> GetPropertyHandlersForCertificate()
+        /// <returns>Список PropertyHandler</returns>
+        private static List<PropertyHandler> HandlersForCertificate()
         {
             var handlers = GetCommonHandlers();
 
-            handlers.Add(new PropertyHandler("Сумма сертификата (руб.)",
-                d =>
+            handlers.Add(CreateHandler("Сумма сертификата (руб.)",
+                (d, value) =>
                 {
-                    //TODO: duplication
                     if (d is CertificateDiscount certDiscount)
-                    {
-                        while (true)
-                        {
-                            if (double.TryParse(Console.ReadLine(),
-                                out double amount))
-                            {
-                                try
-                                {
-                                    certDiscount.CertificateAmount = amount;
-                                    break; 
-                                }
-                                catch (IncorrectArgumentException ex)
-                                {
-                                    Console.Write($" Ошибка!" +
-                                        $" {ex.Message} Повторите ввод: ");
-                                }
-                            }
-                            else
-                            {
-                                Console.Write(" Ошибка!" +
-                                    " Введите корректное число: ");
-                            }
-                        }
-                    }
+                        certDiscount.CertificateAmount = value;
                 }));
             return handlers;
         }

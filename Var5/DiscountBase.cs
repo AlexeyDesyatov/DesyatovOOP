@@ -21,11 +21,11 @@ namespace Var5
         /// </summary>
         private double _originPrice;
 
-        //TODO: polymorphism
+        //TODO: polymorphism +
         /// <summary>
         /// Данные о скидках
         /// </summary>
-        public virtual string DiscountType { get; }
+        public abstract string DiscountType { get; }
 
         /// <summary>
         /// Наименование
