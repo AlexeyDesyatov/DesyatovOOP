@@ -52,10 +52,6 @@ namespace Var5
         /// <summary>
         /// Расчет стоимости
         /// </summary>
-        /// <returns></returns>
-        public override double GetDiscountValue()
-        {
-            return OriginPrice * _percent / 100;
-        }
+        public override double DiscountValue => OriginPrice * Percent / 100;
     }
 }

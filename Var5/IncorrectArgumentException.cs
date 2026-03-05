@@ -14,7 +14,7 @@ namespace Var5
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="message">//TODO: XML</param>
+        /// <param name="message">Сообщение об ошибке</param>
         public IncorrectArgumentException(string message) : base(message) { }
     }
 }

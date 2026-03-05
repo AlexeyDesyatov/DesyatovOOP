@@ -93,10 +93,10 @@ namespace ConsoleLoader
                                 setter(discount, value);
                                 break;
                             }
-                            catch (IncorrectArgumentException ex)
+                            catch (IncorrectArgumentException exception)
                             {
                                 Console.Write($" Ошибка! " +
-                                    $"{ex.Message} Повторите ввод: ");
+                                    $"{exception.Message} Повторите ввод: ");
                             }
                         }
                         else
@@ -149,11 +149,11 @@ namespace ConsoleLoader
             return new List<PropertyHandler>
             {
                 CreateStringHandler("Название скидки",
-                //TODO: RSDN
-                (d, value) => d.Name = value, errorMessage: " Ошибка! " +
+                //TODO: RSDN +
+                (discount, value) => discount.Name = value, errorMessage: " Ошибка! " +
                     "Название не может быть пустым. "),
                 CreateHandler("Исходная цена (руб.)",
-                    (d, value) => d.OriginPrice = value)
+                    (discount, value) => discount.OriginPrice = value)
             };
         }
 
@@ -166,12 +166,14 @@ namespace ConsoleLoader
             var handlers = GetCommonHandlers();
 
             handlers.Add(CreateHandler("Процент скидки (0–100)",
-                //TODO: RSDN
-                (d, value) =>
+                //TODO: RSDN +
+                (discount, value) =>
                 {
-                    //TODO: {}
-                    if (d is PercentDiscount percentDiscount)
+                    //TODO: {} +
+                    if (discount is PercentDiscount percentDiscount)
+                    {
                         percentDiscount.Percent = value;
+                    }
                 }));
 
             return handlers;
@@ -186,13 +188,15 @@ namespace ConsoleLoader
             var handlers = GetCommonHandlers();
 
             handlers.Add(CreateHandler("Сумма сертификата (руб.)",
-                //TODO: RSDN
-                (d, value) =>
+                //TODO: RSDN +
+                (discount, value) =>
                 {
-                    //TODO: {}
-                    //TODO: RSDN
-                    if (d is CertificateDiscount certDiscount)
+                    //TODO: {} +
+                    //TODO: RSDN +
+                    if (discount is CertificateDiscount certDiscount)
+                    {
                         certDiscount.CertificateAmount = value;
+                    }
                 }));
             return handlers;
         }
@@ -227,9 +231,9 @@ namespace ConsoleLoader
             Console.WriteLine($" Скидка: " +
                 $"{discount.Name}");
             Console.WriteLine($" Размер скидки:" +
-                $" {discount.GetDiscountValue():F2} руб.");
+                $" {discount.DiscountValue:F2} руб.");
             Console.WriteLine($" Итоговая цена:" +
-                $" {discount.GetDiscountPrice():F2} руб.");
+                $" {discount.DiscountPrice:F2} руб.");
         }
     }
 }

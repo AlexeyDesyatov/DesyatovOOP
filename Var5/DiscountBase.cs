@@ -84,22 +84,18 @@ namespace Var5
             }
         }
 
-        //TODO: to property
+        //TODO: to property +
         /// <summary>
         /// Расчет стоимости
         /// </summary>
         /// <returns></returns>
-        public virtual double GetDiscountPrice()
-        {
-            return OriginPrice - GetDiscountValue();
-        }
+        public virtual double DiscountPrice => OriginPrice - DiscountValue;
 
-        //TODO: to property
+        //TODO: to property +
         /// <summary>
         /// Расчет скидки
         /// </summary>
-        /// <returns></returns>
-        public abstract double GetDiscountValue();
+        public abstract double DiscountValue { get; }
 
     }
 }

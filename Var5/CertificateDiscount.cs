@@ -39,21 +39,8 @@ namespace Var5
         }
 
         /// <summary>
-        /// Расчет скидки
-        /// </summary>
-        /// <returns>скидка</returns>
-        public override double GetDiscountValue()
-        {
-            return _certificateAmount;
-        }
-
-        /// <summary>
         /// Расчет стоимости
         /// </summary>
-        /// <returns>стоимость</returns>
-        public override double GetDiscountPrice()
-        {
-            return Math.Max(0, OriginPrice - GetDiscountValue());
-        }
+        public override double DiscountValue => Math.Min(_certificateAmount, OriginPrice);
     }
 }

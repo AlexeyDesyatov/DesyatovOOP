@@ -22,15 +22,13 @@ namespace Var5
         double OriginPrice { get; set; }
 
         /// <summary>
-        /// Расчет стоимости
+        /// Cтоимость
         /// </summary>
-        /// <returns></returns>
-        double GetDiscountPrice();
+        double DiscountPrice { get; }
 
         /// <summary>
-        /// Расчет скидки
+        /// Cкидка
         /// </summary>
-        /// <returns></returns>
-        double GetDiscountValue();
+        double DiscountValue { get; }
     }
 }
