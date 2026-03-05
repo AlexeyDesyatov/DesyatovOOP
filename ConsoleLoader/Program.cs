@@ -24,7 +24,6 @@ namespace ConsoleLoader
 
                 switch (SelectDiscountType())
                 {
-                    //TODO: отступы +
                     case 1:
                     {
                         discount = CreateAndShowDiscount<PercentDiscount>
@@ -141,7 +140,6 @@ namespace ConsoleLoader
                 });
         }
 
-        /// //TODO: XML +
         /// <summary>
         /// Список обработчиков
         /// </summary>
@@ -150,11 +148,10 @@ namespace ConsoleLoader
         {
             return new List<PropertyHandler>
             {
-                //TODO: duplication +
                 CreateStringHandler("Название скидки",
+                //TODO: RSDN
                 (d, value) => d.Name = value, errorMessage: " Ошибка! " +
                     "Название не может быть пустым. "),
-                //TODO: duplication +
                 CreateHandler("Исходная цена (руб.)",
                     (d, value) => d.OriginPrice = value)
             };
@@ -169,8 +166,10 @@ namespace ConsoleLoader
             var handlers = GetCommonHandlers();
 
             handlers.Add(CreateHandler("Процент скидки (0–100)",
+                //TODO: RSDN
                 (d, value) =>
                 {
+                    //TODO: {}
                     if (d is PercentDiscount percentDiscount)
                         percentDiscount.Percent = value;
                 }));
@@ -187,8 +186,11 @@ namespace ConsoleLoader
             var handlers = GetCommonHandlers();
 
             handlers.Add(CreateHandler("Сумма сертификата (руб.)",
+                //TODO: RSDN
                 (d, value) =>
                 {
+                    //TODO: {}
+                    //TODO: RSDN
                     if (d is CertificateDiscount certDiscount)
                         certDiscount.CertificateAmount = value;
                 }));

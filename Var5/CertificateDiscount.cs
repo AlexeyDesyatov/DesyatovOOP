@@ -47,7 +47,6 @@ namespace Var5
             return _certificateAmount;
         }
 
-        //TODO: XML+
         /// <summary>
         /// Расчет стоимости
         /// </summary>

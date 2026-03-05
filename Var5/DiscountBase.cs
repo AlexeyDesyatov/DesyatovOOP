@@ -21,7 +21,6 @@ namespace Var5
         /// </summary>
         private double _originPrice;
 
-        //TODO: polymorphism +
         /// <summary>
         /// Данные о скидках
         /// </summary>
@@ -85,6 +84,7 @@ namespace Var5
             }
         }
 
+        //TODO: to property
         /// <summary>
         /// Расчет стоимости
         /// </summary>
@@ -94,6 +94,7 @@ namespace Var5
             return OriginPrice - GetDiscountValue();
         }
 
+        //TODO: to property
         /// <summary>
         /// Расчет скидки
         /// </summary>
