@@ -31,8 +31,11 @@
             groupBoxDiscounts = new GroupBox();
             dataGridViewDiscounts = new DataGridView();
             panelButtons = new Panel();
+            buttonAddDiscount = new Button();
+            buttonRemoveDiscount = new Button();
             groupBoxDiscounts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDiscounts).BeginInit();
+            panelButtons.SuspendLayout();
             SuspendLayout();
             // 
             // groupBoxDiscounts
@@ -62,10 +65,31 @@
             // 
             // panelButtons
             // 
-            panelButtons.Location = new Point(272, 313);
+            panelButtons.Controls.Add(buttonRemoveDiscount);
+            panelButtons.Controls.Add(buttonAddDiscount);
+            panelButtons.Dock = DockStyle.Bottom;
+            panelButtons.Location = new Point(0, 325);
             panelButtons.Name = "panelButtons";
-            panelButtons.Size = new Size(250, 125);
+            panelButtons.Size = new Size(800, 125);
             panelButtons.TabIndex = 1;
+            // 
+            // buttonAddDiscount
+            // 
+            buttonAddDiscount.Location = new Point(68, 58);
+            buttonAddDiscount.Name = "buttonAddDiscount";
+            buttonAddDiscount.Size = new Size(150, 30);
+            buttonAddDiscount.TabIndex = 0;
+            buttonAddDiscount.Text = "Добавить скидку";
+            buttonAddDiscount.UseVisualStyleBackColor = true;
+            // 
+            // buttonRemoveDiscount
+            // 
+            buttonRemoveDiscount.Location = new Point(476, 58);
+            buttonRemoveDiscount.Name = "buttonRemoveDiscount";
+            buttonRemoveDiscount.Size = new Size(150, 30);
+            buttonRemoveDiscount.TabIndex = 1;
+            buttonRemoveDiscount.Text = "Удалить скидку";
+            buttonRemoveDiscount.UseVisualStyleBackColor = true;
             // 
             // DiscountForm
             // 
@@ -78,6 +102,7 @@
             Text = "DiscountForm";
             groupBoxDiscounts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewDiscounts).EndInit();
+            panelButtons.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -86,5 +111,7 @@
         private GroupBox groupBoxDiscounts;
         private DataGridView dataGridViewDiscounts;
         private Panel panelButtons;
+        private Button buttonRemoveDiscount;
+        private Button buttonAddDiscount;
     }
 }
