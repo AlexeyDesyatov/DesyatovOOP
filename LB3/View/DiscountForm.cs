@@ -65,7 +65,44 @@ namespace View
                 Width = 120
             });
         }
+        /// <summary>
+        /// Кнопка добавить скидку
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddDiscount_Click(object sender, EventArgs e)
+        {
+            var addForm = new AddDiscountForm();
 
+            if (addForm.ShowDialog() == DialogResult.OK)
+            {
+                _discounts.Add(addForm.NewDiscount);
+
+                dataGridViewDiscounts.DataSource = null;
+                dataGridViewDiscounts.DataSource = _discounts;
+            }
+        }
+        /// <summary>
+        /// Кнопка удалить скидку
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRemoveDiscount_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewDiscounts.SelectedRows.Count > 0)
+            {
+                var selectedDiscount = (IDiscount)dataGridViewDiscounts.SelectedRows[0].DataBoundItem;
+                _discounts.Remove(selectedDiscount);
+
+                dataGridViewDiscounts.DataSource = null;
+                dataGridViewDiscounts.DataSource = _discounts;
+            }
+            else
+            {
+                MessageBox.Show("Выберите скидку для удаления.", "Внимание",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void DiscountForm_Load(object sender, EventArgs e)
         {
 
