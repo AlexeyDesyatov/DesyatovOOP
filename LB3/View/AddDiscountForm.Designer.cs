@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             groupBoxCommon = new GroupBox();
-            labelName = new Label();
-            labelPrice = new Label();
-            groupBoxType = new GroupBox();
-            textName = new MaskedTextBox();
             textOriginPrice = new MaskedTextBox();
-            radioButtonPercent = new RadioButton();
+            textName = new MaskedTextBox();
+            labelPrice = new Label();
+            labelName = new Label();
+            groupBoxType = new GroupBox();
             radioButtonCertificate = new RadioButton();
+            radioButtonPercent = new RadioButton();
             panelPercent = new Panel();
-            labelPercent = new Label();
             textPercent = new MaskedTextBox();
+            labelPercent = new Label();
             panelCertificate = new Panel();
-            labelAmount = new Label();
             textAmount = new MaskedTextBox();
+            labelAmount = new Label();
             buttonOK = new Button();
             buttonCancel = new Button();
             groupBoxCommon.SuspendLayout();
@@ -63,14 +63,24 @@
             groupBoxCommon.TabStop = false;
             groupBoxCommon.Text = "Общие параметры";
             // 
-            // labelName
+            // textOriginPrice
             // 
-            labelName.AutoSize = true;
-            labelName.Location = new Point(44, 36);
-            labelName.Name = "labelName";
-            labelName.Size = new Size(128, 20);
-            labelName.TabIndex = 0;
-            labelName.Text = "Название скидки";
+            textOriginPrice.AllowPromptAsInput = false;
+            textOriginPrice.Location = new Point(314, 82);
+            textOriginPrice.Mask = "99999999999999999999";
+            textOriginPrice.Name = "textOriginPrice";
+            textOriginPrice.Size = new Size(125, 27);
+            textOriginPrice.TabIndex = 3;
+            // 
+            // textName
+            // 
+            textName.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            textName.Location = new Point(87, 79);
+            textName.Mask = "LLLLLLLLLLLLLLLLLLL";
+            textName.Name = "textName";
+            textName.Size = new Size(125, 27);
+            textName.TabIndex = 2;
+            textName.MaskInputRejected += maskedTextBox1_MaskInputRejected;
             // 
             // labelPrice
             // 
@@ -81,6 +91,15 @@
             labelPrice.TabIndex = 1;
             labelPrice.Text = "Исходная цена";
             labelPrice.Click += labelPrice_Click;
+            // 
+            // labelName
+            // 
+            labelName.AutoSize = true;
+            labelName.Location = new Point(44, 36);
+            labelName.Name = "labelName";
+            labelName.Size = new Size(128, 20);
+            labelName.TabIndex = 0;
+            labelName.Text = "Название скидки";
             // 
             // groupBoxType
             // 
@@ -93,31 +112,6 @@
             groupBoxType.TabStop = false;
             groupBoxType.Text = "Тип скидки";
             // 
-            // textName
-            // 
-            textName.Location = new Point(87, 79);
-            textName.Name = "textName";
-            textName.Size = new Size(125, 27);
-            textName.TabIndex = 2;
-            textName.MaskInputRejected += maskedTextBox1_MaskInputRejected;
-            // 
-            // textOriginPrice
-            // 
-            textOriginPrice.Location = new Point(314, 82);
-            textOriginPrice.Name = "textOriginPrice";
-            textOriginPrice.Size = new Size(125, 27);
-            textOriginPrice.TabIndex = 3;
-            // 
-            // radioButtonPercent
-            // 
-            radioButtonPercent.AutoSize = true;
-            radioButtonPercent.Location = new Point(44, 50);
-            radioButtonPercent.Name = "radioButtonPercent";
-            radioButtonPercent.Size = new Size(116, 24);
-            radioButtonPercent.TabIndex = 0;
-            radioButtonPercent.Text = "Процентная";
-            radioButtonPercent.UseVisualStyleBackColor = true;
-            // 
             // radioButtonCertificate
             // 
             radioButtonCertificate.AutoSize = true;
@@ -129,6 +123,16 @@
             radioButtonCertificate.Text = "По сертификату";
             radioButtonCertificate.UseVisualStyleBackColor = true;
             // 
+            // radioButtonPercent
+            // 
+            radioButtonPercent.AutoSize = true;
+            radioButtonPercent.Location = new Point(44, 50);
+            radioButtonPercent.Name = "radioButtonPercent";
+            radioButtonPercent.Size = new Size(116, 24);
+            radioButtonPercent.TabIndex = 0;
+            radioButtonPercent.Text = "Процентная";
+            radioButtonPercent.UseVisualStyleBackColor = true;
+            // 
             // panelPercent
             // 
             panelPercent.Controls.Add(textPercent);
@@ -139,6 +143,15 @@
             panelPercent.TabIndex = 2;
             panelPercent.Visible = false;
             // 
+            // textPercent
+            // 
+            textPercent.AllowPromptAsInput = false;
+            textPercent.Location = new Point(72, 69);
+            textPercent.Mask = "99";
+            textPercent.Name = "textPercent";
+            textPercent.Size = new Size(125, 27);
+            textPercent.TabIndex = 1;
+            // 
             // labelPercent
             // 
             labelPercent.AutoSize = true;
@@ -147,13 +160,6 @@
             labelPercent.Size = new Size(125, 20);
             labelPercent.TabIndex = 0;
             labelPercent.Text = "Процент (0-100):";
-            // 
-            // textPercent
-            // 
-            textPercent.Location = new Point(72, 69);
-            textPercent.Name = "textPercent";
-            textPercent.Size = new Size(125, 27);
-            textPercent.TabIndex = 1;
             // 
             // panelCertificate
             // 
@@ -165,6 +171,15 @@
             panelCertificate.TabIndex = 3;
             panelCertificate.Visible = false;
             // 
+            // textAmount
+            // 
+            textAmount.AllowPromptAsInput = false;
+            textAmount.Location = new Point(55, 69);
+            textAmount.Mask = "9999999999999999999";
+            textAmount.Name = "textAmount";
+            textAmount.Size = new Size(125, 27);
+            textAmount.TabIndex = 1;
+            // 
             // labelAmount
             // 
             labelAmount.AutoSize = true;
@@ -173,13 +188,6 @@
             labelAmount.Size = new Size(146, 20);
             labelAmount.TabIndex = 0;
             labelAmount.Text = "Сумма сертификата";
-            // 
-            // textAmount
-            // 
-            textAmount.Location = new Point(55, 69);
-            textAmount.Name = "textAmount";
-            textAmount.Size = new Size(125, 27);
-            textAmount.TabIndex = 1;
             // 
             // buttonOK
             // 
