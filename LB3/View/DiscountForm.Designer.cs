@@ -31,8 +31,13 @@
             groupBoxDiscounts = new GroupBox();
             dataGridViewDiscounts = new DataGridView();
             panelButtons = new Panel();
-            buttonAddDiscount = new Button();
             buttonRemoveDiscount = new Button();
+            buttonAddDiscount = new Button();
+            Name = new DataGridViewTextBoxColumn();
+            DiscountType = new DataGridViewTextBoxColumn();
+            OriginPrice = new DataGridViewTextBoxColumn();
+            DiscountValue = new DataGridViewTextBoxColumn();
+            DiscountPrice = new DataGridViewTextBoxColumn();
             groupBoxDiscounts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDiscounts).BeginInit();
             panelButtons.SuspendLayout();
@@ -54,6 +59,7 @@
             dataGridViewDiscounts.AllowUserToAddRows = false;
             dataGridViewDiscounts.AllowUserToDeleteRows = false;
             dataGridViewDiscounts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewDiscounts.Columns.AddRange(new DataGridViewColumn[] { Name, DiscountType, OriginPrice, DiscountValue, DiscountPrice });
             dataGridViewDiscounts.Dock = DockStyle.Fill;
             dataGridViewDiscounts.Location = new Point(3, 23);
             dataGridViewDiscounts.Name = "dataGridViewDiscounts";
@@ -73,6 +79,15 @@
             panelButtons.Size = new Size(800, 125);
             panelButtons.TabIndex = 1;
             // 
+            // buttonRemoveDiscount
+            // 
+            buttonRemoveDiscount.Location = new Point(476, 58);
+            buttonRemoveDiscount.Name = "buttonRemoveDiscount";
+            buttonRemoveDiscount.Size = new Size(150, 30);
+            buttonRemoveDiscount.TabIndex = 1;
+            buttonRemoveDiscount.Text = "Удалить скидку";
+            buttonRemoveDiscount.UseVisualStyleBackColor = true;
+            // 
             // buttonAddDiscount
             // 
             buttonAddDiscount.Location = new Point(68, 58);
@@ -82,14 +97,50 @@
             buttonAddDiscount.Text = "Добавить скидку";
             buttonAddDiscount.UseVisualStyleBackColor = true;
             // 
-            // buttonRemoveDiscount
+            // Name
             // 
-            buttonRemoveDiscount.Location = new Point(476, 58);
-            buttonRemoveDiscount.Name = "buttonRemoveDiscount";
-            buttonRemoveDiscount.Size = new Size(150, 30);
-            buttonRemoveDiscount.TabIndex = 1;
-            buttonRemoveDiscount.Text = "Удалить скидку";
-            buttonRemoveDiscount.UseVisualStyleBackColor = true;
+            Name.DataPropertyName = "Name";
+            Name.HeaderText = "Название скидки";
+            Name.MinimumWidth = 6;
+            Name.Name = "Name";
+            Name.ReadOnly = true;
+            Name.Width = 160;
+            // 
+            // DiscountType
+            // 
+            DiscountType.DataPropertyName = "DiscountType";
+            DiscountType.HeaderText = "Тип скидки";
+            DiscountType.MinimumWidth = 6;
+            DiscountType.Name = "DiscountType";
+            DiscountType.ReadOnly = true;
+            DiscountType.Width = 150;
+            // 
+            // OriginPrice
+            // 
+            OriginPrice.DataPropertyName = "OriginPrice";
+            OriginPrice.HeaderText = "Исходная цена";
+            OriginPrice.MinimumWidth = 6;
+            OriginPrice.Name = "OriginPrice";
+            OriginPrice.ReadOnly = true;
+            OriginPrice.Width = 150;
+            // 
+            // DiscountValue
+            // 
+            DiscountValue.DataPropertyName = "DiscountValue";
+            DiscountValue.HeaderText = "Размер скидки";
+            DiscountValue.MinimumWidth = 6;
+            DiscountValue.Name = "DiscountValue";
+            DiscountValue.ReadOnly = true;
+            DiscountValue.Width = 150;
+            // 
+            // DiscountPrice
+            // 
+            DiscountPrice.DataPropertyName = "DiscountPrice";
+            DiscountPrice.HeaderText = "Итоговая цена";
+            DiscountPrice.MinimumWidth = 6;
+            DiscountPrice.Name = "DiscountPrice";
+            DiscountPrice.ReadOnly = true;
+            DiscountPrice.Width = 150;
             // 
             // DiscountForm
             // 
@@ -113,5 +164,10 @@
         private Panel panelButtons;
         private Button buttonRemoveDiscount;
         private Button buttonAddDiscount;
+        private DataGridViewTextBoxColumn Name;
+        private DataGridViewTextBoxColumn DiscountType;
+        private DataGridViewTextBoxColumn OriginPrice;
+        private DataGridViewTextBoxColumn DiscountValue;
+        private DataGridViewTextBoxColumn DiscountPrice;
     }
 }

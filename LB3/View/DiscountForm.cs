@@ -7,30 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System;
-using System.Windows.Forms;
 using Var5;  
 
 namespace View
 {
     public partial class DiscountForm : Form
     {
-        // 🔥 ПОЛЕ ДЛЯ ХРАНЕНИЯ СПИСКА СКИДОК
         private List<IDiscount> _discounts = new List<IDiscount>();
 
         public DiscountForm()
         {
             InitializeComponent();
-            SetupDataGridView();  // Этот метод создадим ниже
+            SetupDataGridView(); 
         }
 
-        // Метод для настройки DataGridView
         private void SetupDataGridView()
         {
             dataGridViewDiscounts.AutoGenerateColumns = false;
-            dataGridViewDiscounts.Columns.Clear();
 
-            // Добавляем колонки
             dataGridViewDiscounts.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "Name",
