@@ -18,7 +18,7 @@ namespace View
         public DiscountForm()
         {
             InitializeComponent();
-            SetupDataGridView(); 
+            SetupDataGridView();
         }
 
         private void SetupDataGridView()
@@ -64,6 +64,11 @@ namespace View
                 DataPropertyName = "DiscountPrice",
                 Width = 120
             });
+        }
+
+        private void DiscountForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

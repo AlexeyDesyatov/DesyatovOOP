@@ -33,7 +33,7 @@
             panelButtons = new Panel();
             buttonRemoveDiscount = new Button();
             buttonAddDiscount = new Button();
-            Name = new DataGridViewTextBoxColumn();
+            colName = new DataGridViewTextBoxColumn();
             DiscountType = new DataGridViewTextBoxColumn();
             OriginPrice = new DataGridViewTextBoxColumn();
             DiscountValue = new DataGridViewTextBoxColumn();
@@ -59,7 +59,7 @@
             dataGridViewDiscounts.AllowUserToAddRows = false;
             dataGridViewDiscounts.AllowUserToDeleteRows = false;
             dataGridViewDiscounts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewDiscounts.Columns.AddRange(new DataGridViewColumn[] { Name, DiscountType, OriginPrice, DiscountValue, DiscountPrice });
+            dataGridViewDiscounts.Columns.AddRange(new DataGridViewColumn[] { colName, DiscountType, OriginPrice, DiscountValue, DiscountPrice });
             dataGridViewDiscounts.Dock = DockStyle.Fill;
             dataGridViewDiscounts.Location = new Point(3, 23);
             dataGridViewDiscounts.Name = "dataGridViewDiscounts";
@@ -97,14 +97,14 @@
             buttonAddDiscount.Text = "Добавить скидку";
             buttonAddDiscount.UseVisualStyleBackColor = true;
             // 
-            // Name
+            // colName
             // 
-            Name.DataPropertyName = "Name";
-            Name.HeaderText = "Название скидки";
-            Name.MinimumWidth = 6;
-            Name.Name = "Name";
-            Name.ReadOnly = true;
-            Name.Width = 160;
+            colName.DataPropertyName = "Name";
+            colName.HeaderText = "Название скидки";
+            colName.MinimumWidth = 6;
+            colName.Name = "colName";
+            colName.ReadOnly = true;
+            colName.Width = 160;
             // 
             // DiscountType
             // 
@@ -151,6 +151,7 @@
             Controls.Add(groupBoxDiscounts);
             Name = "DiscountForm";
             Text = "DiscountForm";
+            Load += DiscountForm_Load;
             groupBoxDiscounts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewDiscounts).EndInit();
             panelButtons.ResumeLayout(false);
@@ -164,7 +165,7 @@
         private Panel panelButtons;
         private Button buttonRemoveDiscount;
         private Button buttonAddDiscount;
-        private DataGridViewTextBoxColumn Name;
+        private DataGridViewTextBoxColumn colName;
         private DataGridViewTextBoxColumn DiscountType;
         private DataGridViewTextBoxColumn OriginPrice;
         private DataGridViewTextBoxColumn DiscountValue;
