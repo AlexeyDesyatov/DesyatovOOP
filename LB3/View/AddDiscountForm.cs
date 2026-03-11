@@ -32,9 +32,9 @@ namespace View
         {
             InitializeComponent();
             SetupForm();
-        #if !DEBUG
+#if !DEBUG
             buttonRandomData.Visible = false;
-        #endif
+#endif
         }
 
         private void SetupForm()
@@ -62,7 +62,7 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnOK_Click(object sender, EventArgs e)
+        private void buttonOK_Click(object sender, EventArgs e)
         {
             try
             {

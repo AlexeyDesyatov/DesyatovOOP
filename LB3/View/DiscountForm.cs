@@ -25,45 +25,11 @@ namespace View
         {
             dataGridViewDiscounts.AutoGenerateColumns = false;
 
-            dataGridViewDiscounts.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "Name",
-                HeaderText = "Название скидки",
-                DataPropertyName = "Name",
-                Width = 200
-            });
-
-            dataGridViewDiscounts.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "DiscountType",
-                HeaderText = "Тип скидки",
-                DataPropertyName = "DiscountType",
-                Width = 150
-            });
-
-            dataGridViewDiscounts.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "OriginPrice",
-                HeaderText = "Исходная цена",
-                DataPropertyName = "OriginPrice",
-                Width = 120
-            });
-
-            dataGridViewDiscounts.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "DiscountValue",
-                HeaderText = "Размер скидки",
-                DataPropertyName = "DiscountValue",
-                Width = 120
-            });
-
-            dataGridViewDiscounts.Columns.Add(new DataGridViewTextBoxColumn
-            {
-                Name = "DiscountPrice",
-                HeaderText = "Итоговая цена",
-                DataPropertyName = "DiscountPrice",
-                Width = 120
-            });
+            dataGridViewDiscounts.AutoGenerateColumns = false;
+            dataGridViewDiscounts.ReadOnly = true;
+            dataGridViewDiscounts.AllowUserToAddRows = false;
+            dataGridViewDiscounts.AllowUserToDeleteRows = false;
+            dataGridViewDiscounts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
         /// <summary>
         /// Кнопка добавить скидку
@@ -76,10 +42,30 @@ namespace View
 
             if (addForm.ShowDialog() == DialogResult.OK)
             {
+                if (addForm.NewDiscount == null)
+                {
+                    MessageBox.Show("Ошибка: скидка не была создана!",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 _discounts.Add(addForm.NewDiscount);
-
+                var newDiscount = addForm.NewDiscount;
+                MessageBox.Show(
+                    $"Добавлена скидка:\n" +
+                    $"Name: {newDiscount.Name}\n" +
+                    $"Type: {newDiscount.DiscountType}\n" +
+                    $"Price: {newDiscount.OriginPrice}\n" +
+                    $"Value: {newDiscount.DiscountValue}\n" +
+                    $"DiscountPrice: {newDiscount.DiscountPrice}\n\n" +
+                    $"Всего скидок в списке: {_discounts.Count + 1}"
+                );
                 dataGridViewDiscounts.DataSource = null;
                 dataGridViewDiscounts.DataSource = _discounts;
+                MessageBox.Show(
+                   $"Колонок в DataGridView: {dataGridViewDiscounts.Columns.Count}\n" +
+                   $"Строк в DataGridView: {dataGridViewDiscounts.Rows.Count}\n" +
+                   $"Items в списке: {_discounts.Count}"
+               );
             }
         }
         /// <summary>

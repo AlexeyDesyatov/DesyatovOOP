@@ -38,7 +38,7 @@
             DiscountValue = new DataGridViewTextBoxColumn();
             DiscountPrice = new DataGridViewTextBoxColumn();
             buttonClose = new Button();
-            textBox1 = new TextBox();
+            TextSearch = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridViewResults).BeginInit();
             SuspendLayout();
             // 
@@ -143,20 +143,20 @@
             buttonClose.Text = "Закрыть";
             buttonClose.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // TextSearch
             // 
-            textBox1.Location = new Point(124, 189);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Введите текст для поиска...";
-            textBox1.Size = new Size(164, 23);
-            textBox1.TabIndex = 6;
+            TextSearch.Location = new Point(124, 189);
+            TextSearch.Name = "TextSearch";
+            TextSearch.PlaceholderText = "Введите текст для поиска...";
+            TextSearch.Size = new Size(164, 23);
+            TextSearch.TabIndex = 6;
             // 
             // SearchForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 338);
-            Controls.Add(textBox1);
+            Controls.Add(TextSearch);
             Controls.Add(buttonClose);
             Controls.Add(dataGridViewResults);
             Controls.Add(buttonSearch);
@@ -182,6 +182,6 @@
         private DataGridViewTextBoxColumn DiscountValue;
         private DataGridViewTextBoxColumn DiscountPrice;
         private Button buttonClose;
-        private TextBox textBox1;
+        private TextBox TextSearch;
     }
 }

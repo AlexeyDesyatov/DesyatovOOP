@@ -57,9 +57,11 @@
             groupBoxCommon.Controls.Add(textName);
             groupBoxCommon.Controls.Add(labelPrice);
             groupBoxCommon.Controls.Add(labelName);
-            groupBoxCommon.Location = new Point(148, 12);
+            groupBoxCommon.Location = new Point(130, 9);
+            groupBoxCommon.Margin = new Padding(3, 2, 3, 2);
             groupBoxCommon.Name = "groupBoxCommon";
-            groupBoxCommon.Size = new Size(485, 125);
+            groupBoxCommon.Padding = new Padding(3, 2, 3, 2);
+            groupBoxCommon.Size = new Size(424, 94);
             groupBoxCommon.TabIndex = 0;
             groupBoxCommon.TabStop = false;
             groupBoxCommon.Text = "Общие параметры";
@@ -67,28 +69,30 @@
             // textOriginPrice
             // 
             textOriginPrice.AllowPromptAsInput = false;
-            textOriginPrice.Location = new Point(314, 82);
+            textOriginPrice.Location = new Point(275, 62);
+            textOriginPrice.Margin = new Padding(3, 2, 3, 2);
             textOriginPrice.Mask = "99999999999999999999";
             textOriginPrice.Name = "textOriginPrice";
-            textOriginPrice.Size = new Size(125, 27);
+            textOriginPrice.Size = new Size(110, 23);
             textOriginPrice.TabIndex = 3;
             // 
             // textName
             // 
             textName.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            textName.Location = new Point(87, 79);
+            textName.Location = new Point(76, 59);
+            textName.Margin = new Padding(3, 2, 3, 2);
             textName.Mask = "LLLLLLLLLLLLLLLLLLL";
             textName.Name = "textName";
-            textName.Size = new Size(125, 27);
+            textName.Size = new Size(110, 23);
             textName.TabIndex = 2;
             textName.MaskInputRejected += maskedTextBox1_MaskInputRejected;
             // 
             // labelPrice
             // 
             labelPrice.AutoSize = true;
-            labelPrice.Location = new Point(334, 36);
+            labelPrice.Location = new Point(292, 27);
             labelPrice.Name = "labelPrice";
-            labelPrice.Size = new Size(114, 20);
+            labelPrice.Size = new Size(89, 15);
             labelPrice.TabIndex = 1;
             labelPrice.Text = "Исходная цена";
             labelPrice.Click += labelPrice_Click;
@@ -96,9 +100,9 @@
             // labelName
             // 
             labelName.AutoSize = true;
-            labelName.Location = new Point(44, 36);
+            labelName.Location = new Point(38, 27);
             labelName.Name = "labelName";
-            labelName.Size = new Size(128, 20);
+            labelName.Size = new Size(100, 15);
             labelName.TabIndex = 0;
             labelName.Text = "Название скидки";
             // 
@@ -106,9 +110,11 @@
             // 
             groupBoxType.Controls.Add(radioButtonCertificate);
             groupBoxType.Controls.Add(radioButtonPercent);
-            groupBoxType.Location = new Point(148, 143);
+            groupBoxType.Location = new Point(130, 107);
+            groupBoxType.Margin = new Padding(3, 2, 3, 2);
             groupBoxType.Name = "groupBoxType";
-            groupBoxType.Size = new Size(485, 100);
+            groupBoxType.Padding = new Padding(3, 2, 3, 2);
+            groupBoxType.Size = new Size(424, 75);
             groupBoxType.TabIndex = 1;
             groupBoxType.TabStop = false;
             groupBoxType.Text = "Тип скидки";
@@ -116,9 +122,10 @@
             // radioButtonCertificate
             // 
             radioButtonCertificate.AutoSize = true;
-            radioButtonCertificate.Location = new Point(314, 50);
+            radioButtonCertificate.Location = new Point(275, 38);
+            radioButtonCertificate.Margin = new Padding(3, 2, 3, 2);
             radioButtonCertificate.Name = "radioButtonCertificate";
-            radioButtonCertificate.Size = new Size(140, 24);
+            radioButtonCertificate.Size = new Size(114, 19);
             radioButtonCertificate.TabIndex = 1;
             radioButtonCertificate.TabStop = true;
             radioButtonCertificate.Text = "По сертификату";
@@ -127,9 +134,10 @@
             // radioButtonPercent
             // 
             radioButtonPercent.AutoSize = true;
-            radioButtonPercent.Location = new Point(87, 50);
+            radioButtonPercent.Location = new Point(76, 38);
+            radioButtonPercent.Margin = new Padding(3, 2, 3, 2);
             radioButtonPercent.Name = "radioButtonPercent";
-            radioButtonPercent.Size = new Size(116, 24);
+            radioButtonPercent.Size = new Size(92, 19);
             radioButtonPercent.TabIndex = 0;
             radioButtonPercent.Text = "Процентная";
             radioButtonPercent.UseVisualStyleBackColor = true;
@@ -138,27 +146,29 @@
             // 
             panelPercent.Controls.Add(textPercent);
             panelPercent.Controls.Add(labelPercent);
-            panelPercent.Location = new Point(148, 245);
+            panelPercent.Location = new Point(130, 184);
+            panelPercent.Margin = new Padding(3, 2, 3, 2);
             panelPercent.Name = "panelPercent";
-            panelPercent.Size = new Size(225, 125);
+            panelPercent.Size = new Size(197, 94);
             panelPercent.TabIndex = 2;
             panelPercent.Visible = false;
             // 
             // textPercent
             // 
             textPercent.AllowPromptAsInput = false;
-            textPercent.Location = new Point(72, 69);
+            textPercent.Location = new Point(63, 52);
+            textPercent.Margin = new Padding(3, 2, 3, 2);
             textPercent.Mask = "99";
             textPercent.Name = "textPercent";
-            textPercent.Size = new Size(125, 27);
+            textPercent.Size = new Size(110, 23);
             textPercent.TabIndex = 1;
             // 
             // labelPercent
             // 
             labelPercent.AutoSize = true;
-            labelPercent.Location = new Point(53, 30);
+            labelPercent.Location = new Point(46, 22);
             labelPercent.Name = "labelPercent";
-            labelPercent.Size = new Size(125, 20);
+            labelPercent.Size = new Size(98, 15);
             labelPercent.TabIndex = 0;
             labelPercent.Text = "Процент (0-100):";
             // 
@@ -166,55 +176,61 @@
             // 
             panelCertificate.Controls.Add(textAmount);
             panelCertificate.Controls.Add(labelAmount);
-            panelCertificate.Location = new Point(392, 245);
+            panelCertificate.Location = new Point(343, 184);
+            panelCertificate.Margin = new Padding(3, 2, 3, 2);
             panelCertificate.Name = "panelCertificate";
-            panelCertificate.Size = new Size(241, 125);
+            panelCertificate.Size = new Size(211, 94);
             panelCertificate.TabIndex = 3;
             panelCertificate.Visible = false;
             // 
             // textAmount
             // 
             textAmount.AllowPromptAsInput = false;
-            textAmount.Location = new Point(55, 69);
+            textAmount.Location = new Point(48, 52);
+            textAmount.Margin = new Padding(3, 2, 3, 2);
             textAmount.Mask = "9999999999999999999";
             textAmount.Name = "textAmount";
-            textAmount.Size = new Size(125, 27);
+            textAmount.Size = new Size(110, 23);
             textAmount.TabIndex = 1;
             // 
             // labelAmount
             // 
             labelAmount.AutoSize = true;
-            labelAmount.Location = new Point(46, 39);
+            labelAmount.Location = new Point(40, 29);
             labelAmount.Name = "labelAmount";
-            labelAmount.Size = new Size(146, 20);
+            labelAmount.Size = new Size(118, 15);
             labelAmount.TabIndex = 0;
             labelAmount.Text = "Сумма сертификата";
             // 
             // buttonOK
             // 
             buttonOK.DialogResult = DialogResult.OK;
-            buttonOK.Location = new Point(148, 376);
+            buttonOK.Location = new Point(130, 282);
+            buttonOK.Margin = new Padding(3, 2, 3, 2);
             buttonOK.Name = "buttonOK";
-            buttonOK.Size = new Size(94, 29);
+            buttonOK.Size = new Size(82, 22);
             buttonOK.TabIndex = 4;
             buttonOK.Text = "OK";
             buttonOK.UseVisualStyleBackColor = true;
+            buttonOK.Click += buttonOK_Click;
             // 
             // buttonCancel
             // 
             buttonCancel.DialogResult = DialogResult.Cancel;
-            buttonCancel.Location = new Point(539, 376);
+            buttonCancel.Location = new Point(472, 282);
+            buttonCancel.Margin = new Padding(3, 2, 3, 2);
             buttonCancel.Name = "buttonCancel";
-            buttonCancel.Size = new Size(94, 29);
+            buttonCancel.Size = new Size(82, 22);
             buttonCancel.TabIndex = 5;
             buttonCancel.Text = "Cancel";
             buttonCancel.UseVisualStyleBackColor = true;
             // 
             // buttonRandomData
             // 
-            buttonRandomData.Location = new Point(301, 409);
+            buttonRandomData.Location = new Point(263, 307);
+            buttonRandomData.Margin = new Padding(3, 2, 3, 2);
             buttonRandomData.Name = "buttonRandomData";
-            buttonRandomData.Size = new Size(158, 29);
+            buttonRandomData.Size = new Size(138, 22);
             buttonRandomData.TabIndex = 6;
             buttonRandomData.Text = "Случайные данные";
             buttonRandomData.UseVisualStyleBackColor = true;
@@ -222,9 +238,9 @@
             // 
             // AddDiscountForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
             Controls.Add(buttonRandomData);
             Controls.Add(buttonCancel);
             Controls.Add(buttonOK);
@@ -232,6 +248,7 @@
             Controls.Add(panelPercent);
             Controls.Add(groupBoxType);
             Controls.Add(groupBoxCommon);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "AddDiscountForm";
             Text = "AddDiscountForm";
             groupBoxCommon.ResumeLayout(false);
