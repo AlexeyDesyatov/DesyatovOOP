@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,23 +12,19 @@ using Var5;
 
 namespace View
 {
+    /// <summary>
+    /// Форма для добавления скидки
+    /// </summary>
     public partial class AddDiscountForm : Form
     {
-        private void labelPrice_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// Свойство для возврата скидки
         /// </summary>
         public IDiscount NewDiscount { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public AddDiscountForm()
         {
             InitializeComponent();
@@ -37,6 +34,9 @@ namespace View
         #endif
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void SetupForm()
         {
             radioButtonPercent.Checked = false;
@@ -44,17 +44,54 @@ namespace View
             panelPercent.Visible = false;
             panelCertificate.Visible = false;
 
-            radioButtonPercent.CheckedChanged += (sender, e) =>
+            void TogglePanels(object? sender, EventArgs e)
             {
                 panelPercent.Visible = radioButtonPercent.Checked;
                 panelCertificate.Visible = radioButtonCertificate.Checked;
-            };
+            }
 
-            radioButtonCertificate.CheckedChanged += (sender, e) =>
+            radioButtonPercent.CheckedChanged += TogglePanels;
+            radioButtonCertificate.CheckedChanged += TogglePanels;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="price"></param>
+        /// <returns></returns>
+        /// <exception cref="IncorrectArgumentException"></exception>
+        private IDiscount CreatePercentDiscount(string name, double price)
+        {
+            double percent = 0;
+
+            if (!FieldValidation.ValidateDoubleRange(textPercent, "Процент",
+                0, 100, value => percent = value))
             {
-                panelPercent.Visible = radioButtonPercent.Checked;
-                panelCertificate.Visible = radioButtonCertificate.Checked;
-            };
+                throw new IncorrectArgumentException("Некорректный процент.");
+            }
+
+            return new PercentDiscount { Name = name, OriginPrice = price, Percent = percent };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="price"></param>
+        /// <returns></returns>
+        /// <exception cref="IncorrectArgumentException"></exception>
+        private IDiscount CreateCertificateDiscount(string name, double price)
+        {
+            double amount = 0;
+
+            if (!FieldValidation.ValidateDouble(textAmount, "Сумма сертификата",
+                value => amount = value))
+            {
+                throw new IncorrectArgumentException("Некорректная сумма.");
+            }
+
+            return new CertificateDiscount { Name = name, OriginPrice = price, CertificateAmount = amount };
         }
 
         /// <summary>
@@ -68,85 +105,24 @@ namespace View
             {
                 if (!radioButtonPercent.Checked && !radioButtonCertificate.Checked)
                 {
-                    MessageBox.Show("Выберите тип скидки.",
-                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    throw new IncorrectArgumentException("Выберите тип скидки.");
                 }
 
-                if (string.IsNullOrWhiteSpace(textName.Text))
+                var validators = new Dictionary<string, Func<bool>>
                 {
-                    MessageBox.Show("Название скидки не может быть пустым.",
-                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    textName.Focus();
-                    return;
-                }
+                    { "Название", () => FieldValidation.ValidateString(textName, "Название скидки", _ => {}) },
+                    { "Цена", () => FieldValidation.ValidateDouble(textOriginPrice, "Исходная цена", _ => {}) }
+                };
 
-                if (!double.TryParse(textOriginPrice.Text, out double price))
-                {
-                    MessageBox.Show("Введите корректную цену (число).",
-                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    textOriginPrice.Focus();
-                    return;
-                }
+                foreach (var v in validators)
+                    if (!v.Value()) return;
 
-                if (price < 0)
-                {
-                    MessageBox.Show("Цена не может быть отрицательной.",
-                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    textOriginPrice.Focus();
-                    return;
-                }
+                var name = textName.Text;
+                var price = double.Parse(textOriginPrice.Text, CultureInfo.InvariantCulture);
 
-                if (radioButtonPercent.Checked)
-                {
-                    if (!double.TryParse(textPercent.Text, out double percent))
-                    {
-                        MessageBox.Show("Введите корректный процент (число).",
-                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        textPercent.Focus();
-                        return;
-                    }
-
-                    if (percent < 0 || percent > 100)
-                    {
-                        MessageBox.Show("Процент должен быть от 0 до 100.",
-                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        textPercent.Focus();
-                        return;
-                    }
-
-                    NewDiscount = new PercentDiscount
-                    {
-                        Name = textName.Text,
-                        OriginPrice = price,
-                        Percent = percent
-                    };
-                }
-                else
-                {
-                    if (!double.TryParse(textAmount.Text, out double amount))
-                    {
-                        MessageBox.Show("Введите корректную сумму (число).",
-                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        textAmount.Focus();
-                        return;
-                    }
-
-                    if (amount <= 0)
-                    {
-                        MessageBox.Show("Сумма сертификата должна быть положительной.",
-                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        textAmount.Focus();
-                        return;
-                    }
-
-                    NewDiscount = new CertificateDiscount
-                    {
-                        Name = textName.Text,
-                        OriginPrice = price,
-                        CertificateAmount = amount
-                    };
-                }
+                NewDiscount = radioButtonPercent.Checked
+                    ? CreatePercentDiscount(name, price)
+                    : CreateCertificateDiscount(name, price);
 
                 DialogResult = DialogResult.OK;
             }
@@ -157,6 +133,11 @@ namespace View
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonRandomData_Click(object sender, EventArgs e)
         {
             var random = new Random();
@@ -180,7 +161,7 @@ namespace View
             else
             {
                 radioButtonCertificate.Checked = true;
-                textAmount.Text = random.Next(50, 5001).ToString(); // 50-5000 руб.
+                textAmount.Text = random.Next(50, 5001).ToString();
             }
         }
     }
