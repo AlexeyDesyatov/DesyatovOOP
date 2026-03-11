@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Var5;  
@@ -98,6 +99,54 @@ namespace View
         {
             var searchForm = new SearchForm(_discounts);
             searchForm.ShowDialog();
+        }
+
+        /// <summary>
+        /// Кнопка Сохранить
+        /// </summary>
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            if (_discounts.Count == 0)
+            {
+                MessageBox.Show("Нет данных для сохранения.", "Внимание",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string filePath = DiscountSerializer.ShowSaveDialog();
+            if (!string.IsNullOrEmpty(filePath) && DiscountSerializer.Save(
+                _discounts, filePath))
+            {
+                MessageBox.Show($"Данные успешно сохранены в:\n{filePath}",
+                    "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// Кнопка Загрузить
+        /// </summary>
+        private void buttonLoad_Click(object sender, EventArgs e)
+        {
+            if (_discounts.Count > 0)
+            {
+                var result = MessageBox.Show(
+                    "Текущий список будет заменён. Продолжить?",
+                    "Подтверждение",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (result != DialogResult.Yes)
+                    return;
+            }
+
+            string filePath = DiscountSerializer.ShowOpenDialog();
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                _discounts = DiscountSerializer.Load(filePath);
+                RefreshDataGridView();
+                MessageBox.Show($"Загружено {_discounts.Count} скидок.",
+                    "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         /// <summary>
