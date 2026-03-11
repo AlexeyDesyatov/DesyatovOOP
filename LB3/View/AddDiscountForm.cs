@@ -32,6 +32,9 @@ namespace View
         {
             InitializeComponent();
             SetupForm();
+        #if !DEBUG
+            buttonRandomData.Visible = false;
+        #endif
         }
 
         private void SetupForm()
@@ -151,6 +154,33 @@ namespace View
             {
                 MessageBox.Show(ex.Message, "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonRandomData_Click(object sender, EventArgs e)
+        {
+            var random = new Random();
+
+            string[] names = {
+                "Летняя распродажа",
+                "Новогодняя скидка",
+                "Черная пятница",
+                "Сезонная скидка",
+                "Праздничная акция"
+            };
+            textName.Text = names[random.Next(names.Length)];
+
+            textOriginPrice.Text = random.Next(100, 10001).ToString();
+
+            if (random.Next(2) == 0)
+            {
+                radioButtonPercent.Checked = true;
+                textPercent.Text = random.Next(0, 101).ToString();
+            }
+            else
+            {
+                radioButtonCertificate.Checked = true;
+                textAmount.Text = random.Next(50, 5001).ToString(); // 50-5000 руб.
             }
         }
     }

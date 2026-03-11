@@ -44,6 +44,7 @@
             labelAmount = new Label();
             buttonOK = new Button();
             buttonCancel = new Button();
+            buttonRandomData = new Button();
             groupBoxCommon.SuspendLayout();
             groupBoxType.SuspendLayout();
             panelPercent.SuspendLayout();
@@ -56,7 +57,7 @@
             groupBoxCommon.Controls.Add(textName);
             groupBoxCommon.Controls.Add(labelPrice);
             groupBoxCommon.Controls.Add(labelName);
-            groupBoxCommon.Location = new Point(95, 12);
+            groupBoxCommon.Location = new Point(148, 12);
             groupBoxCommon.Name = "groupBoxCommon";
             groupBoxCommon.Size = new Size(485, 125);
             groupBoxCommon.TabIndex = 0;
@@ -105,9 +106,9 @@
             // 
             groupBoxType.Controls.Add(radioButtonCertificate);
             groupBoxType.Controls.Add(radioButtonPercent);
-            groupBoxType.Location = new Point(95, 143);
+            groupBoxType.Location = new Point(148, 143);
             groupBoxType.Name = "groupBoxType";
-            groupBoxType.Size = new Size(485, 125);
+            groupBoxType.Size = new Size(485, 100);
             groupBoxType.TabIndex = 1;
             groupBoxType.TabStop = false;
             groupBoxType.Text = "Тип скидки";
@@ -115,7 +116,7 @@
             // radioButtonCertificate
             // 
             radioButtonCertificate.AutoSize = true;
-            radioButtonCertificate.Location = new Point(202, 50);
+            radioButtonCertificate.Location = new Point(314, 50);
             radioButtonCertificate.Name = "radioButtonCertificate";
             radioButtonCertificate.Size = new Size(140, 24);
             radioButtonCertificate.TabIndex = 1;
@@ -126,7 +127,7 @@
             // radioButtonPercent
             // 
             radioButtonPercent.AutoSize = true;
-            radioButtonPercent.Location = new Point(44, 50);
+            radioButtonPercent.Location = new Point(87, 50);
             radioButtonPercent.Name = "radioButtonPercent";
             radioButtonPercent.Size = new Size(116, 24);
             radioButtonPercent.TabIndex = 0;
@@ -137,7 +138,7 @@
             // 
             panelPercent.Controls.Add(textPercent);
             panelPercent.Controls.Add(labelPercent);
-            panelPercent.Location = new Point(95, 274);
+            panelPercent.Location = new Point(148, 245);
             panelPercent.Name = "panelPercent";
             panelPercent.Size = new Size(225, 125);
             panelPercent.TabIndex = 2;
@@ -165,7 +166,7 @@
             // 
             panelCertificate.Controls.Add(textAmount);
             panelCertificate.Controls.Add(labelAmount);
-            panelCertificate.Location = new Point(339, 274);
+            panelCertificate.Location = new Point(392, 245);
             panelCertificate.Name = "panelCertificate";
             panelCertificate.Size = new Size(241, 125);
             panelCertificate.TabIndex = 3;
@@ -192,7 +193,7 @@
             // buttonOK
             // 
             buttonOK.DialogResult = DialogResult.OK;
-            buttonOK.Location = new Point(58, 415);
+            buttonOK.Location = new Point(148, 376);
             buttonOK.Name = "buttonOK";
             buttonOK.Size = new Size(94, 29);
             buttonOK.TabIndex = 4;
@@ -202,18 +203,29 @@
             // buttonCancel
             // 
             buttonCancel.DialogResult = DialogResult.Cancel;
-            buttonCancel.Location = new Point(534, 417);
+            buttonCancel.Location = new Point(539, 376);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(94, 29);
             buttonCancel.TabIndex = 5;
             buttonCancel.Text = "Cancel";
             buttonCancel.UseVisualStyleBackColor = true;
             // 
+            // buttonRandomData
+            // 
+            buttonRandomData.Location = new Point(301, 409);
+            buttonRandomData.Name = "buttonRandomData";
+            buttonRandomData.Size = new Size(158, 29);
+            buttonRandomData.TabIndex = 6;
+            buttonRandomData.Text = "Случайные данные";
+            buttonRandomData.UseVisualStyleBackColor = true;
+            buttonRandomData.Click += buttonRandomData_Click;
+            // 
             // AddDiscountForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonRandomData);
             Controls.Add(buttonCancel);
             Controls.Add(buttonOK);
             Controls.Add(panelCertificate);
@@ -251,5 +263,6 @@
         private Label labelAmount;
         private Button buttonOK;
         private Button buttonCancel;
+        private Button buttonRandomData;
     }
 }
