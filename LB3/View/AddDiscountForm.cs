@@ -23,7 +23,7 @@ namespace View
         public IDiscount NewDiscount { get; private set; }
 
         /// <summary>
-        /// 
+        /// Конструктор формы
         /// </summary>
         public AddDiscountForm()
         {
@@ -35,7 +35,7 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Настройка формы
         /// </summary>
         private void SetupForm()
         {
@@ -55,7 +55,7 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Создание и валидация объектов по сертификату
         /// </summary>
         /// <param name="name"></param>
         /// <param name="price"></param>
@@ -75,7 +75,7 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Создание и валидация объектов по процентной скидке
         /// </summary>
         /// <param name="name"></param>
         /// <param name="price"></param>
@@ -114,8 +114,11 @@ namespace View
                     { "Цена", () => FieldValidation.ValidateDouble(textOriginPrice, "Исходная цена", _ => {}) }
                 };
 
-                foreach (var v in validators)
-                    if (!v.Value()) return;
+                foreach (var validator in validators)
+                {
+                    if (!validator.Value())
+                        return;
+                }
 
                 var name = textName.Text;
                 var price = double.Parse(textOriginPrice.Text, CultureInfo.InvariantCulture);
@@ -134,7 +137,7 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Кнопка создания случайного списка
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -164,5 +167,7 @@ namespace View
                 textAmount.Text = random.Next(50, 5001).ToString();
             }
         }
+        private void labelPrice_Click(object sender, EventArgs e) { }
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }
     }
 }

@@ -11,10 +11,20 @@ using Var5;
 
 namespace View
 {
+    /// <summary>
+    /// Форма поиска скидок
+    /// </summary>
     public partial class SearchForm : Form
     {
-        private List<IDiscount> _allDiscounts;
+        /// <summary>
+        /// Список скидок
+        /// </summary>
+        private readonly List<IDiscount> _allDiscounts;
 
+        /// <summary>
+        /// Конструктор формы
+        /// </summary>
+        /// <param name="discounts"></param>
         public SearchForm(List<IDiscount> discounts)
         {
             InitializeComponent();
@@ -22,6 +32,9 @@ namespace View
             SetupSearchForm();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void SetupSearchForm()
         {
             comboBoxSearchField.Items.AddRange(new string[]
@@ -33,51 +46,50 @@ namespace View
             comboBoxSearchField.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="IncorrectArgumentException"></exception>
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            string searchText = TextSearch.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(searchText))
+            if (!FieldValidation.TryValidate(() =>
             {
-                MessageBox.Show("Введите текст для поиска.", "Внимание",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                TextSearch.Focus();
+                if (string.IsNullOrWhiteSpace(TextSearch.Text.Trim()))
+                    throw new IncorrectArgumentException("Введите текст для поиска.");
+            },
+            "Текст поиска", TextSearch))
+            {
                 return;
             }
 
-            List<IDiscount> results = new List<IDiscount>();
             string selectedField = comboBoxSearchField.SelectedItem?.ToString();
+            string searchText = TextSearch.Text.Trim();
 
-            switch (selectedField)
+            var searchFunctions = new Dictionary<string, Func<List<IDiscount>>>
             {
-                case "Название скидки":
-                    results = _allDiscounts
-                        .Where(d => d.Name.Contains(searchText,
-                            StringComparison.OrdinalIgnoreCase))
-                        .ToList();
-                    break;
+                { "Название скидки", () => _allDiscounts
+                    .Where(d => d?.Name?.Contains(searchText,
+                        StringComparison.OrdinalIgnoreCase) == true).ToList() },
 
-                case "Тип скидки":
-                    results = _allDiscounts
-                        .Where(d => d.DiscountType.Contains(searchText,
-                            StringComparison.OrdinalIgnoreCase))
-                        .ToList();
-                    break;
+                { "Тип скидки", () => _allDiscounts
+                    .Where(d => d?.DiscountType?.Contains(searchText,
+                        StringComparison.OrdinalIgnoreCase) == true).ToList() },
 
-                case "Исходная цена":
-                    results = _allDiscounts
-                        .Where(d => d.OriginPrice.ToString().Contains(searchText))
-                        .ToList();
-                    break;
-            }
+                { "Исходная цена", () => _allDiscounts
+                    .Where(d => d?.OriginPrice.ToString()
+                        .Contains(searchText, StringComparison.OrdinalIgnoreCase) == true).ToList() }
+            };
+
+            var results = searchFunctions.TryGetValue(selectedField, out var func)
+                ? func()
+                : new List<IDiscount>();
+
             dataGridViewResults.DataSource = null;
             dataGridViewResults.DataSource = results;
 
-            string resultMessage = results.Count > 0
-                ? $"Найдено: {results.Count}"
-                : "Ничего не найдено";
-
-            this.Text = $"Поиск - {resultMessage}";
+            this.Text = $"Поиск - {(results.Count > 0 ? $"Найдено: {results.Count}" : "Ничего не найдено")}";
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
