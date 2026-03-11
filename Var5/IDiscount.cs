@@ -12,7 +12,7 @@ namespace Var5
     public interface IDiscount
     {
         /// <summary>
-        /// Название типа скидки
+        /// Название скидки
         /// </summary>
         string Name { get; set; }
 
@@ -20,6 +20,11 @@ namespace Var5
         /// Исходная цена
         /// </summary>
         double OriginPrice { get; set; }
+
+        /// <summary>
+        /// Тип скидки
+        /// </summary>
+        string DiscountType { get; }
 
         /// <summary>
         /// Cтоимость

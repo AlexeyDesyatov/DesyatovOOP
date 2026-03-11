@@ -107,5 +107,11 @@ namespace View
         {
 
         }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            var searchForm = new SearchForm(_discounts);
+            searchForm.ShowDialog();
+        }
     }
 }
