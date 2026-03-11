@@ -36,11 +36,11 @@
             DiscountValue = new DataGridViewTextBoxColumn();
             DiscountPrice = new DataGridViewTextBoxColumn();
             panelButtons = new Panel();
+            buttonLoad = new Button();
+            buttonSave = new Button();
             buttonSearch = new Button();
             buttonRemoveDiscount = new Button();
             buttonAddDiscount = new Button();
-            buttonSave = new Button();
-            buttonLoad = new Button();
             groupBoxDiscounts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDiscounts).BeginInit();
             panelButtons.SuspendLayout();
@@ -54,7 +54,7 @@
             groupBoxDiscounts.Margin = new Padding(3, 2, 3, 2);
             groupBoxDiscounts.Name = "groupBoxDiscounts";
             groupBoxDiscounts.Padding = new Padding(3, 2, 3, 2);
-            groupBoxDiscounts.Size = new Size(832, 150);
+            groupBoxDiscounts.Size = new Size(850, 150);
             groupBoxDiscounts.TabIndex = 0;
             groupBoxDiscounts.TabStop = false;
             groupBoxDiscounts.Text = "Список скидок";
@@ -72,7 +72,7 @@
             dataGridViewDiscounts.ReadOnly = true;
             dataGridViewDiscounts.RowHeadersWidth = 51;
             dataGridViewDiscounts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewDiscounts.Size = new Size(826, 130);
+            dataGridViewDiscounts.Size = new Size(844, 130);
             dataGridViewDiscounts.TabIndex = 0;
             // 
             // colName
@@ -127,15 +127,33 @@
             panelButtons.Controls.Add(buttonSearch);
             panelButtons.Controls.Add(buttonRemoveDiscount);
             panelButtons.Controls.Add(buttonAddDiscount);
-            panelButtons.Location = new Point(0, 233);
+            panelButtons.Location = new Point(26, 426);
             panelButtons.Margin = new Padding(3, 2, 3, 2);
             panelButtons.Name = "panelButtons";
-            panelButtons.Size = new Size(829, 94);
+            panelButtons.Size = new Size(802, 94);
             panelButtons.TabIndex = 1;
+            // 
+            // buttonLoad
+            // 
+            buttonLoad.Location = new Point(659, 68);
+            buttonLoad.Name = "buttonLoad";
+            buttonLoad.Size = new Size(131, 23);
+            buttonLoad.TabIndex = 4;
+            buttonLoad.Text = "Загрузить";
+            buttonLoad.UseVisualStyleBackColor = true;
+            // 
+            // buttonSave
+            // 
+            buttonSave.Location = new Point(20, 68);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new Size(131, 23);
+            buttonSave.TabIndex = 3;
+            buttonSave.Text = "Сохранить";
+            buttonSave.UseVisualStyleBackColor = true;
             // 
             // buttonSearch
             // 
-            buttonSearch.Location = new Point(382, 37);
+            buttonSearch.Location = new Point(364, 36);
             buttonSearch.Name = "buttonSearch";
             buttonSearch.Size = new Size(75, 23);
             buttonSearch.TabIndex = 2;
@@ -145,7 +163,7 @@
             // 
             // buttonRemoveDiscount
             // 
-            buttonRemoveDiscount.Location = new Point(689, 17);
+            buttonRemoveDiscount.Location = new Point(659, 17);
             buttonRemoveDiscount.Margin = new Padding(3, 2, 3, 2);
             buttonRemoveDiscount.Name = "buttonRemoveDiscount";
             buttonRemoveDiscount.Size = new Size(131, 22);
@@ -165,29 +183,11 @@
             buttonAddDiscount.UseVisualStyleBackColor = true;
             buttonAddDiscount.Click += buttonAddDiscount_Click;
             // 
-            // buttonSave
-            // 
-            buttonSave.Location = new Point(20, 68);
-            buttonSave.Name = "buttonSave";
-            buttonSave.Size = new Size(131, 23);
-            buttonSave.TabIndex = 3;
-            buttonSave.Text = "Сохранить";
-            buttonSave.UseVisualStyleBackColor = true;
-            // 
-            // buttonLoad
-            // 
-            buttonLoad.Location = new Point(689, 68);
-            buttonLoad.Name = "buttonLoad";
-            buttonLoad.Size = new Size(131, 23);
-            buttonLoad.TabIndex = 4;
-            buttonLoad.Text = "Загрузить";
-            buttonLoad.UseVisualStyleBackColor = true;
-            // 
             // DiscountForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(832, 338);
+            ClientSize = new Size(850, 531);
             Controls.Add(panelButtons);
             Controls.Add(groupBoxDiscounts);
             Margin = new Padding(3, 2, 3, 2);
