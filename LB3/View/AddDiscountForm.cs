@@ -32,9 +32,9 @@ namespace View
         {
             InitializeComponent();
             SetupForm();
-#if !DEBUG
+        #if !DEBUG
             buttonRandomData.Visible = false;
-#endif
+        #endif
         }
 
         private void SetupForm()
