@@ -14,7 +14,8 @@ namespace View
         /// <summary>
         /// Выполняет действие с обработкой исключений и повтором ввода
         /// </summary>
-        public static bool TryValidate(Action action, string fieldName, Control targetControl)
+        public static bool TryValidate(Action action,
+            string fieldName, Control targetControl)
         {
             try
             {
@@ -40,58 +41,78 @@ namespace View
         /// <summary>
         /// Валидация строки
         /// </summary>
-        public static bool ValidateString(TextBoxBase textBox, string fieldName, Action<string> setter)
+        public static bool ValidateString(TextBoxBase textBox,
+            string fieldName, Action<string> setter)
         {
-            return TryValidate(() =>
-            {
-                if (string.IsNullOrWhiteSpace(textBox.Text))
-                    throw new IncorrectArgumentException($"{fieldName} не может быть пустым.");
-                setter(textBox.Text);
-            }, fieldName, textBox);
+            return TryValidate(
+                action: () =>
+                {
+                    if (string.IsNullOrWhiteSpace(textBox.Text))
+                    {
+                        throw new IncorrectArgumentException(
+                            $"{fieldName} не может быть пустым.");
+                    }
+                    setter(textBox.Text);
+                }, 
+                fieldName, 
+                textBox
+            );
         }
 
         /// <summary>
         /// Валидация числа
         /// </summary>
-        public static bool ValidateDouble(TextBoxBase textBox, string fieldName, Action<double> setter)
+        public static bool ValidateDouble(TextBoxBase textBox,
+            string fieldName, Action<double> setter)
         {
-            return TryValidate(() =>
-            {
-                if (!double.TryParse(textBox.Text, NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out double value))
+           return TryValidate(
+                action: () =>
                 {
-                    throw new IncorrectArgumentException($"Введите корректное число.");
-                }
+                    if (!double.TryParse(textBox.Text, NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out double value))
+                    {
+                        throw new IncorrectArgumentException(
+                            "Введите корректное число.");
+                    }
 
-                if (value < 0)
-                {
-                    throw new IncorrectArgumentException($"{fieldName} не может быть отрицательным.");
-                }
+                    if (value < 0)
+                    {
+                        throw new IncorrectArgumentException(
+                            $"{fieldName} не может быть отрицательным.");
+                    }
 
-                setter(value);
-            }, fieldName, textBox);
+                    setter(value);
+                },
+                fieldName,
+                textBox
+            );
         }
 
         /// <summary>
         /// Валидация числа в диапазоне
         /// </summary>
-        public static bool ValidateDoubleRange(TextBoxBase textBox, string fieldName,
-            double min, double max, Action<double> setter)
+        public static bool ValidateDoubleRange(TextBoxBase textBox,
+            string fieldName, double min, double max, Action<double> setter)
         {
-            return TryValidate(() =>
-            {
-                if (!double.TryParse(textBox.Text, NumberStyles.Any,
-                    CultureInfo.InvariantCulture, out double value))
+            return TryValidate(
+                action: () =>
                 {
-                    throw new IncorrectArgumentException($"Введите корректное число.");
-                }
-                if (value < min || value > max)
-                {
-                    throw new IncorrectArgumentException(
-                        $"{fieldName} должен быть от {min} до {max}.");
-                }
-                setter(value);
-            }, fieldName, textBox);
+                    if (!double.TryParse(textBox.Text, NumberStyles.Any,
+                        CultureInfo.InvariantCulture, out double value))
+                    {
+                        throw new IncorrectArgumentException(
+                            $"Введите корректное число.");
+                    }
+                    if (value < min || value > max)
+                    {
+                        throw new IncorrectArgumentException(
+                            $"{fieldName} должен быть от {min} до {max}.");
+                    }
+                    setter(value);
+                }, 
+                fieldName, 
+                textBox
+            );
         }
     }
 }

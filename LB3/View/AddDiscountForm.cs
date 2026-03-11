@@ -55,7 +55,7 @@ namespace View
         }
 
         /// <summary>
-        /// Создание и валидация объектов по сертификату
+        /// Создание и валидация объектов по процентной скидке
         /// </summary>
         /// <param name="name"></param>
         /// <param name="price"></param>
@@ -71,11 +71,12 @@ namespace View
                 throw new IncorrectArgumentException("Некорректный процент.");
             }
 
-            return new PercentDiscount { Name = name, OriginPrice = price, Percent = percent };
+            return new PercentDiscount { Name = name, OriginPrice = price,
+                Percent = percent };
         }
 
         /// <summary>
-        /// Создание и валидация объектов по процентной скидке
+        /// Создание и валидация объектов по сертификату
         /// </summary>
         /// <param name="name"></param>
         /// <param name="price"></param>
@@ -91,7 +92,8 @@ namespace View
                 throw new IncorrectArgumentException("Некорректная сумма.");
             }
 
-            return new CertificateDiscount { Name = name, OriginPrice = price, CertificateAmount = amount };
+            return new CertificateDiscount { Name = name, OriginPrice = price,
+                CertificateAmount = amount };
         }
 
         /// <summary>
@@ -110,8 +112,10 @@ namespace View
 
                 var validators = new Dictionary<string, Func<bool>>
                 {
-                    { "Название", () => FieldValidation.ValidateString(textName, "Название скидки", _ => {}) },
-                    { "Цена", () => FieldValidation.ValidateDouble(textOriginPrice, "Исходная цена", _ => {}) }
+                    { "Название", () => FieldValidation.ValidateString(textName,
+                        "Название скидки", _ => {}) },
+                    { "Цена", () => FieldValidation.ValidateDouble(textOriginPrice,
+                        "Исходная цена", _ => {}) }
                 };
 
                 foreach (var validator in validators)
@@ -121,7 +125,8 @@ namespace View
                 }
 
                 var name = textName.Text;
-                var price = double.Parse(textOriginPrice.Text, CultureInfo.InvariantCulture);
+                var price = double.Parse(textOriginPrice.Text,
+                    CultureInfo.InvariantCulture);
 
                 NewDiscount = radioButtonPercent.Checked
                     ? CreatePercentDiscount(name, price)
@@ -168,6 +173,7 @@ namespace View
             }
         }
         private void labelPrice_Click(object sender, EventArgs e) { }
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e) { }
+        private void maskedTextBox1_MaskInputRejected(object sender,
+            MaskInputRejectedEventArgs e) { }
     }
 }

@@ -33,21 +33,26 @@ namespace View
         }
 
         /// <summary>
-        /// 
+        /// Настройка элементов формы
         /// </summary>
         private void SetupSearchForm()
         {
-            comboBoxSearchField.Items.AddRange(new string[]
-            {
-                "Название скидки",
-                "Тип скидки",
-                "Исходная цена"
-            });
             comboBoxSearchField.SelectedIndex = 0;
         }
 
         /// <summary>
-        /// 
+        /// Обновление результатов
+        /// </summary>
+        private void RefreshResults(List<IDiscount> results)
+        {
+            dataGridViewResults.DataSource = null;
+            dataGridViewResults.DataSource = results;
+            this.Text = $"Поиск - {(results.Count > 0 ?
+                $"Найдено: {results.Count}" : "Ничего не найдено")}";
+        }
+
+        /// <summary>
+        /// Кнопка поиска
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -57,7 +62,8 @@ namespace View
             if (!FieldValidation.TryValidate(() =>
             {
                 if (string.IsNullOrWhiteSpace(TextSearch.Text.Trim()))
-                    throw new IncorrectArgumentException("Введите текст для поиска.");
+                    throw new IncorrectArgumentException("Введите" +
+                        " текст для поиска.");
             },
             "Текст поиска", TextSearch))
             {
@@ -70,31 +76,33 @@ namespace View
             var searchFunctions = new Dictionary<string, Func<List<IDiscount>>>
             {
                 { "Название скидки", () => _allDiscounts
-                    .Where(d => d?.Name?.Contains(searchText,
-                        StringComparison.OrdinalIgnoreCase) == true).ToList() },
+                    .Where(discount => discount?.Name?.Contains(searchText,
+                    StringComparison.OrdinalIgnoreCase) == true).ToList()},
 
                 { "Тип скидки", () => _allDiscounts
-                    .Where(d => d?.DiscountType?.Contains(searchText,
-                        StringComparison.OrdinalIgnoreCase) == true).ToList() },
+                    .Where(discount => discount?.DiscountType?.Contains(
+                        searchText,
+                        StringComparison.OrdinalIgnoreCase) == true).ToList()},
 
                 { "Исходная цена", () => _allDiscounts
-                    .Where(d => d?.OriginPrice.ToString()
-                        .Contains(searchText, StringComparison.OrdinalIgnoreCase) == true).ToList() }
+                    .Where(discount => discount?.OriginPrice.ToString()
+                        .Contains(searchText,
+                        StringComparison.OrdinalIgnoreCase) == true).ToList()}
             };
 
-            var results = searchFunctions.TryGetValue(selectedField, out var func)
-                ? func()
+            var results = searchFunctions.TryGetValue(selectedField,
+                    out var searchFunc)
+                ? searchFunc()
                 : new List<IDiscount>();
 
-            dataGridViewResults.DataSource = null;
-            dataGridViewResults.DataSource = results;
-
-            this.Text = $"Поиск - {(results.Count > 0 ? $"Найдено: {results.Count}" : "Ничего не найдено")}";
+            RefreshResults(results);
         }
 
-        private void buttonClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        /// <summary>
+        /// Кнопка завершения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonClose_Click(object sender, EventArgs e) => Close();
     }
 }

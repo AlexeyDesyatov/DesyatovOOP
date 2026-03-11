@@ -39,7 +39,6 @@ namespace View
             dataGridViewDiscounts.ReadOnly = true;
             dataGridViewDiscounts.AllowUserToAddRows = false;
             dataGridViewDiscounts.AllowUserToDeleteRows = false;
-            dataGridViewDiscounts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         /// <summary>
@@ -56,7 +55,8 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="eventarg"></param>
-        private void buttonAddDiscount_Click(object sender, EventArgs eventarg)
+        private void buttonAddDiscount_Click(object sender,
+                EventArgs eventarg)
         {
             var addForm = new AddDiscountForm();
 
@@ -72,11 +72,13 @@ namespace View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="eventarg"></param>
-        private void buttonRemoveDiscount_Click(object sender, EventArgs eventarg)
+        private void buttonRemoveDiscount_Click(object sender,
+            EventArgs eventarg)
         {
             if (dataGridViewDiscounts.SelectedRows.Count > 0)
             {
-                var selectedDiscount = (IDiscount)dataGridViewDiscounts.SelectedRows[0].DataBoundItem;
+                var selectedDiscount = 
+                    (IDiscount)dataGridViewDiscounts.SelectedRows[0].DataBoundItem;
                 _discounts.Remove(selectedDiscount);
                 RefreshDataGridView();
             }
