@@ -1,15 +1,22 @@
+using System;
+using System.Windows.Forms;
+
 namespace View
 {
+    /// <summary>
+    /// Точка входа в приложение
+    /// </summary>
     internal static class Program
     {
         /// <summary>
-        ///  The main entry point for the application.
+        /// Главная точка входа для приложения
         /// </summary>
+        /// <remarks>
+        /// Инициализирует конфигурацию WinForms и запускает главную форму
+        /// </remarks>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new DiscountForm());
         }

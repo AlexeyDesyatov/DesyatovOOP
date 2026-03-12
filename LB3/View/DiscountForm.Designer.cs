@@ -141,6 +141,7 @@
             buttonLoad.TabIndex = 4;
             buttonLoad.Text = "Загрузить";
             buttonLoad.UseVisualStyleBackColor = true;
+            buttonLoad.Click += buttonLoad_Click;
             // 
             // buttonSave
             // 
@@ -150,6 +151,7 @@
             buttonSave.TabIndex = 3;
             buttonSave.Text = "Сохранить";
             buttonSave.UseVisualStyleBackColor = true;
+            buttonSave.Click += buttonSave_Click;
             // 
             // buttonSearch
             // 

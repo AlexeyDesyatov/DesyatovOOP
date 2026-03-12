@@ -78,7 +78,7 @@ namespace View
         {
             if (dataGridViewDiscounts.SelectedRows.Count > 0)
             {
-                var selectedDiscount = 
+                var selectedDiscount =
                     (IDiscount)dataGridViewDiscounts.SelectedRows[0].DataBoundItem;
                 _discounts.Remove(selectedDiscount);
                 RefreshDataGridView();
@@ -113,12 +113,27 @@ namespace View
                 return;
             }
 
-            string filePath = DiscountSerializer.ShowSaveDialog();
-            if (!string.IsNullOrEmpty(filePath) && DiscountSerializer.Save(
-                _discounts, filePath))
+            using var saveDialog = new SaveFileDialog
             {
-                MessageBox.Show($"Данные успешно сохранены в:\n{filePath}",
-                    "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Filter = "Файл скидок|*.skd",
+                DefaultExt = "skd",
+                AddExtension = true,
+                Title = "Сохранить список скидок"
+            };
+
+            if (saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    DiscountSerializer.Save(_discounts, saveDialog.FileName);
+                    MessageBox.Show($"Данные успешно сохранены в:\n{saveDialog.FileName}",
+                        "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка сохранения: {ex.Message}",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -139,13 +154,29 @@ namespace View
                     return;
             }
 
-            string filePath = DiscountSerializer.ShowOpenDialog();
-            if (!string.IsNullOrEmpty(filePath))
+            using var openDialog = new OpenFileDialog
             {
-                _discounts = DiscountSerializer.Load(filePath);
-                RefreshDataGridView();
-                MessageBox.Show($"Загружено {_discounts.Count} скидок.",
-                    "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Filter = "Файл скидок|*.skd",
+                DefaultExt = "skd",
+                AddExtension = true,
+                Title = "Открыть список скидок",
+                CheckFileExists = true
+            };
+
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    _discounts = DiscountSerializer.Load(openDialog.FileName);
+                    RefreshDataGridView();
+                    MessageBox.Show($"Загружено {_discounts.Count} скидок.",
+                        "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка загрузки: {ex.Message}",
+                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

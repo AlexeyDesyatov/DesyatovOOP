@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Var5
@@ -9,6 +10,9 @@ namespace Var5
     /// <summary>
     /// Интерфейс для расчета скидки
     /// </summary>
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$type")]
+    [JsonDerivedType(typeof(PercentDiscount), "percent")]
+    [JsonDerivedType(typeof(CertificateDiscount), "certificate")]
     public interface IDiscount
     {
         /// <summary>
