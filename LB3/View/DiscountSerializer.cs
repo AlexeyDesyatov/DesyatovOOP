@@ -13,7 +13,7 @@ namespace View
     public static class DiscountSerializer
     {
         /// <summary>
-        /// Параметры сериализации и десериализации JSON.
+        /// Параметры сериализации и десериализации
         /// </summary>
         private static readonly JsonSerializerOptions _jsonOptions = new()
         {
@@ -22,7 +22,7 @@ namespace View
         };
 
         /// <summary>
-        /// Сохраняет список скидок в файл в формате JSON.
+        /// Сохраняет список скидок
         /// </summary>
         /// <param name="discounts">Список скидок.</param>
         /// <param name="path">Путь к файлу.</param>
@@ -30,7 +30,7 @@ namespace View
             File.WriteAllText(path, JsonSerializer.Serialize(discounts, _jsonOptions));
 
         /// <summary>
-        /// Загружает список скидок из файла в формате JSON.
+        /// Загружает список скидок из файла
         /// </summary>
         /// <param name="path">Путь к файлу.</param>
         /// <returns>Список загруженных скидок.</returns>

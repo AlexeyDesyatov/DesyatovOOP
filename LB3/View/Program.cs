@@ -11,9 +11,6 @@ namespace View
         /// <summary>
         /// Главная точка входа для приложения
         /// </summary>
-        /// <remarks>
-        /// Инициализирует конфигурацию WinForms и запускает главную форму
-        /// </remarks>
         [STAThread]
         static void Main()
         {

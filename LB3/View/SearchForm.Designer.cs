@@ -142,6 +142,7 @@
             buttonClose.TabIndex = 5;
             buttonClose.Text = "Закрыть";
             buttonClose.UseVisualStyleBackColor = true;
+            buttonClose.Click += buttonClose_Click;
             // 
             // TextSearch
             // 
