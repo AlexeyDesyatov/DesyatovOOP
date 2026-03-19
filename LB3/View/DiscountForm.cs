@@ -149,20 +149,6 @@ namespace View
         /// </summary>
         private void ButtonLoad_Click(object sender, EventArgs e)
         {
-            if (_discounts.Count > 0)
-            {
-                var result = MessageBox.Show(
-                    "Текущий список будет заменён. Продолжить?",
-                    "Подтверждение",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                if (result != DialogResult.Yes)
-                {
-                    return;
-                }
-            }
-
             using var openDialog = new OpenFileDialog
             {
                 Filter = "Файл скидок|*.skd",
@@ -174,6 +160,19 @@ namespace View
 
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
+                if (_discounts.Count > 0)
+                {
+                    var result = MessageBox.Show(
+                        "Текущий список будет заменён. Продолжить?",
+                        "Подтверждение",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (result != DialogResult.Yes)
+                    {
+                        return;
+                    }
+                }
                 try
                 {
                     _discounts = DiscountSerializer.Load(openDialog.FileName);
@@ -190,15 +189,6 @@ namespace View
                 }
             }
         }
-
-        //TODO: remove
-        /// <summary>
-        /// Загрузка формы
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DiscountForm_Load(object sender, EventArgs e)
-        {
-        }
+        //TODO: remove+ 
     }
 }

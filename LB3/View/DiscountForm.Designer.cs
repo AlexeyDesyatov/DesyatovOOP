@@ -136,7 +136,7 @@
             // 
             // buttonLoad
             // 
-            buttonLoad.Location = new Point(674, 15);
+            buttonLoad.Location = new Point(674, 16);
             buttonLoad.Name = "buttonLoad";
             buttonLoad.Size = new Size(131, 23);
             buttonLoad.TabIndex = 4;
@@ -146,7 +146,7 @@
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(537, 15);
+            buttonSave.Location = new Point(537, 16);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(131, 23);
             buttonSave.TabIndex = 3;
@@ -156,7 +156,7 @@
             // 
             // buttonSearch
             // 
-            buttonSearch.Location = new Point(341, 15);
+            buttonSearch.Location = new Point(337, 16);
             buttonSearch.Name = "buttonSearch";
             buttonSearch.Size = new Size(131, 23);
             buttonSearch.TabIndex = 2;
@@ -166,7 +166,7 @@
             // 
             // buttonRemoveDiscount
             // 
-            buttonRemoveDiscount.Location = new Point(146, 15);
+            buttonRemoveDiscount.Location = new Point(146, 16);
             buttonRemoveDiscount.Margin = new Padding(3, 2, 3, 2);
             buttonRemoveDiscount.Name = "buttonRemoveDiscount";
             buttonRemoveDiscount.Size = new Size(131, 22);
@@ -198,7 +198,6 @@
             MaximizeBox = false;
             Name = "DiscountForm";
             Text = "DiscountForm";
-            Load += DiscountForm_Load;
             groupBoxDiscounts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewDiscounts).EndInit();
             panelButtons.ResumeLayout(false);
