@@ -44,19 +44,13 @@
             // 
             // labelSearchField
             // 
-            labelSearchField.AutoSize = true;
-            labelSearchField.Location = new Point(124, 144);
-            labelSearchField.Name = "labelSearchField";
-            labelSearchField.Size = new Size(96, 15);
-            labelSearchField.TabIndex = 0;
-            labelSearchField.Text = "Поиск по полю:";
             // 
             // comboBoxSearchField
             // 
             comboBoxSearchField.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSearchField.FormattingEnabled = true;
             comboBoxSearchField.Items.AddRange(new object[] { "Название скидки", "Тип скидки", "Исходная цена" });
-            comboBoxSearchField.Location = new Point(267, 142);
+            comboBoxSearchField.Location = new Point(139, 180);
             comboBoxSearchField.Margin = new Padding(3, 2, 3, 2);
             comboBoxSearchField.Name = "comboBoxSearchField";
             comboBoxSearchField.Size = new Size(133, 23);
@@ -64,14 +58,14 @@
             // 
             // buttonSearch
             // 
-            buttonSearch.Location = new Point(317, 190);
+            buttonSearch.Location = new Point(190, 224);
             buttonSearch.Margin = new Padding(3, 2, 3, 2);
             buttonSearch.Name = "buttonSearch";
             buttonSearch.Size = new Size(82, 22);
             buttonSearch.TabIndex = 3;
             buttonSearch.Text = "Найти";
             buttonSearch.UseVisualStyleBackColor = true;
-            buttonSearch.Click += buttonSearch_Click;
+            buttonSearch.Click += ButtonSearch_Click;
             // 
             // dataGridViewResults
             // 
@@ -79,13 +73,13 @@
             dataGridViewResults.AllowUserToDeleteRows = false;
             dataGridViewResults.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewResults.Columns.AddRange(new DataGridViewColumn[] { colName, DiscountType, OriginPrice, DiscountValue, DiscountPrice });
-            dataGridViewResults.Location = new Point(35, 9);
+            dataGridViewResults.Location = new Point(10, 9);
             dataGridViewResults.Margin = new Padding(3, 2, 3, 2);
             dataGridViewResults.Name = "dataGridViewResults";
             dataGridViewResults.ReadOnly = true;
             dataGridViewResults.RowHeadersWidth = 51;
             dataGridViewResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewResults.Size = new Size(629, 106);
+            dataGridViewResults.Size = new Size(687, 161);
             dataGridViewResults.TabIndex = 4;
             // 
             // colName
@@ -135,18 +129,18 @@
             // 
             // buttonClose
             // 
-            buttonClose.Location = new Point(582, 294);
+            buttonClose.Location = new Point(614, 224);
             buttonClose.Margin = new Padding(3, 2, 3, 2);
             buttonClose.Name = "buttonClose";
             buttonClose.Size = new Size(82, 22);
             buttonClose.TabIndex = 5;
             buttonClose.Text = "Закрыть";
             buttonClose.UseVisualStyleBackColor = true;
-            buttonClose.Click += buttonClose_Click;
+            buttonClose.Click += ButtonClose_Click;
             // 
             // TextSearch
             // 
-            TextSearch.Location = new Point(124, 189);
+            TextSearch.Location = new Point(10, 223);
             TextSearch.Name = "TextSearch";
             TextSearch.PlaceholderText = "Введите текст для поиска...";
             TextSearch.Size = new Size(164, 23);
@@ -156,7 +150,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 338);
+            ClientSize = new Size(708, 263);
             Controls.Add(TextSearch);
             Controls.Add(buttonClose);
             Controls.Add(dataGridViewResults);
@@ -165,6 +159,7 @@
             Controls.Add(labelSearchField);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
             Name = "SearchForm";
             Text = "SearchForm";
             ((System.ComponentModel.ISupportInitialize)dataGridViewResults).EndInit();

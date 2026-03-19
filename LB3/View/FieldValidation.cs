@@ -88,17 +88,6 @@ namespace View
                 textBox
             );
         }
-        //TODO: RSDN
-        /// <summary>
-        /// Минимально допустимое значение процента скидки
-        /// </summary>
-        private const int min = 0;
-
-        //TODO: RSDN
-        /// <summary>
-        /// Максимально допустимое значение процента скидки
-        /// </summary>
-        private const int max = 100;
 
         /// <summary>
         /// Валидация числа в диапазоне
@@ -106,9 +95,20 @@ namespace View
         public static bool ValidateDoubleRange(TextBoxBase textBox,
             string fieldName, Action<double> setter)
         {
+            /// <summary>
+            /// Максимально допустимое значение процента скидки
+            /// </summary>
+            const int max = 100;
+
+            /// <summary>
+            /// Минимально допустимое значение процента скидки
+            /// </summary>
+            const int min = 0;
+
             return TryValidate(
                 action: () =>
                 {
+                    
                     if (!double.TryParse(textBox.Text, NumberStyles.Any,
                         CultureInfo.InvariantCulture, out double value))
                     {

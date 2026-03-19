@@ -51,13 +51,13 @@ namespace View
             dataGridViewDiscounts.DataSource = _discounts;
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Кнопка добавить скидку
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonAddDiscount_Click(object sender,
+        private void ButtonAddDiscount_Click(object sender,
                 EventArgs e)
         {
             var addForm = new AddDiscountForm();
@@ -69,13 +69,13 @@ namespace View
             }
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Кнопка удалить скидку
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonRemoveDiscount_Click(object sender,
+        private void ButtonRemoveDiscount_Click(object sender,
             EventArgs e)
         {
             if (dataGridViewDiscounts.SelectedRows.Count > 0)
@@ -92,23 +92,23 @@ namespace View
             }
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Кнопка поиска
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonSearch_Click(object sender, EventArgs e)
+        private void ButtonSearch_Click(object sender, EventArgs e)
         {
             var searchForm = new SearchForm(_discounts);
             searchForm.ShowDialog();
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Кнопка Сохранить
         /// </summary>
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (_discounts.Count == 0)
             {
@@ -143,11 +143,11 @@ namespace View
             }
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Кнопка Загрузить
         /// </summary>
-        private void buttonLoad_Click(object sender, EventArgs e)
+        private void ButtonLoad_Click(object sender, EventArgs e)
         {
             if (_discounts.Count > 0)
             {

@@ -38,6 +38,7 @@ namespace View
         private void SetupSearchForm()
         {
             comboBoxSearchField.SelectedIndex = 0;
+            dataGridViewResults.AutoGenerateColumns = false;
         }
 
         /// <summary>
@@ -51,14 +52,14 @@ namespace View
                 $"Найдено: {results.Count}" : "Ничего не найдено")}";
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Кнопка поиска
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// <exception cref="IncorrectArgumentException"></exception>
-        private void buttonSearch_Click(object sender, EventArgs e)
+        private void ButtonSearch_Click(object sender, EventArgs e)
         {
             if (!FieldValidation.TryValidate(() =>
             {
@@ -78,11 +79,11 @@ namespace View
 
             var searchFunctions = new Dictionary<string, Func<List<IDiscount>>>
             {
-                { 
-                    "Название скидки", 
+                {
+                    "Название скидки",
                     () => _allDiscounts.Where(
                         discount => discount?.Name?.Contains(
-                            searchText, 
+                            searchText,
                             StringComparison.OrdinalIgnoreCase) == true)
                     .ToList()
                 },
@@ -106,12 +107,13 @@ namespace View
             RefreshResults(results);
         }
 
-        //TODO: RSDN
+        //TODO: RSDN +
         /// <summary>
         /// Кнопка завершения
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void buttonClose_Click(object sender, EventArgs e) => Close();
+        private void ButtonClose_Click(object sender, EventArgs e) => Close();
+
     }
 }
