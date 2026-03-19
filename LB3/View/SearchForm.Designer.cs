@@ -39,18 +39,23 @@
             DiscountPrice = new DataGridViewTextBoxColumn();
             buttonClose = new Button();
             TextSearch = new TextBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridViewResults).BeginInit();
             SuspendLayout();
             // 
             // labelSearchField
             // 
+            labelSearchField.Location = new Point(0, 0);
+            labelSearchField.Name = "labelSearchField";
+            labelSearchField.Size = new Size(100, 23);
+            labelSearchField.TabIndex = 7;
             // 
             // comboBoxSearchField
             // 
             comboBoxSearchField.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxSearchField.FormattingEnabled = true;
             comboBoxSearchField.Items.AddRange(new object[] { "Название скидки", "Тип скидки", "Исходная цена" });
-            comboBoxSearchField.Location = new Point(139, 180);
+            comboBoxSearchField.Location = new Point(129, 185);
             comboBoxSearchField.Margin = new Padding(3, 2, 3, 2);
             comboBoxSearchField.Name = "comboBoxSearchField";
             comboBoxSearchField.Size = new Size(133, 23);
@@ -58,7 +63,7 @@
             // 
             // buttonSearch
             // 
-            buttonSearch.Location = new Point(190, 224);
+            buttonSearch.Location = new Point(180, 224);
             buttonSearch.Margin = new Padding(3, 2, 3, 2);
             buttonSearch.Name = "buttonSearch";
             buttonSearch.Size = new Size(82, 22);
@@ -143,14 +148,24 @@
             TextSearch.Location = new Point(10, 223);
             TextSearch.Name = "TextSearch";
             TextSearch.PlaceholderText = "Введите текст для поиска...";
-            TextSearch.Size = new Size(164, 23);
+            TextSearch.Size = new Size(157, 23);
             TextSearch.TabIndex = 6;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(10, 188);
+            label1.Name = "label1";
+            label1.Size = new Size(96, 15);
+            label1.TabIndex = 8;
+            label1.Text = "Поиск по полю:";
             // 
             // SearchForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(708, 263);
+            Controls.Add(label1);
             Controls.Add(TextSearch);
             Controls.Add(buttonClose);
             Controls.Add(dataGridViewResults);
@@ -180,5 +195,6 @@
         private DataGridViewTextBoxColumn DiscountPrice;
         private Button buttonClose;
         private TextBox TextSearch;
+        private Label label1;
     }
 }

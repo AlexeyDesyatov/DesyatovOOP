@@ -45,6 +45,7 @@
             buttonOK = new Button();
             buttonCancel = new Button();
             buttonRandomData = new Button();
+            label1 = new Label();
             groupBoxCommon.SuspendLayout();
             groupBoxType.SuspendLayout();
             panelPercent.SuspendLayout();
@@ -53,6 +54,7 @@
             // 
             // groupBoxCommon
             // 
+            groupBoxCommon.Controls.Add(label1);
             groupBoxCommon.Controls.Add(textOriginPrice);
             groupBoxCommon.Controls.Add(textName);
             groupBoxCommon.Controls.Add(labelPrice);
@@ -78,14 +80,22 @@
             // 
             // textName
             // 
+            textName.Location = new Point(11, 58);
+            textName.Name = "textName";
+            textName.Size = new Size(100, 23);
+            textName.TabIndex = 4;
             // 
             // labelPrice
             // 
+            labelPrice.Location = new Point(7, 44);
+            labelPrice.Name = "labelPrice";
+            labelPrice.Size = new Size(116, 50);
+            labelPrice.TabIndex = 5;
             // 
             // labelName
             // 
             labelName.AutoSize = true;
-            labelName.Location = new Point(9, 27);
+            labelName.Location = new Point(11, 27);
             labelName.Name = "labelName";
             labelName.Size = new Size(103, 15);
             labelName.TabIndex = 0;
@@ -221,6 +231,15 @@
             buttonRandomData.UseVisualStyleBackColor = true;
             buttonRandomData.Click += ButtonRandomData_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(130, 27);
+            label1.Name = "label1";
+            label1.Size = new Size(92, 15);
+            label1.TabIndex = 6;
+            label1.Text = "Исходная цена:";
+            // 
             // AddDiscountForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -268,5 +287,6 @@
         private Button buttonOK;
         private Button buttonCancel;
         private Button buttonRandomData;
+        private Label label1;
     }
 }
