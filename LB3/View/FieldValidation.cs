@@ -96,15 +96,9 @@ namespace View
             string fieldName, Action<double> setter)
         {
             //TODO: RSDN
-            /// <summary>
-            /// Максимально допустимое значение процента скидки
-            /// </summary>
             const int Max = 100;
 
             //TODO: RSDN
-            /// <summary>
-            /// Минимально допустимое значение процента скидки
-            /// </summary>
             const int Min = 0;
 
             return TryValidate(
