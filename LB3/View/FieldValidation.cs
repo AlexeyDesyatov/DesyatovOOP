@@ -96,10 +96,10 @@ namespace View
             string fieldName, Action<double> setter)
         {
             //TODO: RSDN +
-            const int Max = 100;
+            const int max = 100;
 
             //TODO: RSDN +
-            const int Min = 0;
+            const int min = 0;
 
             return TryValidate(
                 action: () =>
@@ -111,10 +111,10 @@ namespace View
                         throw new IncorrectArgumentException(
                             $"Введите корректное число.");
                     }
-                    if (value < Min|| value > Max)
+                    if (value < min|| value > max)
                     {
                         throw new IncorrectArgumentException(
-                            $"{fieldName} должен быть от {Min} до {Max}.");
+                            $"{fieldName} должен быть от {min} до {max}.");
                     }
                     setter(value);
                 }, 
