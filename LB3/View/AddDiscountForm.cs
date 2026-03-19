@@ -66,7 +66,7 @@ namespace View
             double percent = 0;
 
             if (!FieldValidation.ValidateDoubleRange(textPercent, "Процент",
-                0, 100, value => percent = value))
+                 value => percent = value))
             {
                 throw new IncorrectArgumentException("Некорректный процент.");
             }

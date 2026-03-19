@@ -248,6 +248,7 @@
             Controls.Add(panelPercent);
             Controls.Add(groupBoxType);
             Controls.Add(groupBoxCommon);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             Name = "AddDiscountForm";
             Text = "AddDiscountForm";

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using Var5;
 
@@ -89,10 +90,20 @@ namespace View
         }
 
         /// <summary>
+        /// Минимально допустимое значение процента скидки
+        /// </summary>
+        private const int min = 0;
+
+        /// <summary>
+        /// Максимально допустимое значение процента скидки
+        /// </summary>
+        private const int max = 0;
+
+        /// <summary>
         /// Валидация числа в диапазоне
         /// </summary>
         public static bool ValidateDoubleRange(TextBoxBase textBox,
-            string fieldName, double min, double max, Action<double> setter)
+            string fieldName, Action<double> setter)
         {
             return TryValidate(
                 action: () =>
@@ -103,7 +114,7 @@ namespace View
                         throw new IncorrectArgumentException(
                             $"Введите корректное число.");
                     }
-                    if (value < min || value > max)
+                    if (value < min|| value > max)
                     {
                         throw new IncorrectArgumentException(
                             $"{fieldName} должен быть от {min} до {max}.");

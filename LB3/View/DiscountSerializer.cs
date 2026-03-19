@@ -8,7 +8,6 @@ namespace View
 {
     /// <summary>
     /// Статический класс для сериализации и десериализации
-    /// списка скидок в/из JSON-формата.
     /// </summary>
     public static class DiscountSerializer
     {
@@ -24,16 +23,18 @@ namespace View
         /// <summary>
         /// Сохраняет список скидок
         /// </summary>
-        /// <param name="discounts">Список скидок.</param>
-        /// <param name="path">Путь к файлу.</param>
-        public static void Save(IEnumerable<IDiscount> discounts, string path) =>
-            File.WriteAllText(path, JsonSerializer.Serialize(discounts, _jsonOptions));
+        /// <param name="discounts">Список скидок</param>
+        /// <param name="path">Путь к файлу</param>
+        public static void Save(IEnumerable<IDiscount> discounts,
+            string path) =>
+            File.WriteAllText(path,
+                JsonSerializer.Serialize(discounts, _jsonOptions));
 
         /// <summary>
         /// Загружает список скидок из файла
         /// </summary>
-        /// <param name="path">Путь к файлу.</param>
-        /// <returns>Список загруженных скидок.</returns>
+        /// <param name="path">Путь к файлу</param>
+        /// <returns>Список загруженных скидок</returns>
         public static List<IDiscount> Load(string path) =>
             JsonSerializer.Deserialize<List<IDiscount>>(
                 File.ReadAllText(path), _jsonOptions)

@@ -55,9 +55,9 @@ namespace View
         /// Кнопка добавить скидку
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="eventarg"></param>
+        /// <param name="e"></param>
         private void buttonAddDiscount_Click(object sender,
-                EventArgs eventarg)
+                EventArgs e)
         {
             var addForm = new AddDiscountForm();
 
@@ -72,9 +72,9 @@ namespace View
         /// Кнопка удалить скидку
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="eventarg"></param>
+        /// <param name="e"></param>
         private void buttonRemoveDiscount_Click(object sender,
-            EventArgs eventarg)
+            EventArgs e)
         {
             if (dataGridViewDiscounts.SelectedRows.Count > 0)
             {
@@ -94,8 +94,8 @@ namespace View
         /// Кнопка поиска
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="eventarg"></param>
-        private void buttonSearch_Click(object sender, EventArgs eventarg)
+        /// <param name="e"></param>
+        private void buttonSearch_Click(object sender, EventArgs e)
         {
             var searchForm = new SearchForm(_discounts);
             searchForm.ShowDialog();
@@ -126,8 +126,10 @@ namespace View
                 try
                 {
                     DiscountSerializer.Save(_discounts, saveDialog.FileName);
-                    MessageBox.Show($"Данные успешно сохранены в:\n{saveDialog.FileName}",
-                        "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Данные успешно сохранены " +
+                        $"в:\n{saveDialog.FileName}",
+                        "Успех", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
@@ -170,12 +172,14 @@ namespace View
                     _discounts = DiscountSerializer.Load(openDialog.FileName);
                     RefreshDataGridView();
                     MessageBox.Show($"Загружено {_discounts.Count} скидок.",
-                        "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        "Успех", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Ошибка загрузки: {ex.Message}",
-                        "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        "Ошибка", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
         }
@@ -184,8 +188,8 @@ namespace View
         /// Загрузка формы
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="eventarg"></param>
-        private void DiscountForm_Load(object sender, EventArgs eventarg)
+        /// <param name="e"></param>
+        private void DiscountForm_Load(object sender, EventArgs e)
         {
         }
     }

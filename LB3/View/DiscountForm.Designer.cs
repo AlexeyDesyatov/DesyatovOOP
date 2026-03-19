@@ -54,7 +54,7 @@
             groupBoxDiscounts.Margin = new Padding(3, 2, 3, 2);
             groupBoxDiscounts.Name = "groupBoxDiscounts";
             groupBoxDiscounts.Padding = new Padding(3, 2, 3, 2);
-            groupBoxDiscounts.Size = new Size(850, 150);
+            groupBoxDiscounts.Size = new Size(818, 323);
             groupBoxDiscounts.TabIndex = 0;
             groupBoxDiscounts.TabStop = false;
             groupBoxDiscounts.Text = "Список скидок";
@@ -63,6 +63,7 @@
             // 
             dataGridViewDiscounts.AllowUserToAddRows = false;
             dataGridViewDiscounts.AllowUserToDeleteRows = false;
+            dataGridViewDiscounts.BorderStyle = BorderStyle.None;
             dataGridViewDiscounts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewDiscounts.Columns.AddRange(new DataGridViewColumn[] { colName, DiscountType, OriginPrice, DiscountValue, DiscountPrice });
             dataGridViewDiscounts.Dock = DockStyle.Fill;
@@ -72,7 +73,7 @@
             dataGridViewDiscounts.ReadOnly = true;
             dataGridViewDiscounts.RowHeadersWidth = 51;
             dataGridViewDiscounts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewDiscounts.Size = new Size(844, 130);
+            dataGridViewDiscounts.Size = new Size(812, 303);
             dataGridViewDiscounts.TabIndex = 0;
             // 
             // colName
@@ -127,10 +128,10 @@
             panelButtons.Controls.Add(buttonSearch);
             panelButtons.Controls.Add(buttonRemoveDiscount);
             panelButtons.Controls.Add(buttonAddDiscount);
-            panelButtons.Location = new Point(26, 426);
+            panelButtons.Location = new Point(3, 327);
             panelButtons.Margin = new Padding(3, 2, 3, 2);
             panelButtons.Name = "panelButtons";
-            panelButtons.Size = new Size(802, 94);
+            panelButtons.Size = new Size(812, 92);
             panelButtons.TabIndex = 1;
             // 
             // buttonLoad
@@ -189,9 +190,10 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(850, 531);
+            ClientSize = new Size(818, 430);
             Controls.Add(panelButtons);
             Controls.Add(groupBoxDiscounts);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             Name = "DiscountForm";
             Text = "DiscountForm";

@@ -163,6 +163,7 @@
             Controls.Add(buttonSearch);
             Controls.Add(comboBoxSearchField);
             Controls.Add(labelSearchField);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 2, 3, 2);
             Name = "SearchForm";
             Text = "SearchForm";
