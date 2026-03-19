@@ -153,7 +153,9 @@ namespace View
                     MessageBoxIcon.Question);
 
                 if (result != DialogResult.Yes)
+                {
                     return;
+                }
             }
 
             using var openDialog = new OpenFileDialog

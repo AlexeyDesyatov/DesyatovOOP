@@ -121,7 +121,9 @@ namespace View
                 foreach (var validator in validators)
                 {
                     if (!validator.Value())
+                    {
                         return;
+                    }
                 }
 
                 var name = textName.Text;

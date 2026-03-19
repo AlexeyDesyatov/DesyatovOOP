@@ -62,8 +62,10 @@ namespace View
             if (!FieldValidation.TryValidate(() =>
             {
                 if (string.IsNullOrWhiteSpace(TextSearch.Text.Trim()))
+                {
                     throw new IncorrectArgumentException("Введите" +
                         " текст для поиска.");
+                }
             },
             "Текст поиска", TextSearch))
             {
