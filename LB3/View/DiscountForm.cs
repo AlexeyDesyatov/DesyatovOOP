@@ -184,7 +184,7 @@ namespace View
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка загрузки: {ex.Message}",
+                    MessageBox.Show($"Ошибка загрузки: {ex.Message}", 
                         "Ошибка", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
