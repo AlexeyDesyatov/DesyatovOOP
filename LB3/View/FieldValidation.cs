@@ -95,11 +95,13 @@ namespace View
         public static bool ValidateDoubleRange(TextBoxBase textBox,
             string fieldName, Action<double> setter)
         {
+            //TODO: RSDN
             /// <summary>
             /// Максимально допустимое значение процента скидки
             /// </summary>
             const int Max = 100;
 
+            //TODO: RSDN
             /// <summary>
             /// Минимально допустимое значение процента скидки
             /// </summary>

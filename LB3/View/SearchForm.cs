@@ -52,7 +52,6 @@ namespace View
                 $"Найдено: {results.Count}" : "Ничего не найдено")}";
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Кнопка поиска
         /// </summary>
@@ -107,7 +106,6 @@ namespace View
             RefreshResults(results);
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Кнопка завершения
         /// </summary>

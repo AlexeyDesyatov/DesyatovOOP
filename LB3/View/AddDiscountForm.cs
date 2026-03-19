@@ -96,7 +96,6 @@ namespace View
                 CertificateAmount = amount };
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Проверка введенных полей
         /// </summary>
@@ -144,7 +143,6 @@ namespace View
             }
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Кнопка создания случайного списка
         /// </summary>

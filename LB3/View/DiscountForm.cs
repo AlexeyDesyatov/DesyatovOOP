@@ -51,7 +51,6 @@ namespace View
             dataGridViewDiscounts.DataSource = _discounts;
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Кнопка добавить скидку
         /// </summary>
@@ -69,7 +68,6 @@ namespace View
             }
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Кнопка удалить скидку
         /// </summary>
@@ -92,7 +90,6 @@ namespace View
             }
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Кнопка поиска
         /// </summary>
@@ -104,7 +101,6 @@ namespace View
             searchForm.ShowDialog();
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Кнопка Сохранить
         /// </summary>
@@ -143,7 +139,6 @@ namespace View
             }
         }
 
-        //TODO: RSDN +
         /// <summary>
         /// Кнопка Загрузить
         /// </summary>
@@ -189,6 +184,5 @@ namespace View
                 }
             }
         }
-        //TODO: remove+ 
     }
 }
