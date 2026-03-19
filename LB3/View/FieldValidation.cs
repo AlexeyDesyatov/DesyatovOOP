@@ -95,16 +95,12 @@ namespace View
         public static bool ValidateDoubleRange(TextBoxBase textBox,
             string fieldName, Action<double> setter)
         {
-            //TODO: RSDN +
-            const int max = 100;
-
-            //TODO: RSDN +
-            const int min = 0;
-
             return TryValidate(
                 action: () =>
                 {
-                    
+                    const int max = 100;
+                    const int min = 0;
+
                     if (!double.TryParse(textBox.Text, NumberStyles.Any,
                         CultureInfo.InvariantCulture, out double value))
                     {
