@@ -98,12 +98,12 @@ namespace View
             /// <summary>
             /// Максимально допустимое значение процента скидки
             /// </summary>
-            const int max = 100;
+            const int Max = 100;
 
             /// <summary>
             /// Минимально допустимое значение процента скидки
             /// </summary>
-            const int min = 0;
+            const int Min = 0;
 
             return TryValidate(
                 action: () =>
@@ -115,10 +115,10 @@ namespace View
                         throw new IncorrectArgumentException(
                             $"Введите корректное число.");
                     }
-                    if (value < min|| value > max)
+                    if (value < Min|| value > Max)
                     {
                         throw new IncorrectArgumentException(
-                            $"{fieldName} должен быть от {min} до {max}.");
+                            $"{fieldName} должен быть от {Min} до {Max}.");
                     }
                     setter(value);
                 }, 
