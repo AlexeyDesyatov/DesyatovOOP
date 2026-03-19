@@ -95,10 +95,10 @@ namespace View
         public static bool ValidateDoubleRange(TextBoxBase textBox,
             string fieldName, Action<double> setter)
         {
-            //TODO: RSDN
+            //TODO: RSDN +
             const int Max = 100;
 
-            //TODO: RSDN
+            //TODO: RSDN +
             const int Min = 0;
 
             return TryValidate(

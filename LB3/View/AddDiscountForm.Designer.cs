@@ -256,7 +256,7 @@
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "AddDiscountForm";
-            Text = "AddDiscountForm";
+            Text = "Добавление скидки";
             groupBoxCommon.ResumeLayout(false);
             groupBoxCommon.PerformLayout();
             groupBoxType.ResumeLayout(false);

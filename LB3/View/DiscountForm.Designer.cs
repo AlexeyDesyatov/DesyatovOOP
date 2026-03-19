@@ -197,7 +197,7 @@
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "DiscountForm";
-            Text = "DiscountForm";
+            Text = "Форма со списком скидок";
             groupBoxDiscounts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewDiscounts).EndInit();
             panelButtons.ResumeLayout(false);
