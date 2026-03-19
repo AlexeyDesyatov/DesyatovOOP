@@ -97,7 +97,7 @@ namespace View
         /// <summary>
         /// Максимально допустимое значение процента скидки
         /// </summary>
-        private const int max = 0;
+        private const int max = 100;
 
         /// <summary>
         /// Валидация числа в диапазоне
