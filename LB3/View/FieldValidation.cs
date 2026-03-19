@@ -88,12 +88,13 @@ namespace View
                 textBox
             );
         }
-
+        //TODO: RSDN
         /// <summary>
         /// Минимально допустимое значение процента скидки
         /// </summary>
         private const int min = 0;
 
+        //TODO: RSDN
         /// <summary>
         /// Максимально допустимое значение процента скидки
         /// </summary>

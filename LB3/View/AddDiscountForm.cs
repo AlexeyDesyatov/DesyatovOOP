@@ -96,6 +96,7 @@ namespace View
                 CertificateAmount = amount };
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Проверка введенных полей
         /// </summary>
@@ -143,6 +144,7 @@ namespace View
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Кнопка создания случайного списка
         /// </summary>
@@ -174,7 +176,9 @@ namespace View
                 textAmount.Text = random.Next(50, 5001).ToString();
             }
         }
+        //TODO: remove
         private void labelPrice_Click(object sender, EventArgs e) { }
+        //TODO: remove
         private void maskedTextBox1_MaskInputRejected(object sender,
             MaskInputRejectedEventArgs e) { }
     }

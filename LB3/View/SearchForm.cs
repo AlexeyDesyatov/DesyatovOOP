@@ -51,6 +51,7 @@ namespace View
                 $"Найдено: {results.Count}" : "Ничего не найдено")}";
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Кнопка поиска
         /// </summary>
@@ -77,9 +78,14 @@ namespace View
 
             var searchFunctions = new Dictionary<string, Func<List<IDiscount>>>
             {
-                { "Название скидки", () => _allDiscounts
-                    .Where(discount => discount?.Name?.Contains(searchText,
-                    StringComparison.OrdinalIgnoreCase) == true).ToList()},
+                { 
+                    "Название скидки", 
+                    () => _allDiscounts.Where(
+                        discount => discount?.Name?.Contains(
+                            searchText, 
+                            StringComparison.OrdinalIgnoreCase) == true)
+                    .ToList()
+                },
 
                 { "Тип скидки", () => _allDiscounts
                     .Where(discount => discount?.DiscountType?.Contains(
@@ -100,6 +106,7 @@ namespace View
             RefreshResults(results);
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Кнопка завершения
         /// </summary>
