@@ -208,7 +208,7 @@
             // 
             // buttonOK
             // 
-            buttonOK.DialogResult = DialogResult.OK;
+            buttonOK.DialogResult = System.Windows.Forms.DialogResult.None;
             buttonOK.Location = new Point(12, 245);
             buttonOK.Margin = new Padding(3, 2, 3, 2);
             buttonOK.Name = "buttonOK";

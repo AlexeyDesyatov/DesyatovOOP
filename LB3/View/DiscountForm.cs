@@ -40,6 +40,8 @@ namespace View
             dataGridViewDiscounts.ReadOnly = true;
             dataGridViewDiscounts.AllowUserToAddRows = false;
             dataGridViewDiscounts.AllowUserToDeleteRows = false;
+            dataGridViewDiscounts.MultiSelect = true;
+            dataGridViewDiscounts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         /// <summary>
@@ -76,18 +78,24 @@ namespace View
         private void ButtonRemoveDiscount_Click(object sender,
             EventArgs e)
         {
-            if (dataGridViewDiscounts.SelectedRows.Count > 0)
-            {
-                var selectedDiscount =
-                    (IDiscount)dataGridViewDiscounts.SelectedRows[0].DataBoundItem;
-                _discounts.Remove(selectedDiscount);
-                RefreshDataGridView();
-            }
-            else
+            if (dataGridViewDiscounts.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Выберите скидку для удаления.", "Внимание",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            var discountsToRemove = dataGridViewDiscounts.SelectedRows
+                .Cast<DataGridViewRow>()
+                .Select(row => (IDiscount)row.DataBoundItem)
+                .ToList();
+
+            foreach (var discount in discountsToRemove)
+            {
+                _discounts.Remove(discount);
+            }
+
+            RefreshDataGridView();
         }
 
         /// <summary>

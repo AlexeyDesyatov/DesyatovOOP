@@ -140,6 +140,7 @@ namespace View
             {
                 MessageBox.Show(ex.Message, "Ошибка",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
 
