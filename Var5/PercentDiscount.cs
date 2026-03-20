@@ -53,5 +53,11 @@ namespace Var5
         /// Расчет стоимости
         /// </summary>
         public override double DiscountValue => OriginPrice * Percent / 100;
+
+        /// <summary>
+        /// Отображаемый размер скидки (процент и сумма)
+        /// </summary>
+        public override string DiscountValueDisplay =>
+            $"{DiscountValue:F2} ({Percent}%)";
     }
 }

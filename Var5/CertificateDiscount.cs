@@ -42,5 +42,11 @@ namespace Var5
         /// Расчет стоимости
         /// </summary>
         public override double DiscountValue => Math.Min(_certificateAmount, OriginPrice);
+
+        /// <summary>
+        /// Отображаемый размер скидки (только сумма)
+        /// </summary>
+        public override string DiscountValueDisplay =>
+            $"{CertificateAmount}";
     }
 }

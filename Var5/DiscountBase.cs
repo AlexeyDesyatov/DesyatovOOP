@@ -95,5 +95,11 @@ namespace Var5
         /// Расчет скидки
         /// </summary>
         public abstract double DiscountValue { get; }
+
+        /// <summary>
+        /// Отображаемый размер скидки
+        /// </summary>
+        public virtual string DiscountValueDisplay => DiscountValue.ToString("F2");
+
     }
 }

@@ -200,7 +200,7 @@
             // labelAmount
             // 
             labelAmount.AutoSize = true;
-            labelAmount.Location = new Point(14, 16);
+            labelAmount.Location = new Point(12, 16);
             labelAmount.Name = "labelAmount";
             labelAmount.Size = new Size(121, 15);
             labelAmount.TabIndex = 0;

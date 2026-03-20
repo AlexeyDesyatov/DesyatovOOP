@@ -30,17 +30,17 @@
         {
             groupBoxDiscounts = new GroupBox();
             dataGridViewDiscounts = new DataGridView();
-            colName = new DataGridViewTextBoxColumn();
-            DiscountType = new DataGridViewTextBoxColumn();
-            OriginPrice = new DataGridViewTextBoxColumn();
-            DiscountValue = new DataGridViewTextBoxColumn();
-            DiscountPrice = new DataGridViewTextBoxColumn();
             panelButtons = new Panel();
             buttonLoad = new Button();
             buttonSave = new Button();
             buttonSearch = new Button();
             buttonRemoveDiscount = new Button();
             buttonAddDiscount = new Button();
+            colName = new DataGridViewTextBoxColumn();
+            DiscountType = new DataGridViewTextBoxColumn();
+            OriginPrice = new DataGridViewTextBoxColumn();
+            DiscountValue = new DataGridViewTextBoxColumn();
+            DiscountPrice = new DataGridViewTextBoxColumn();
             groupBoxDiscounts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewDiscounts).BeginInit();
             panelButtons.SuspendLayout();
@@ -75,51 +75,6 @@
             dataGridViewDiscounts.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewDiscounts.Size = new Size(814, 320);
             dataGridViewDiscounts.TabIndex = 0;
-            // 
-            // colName
-            // 
-            colName.DataPropertyName = "Name";
-            colName.HeaderText = "Название скидки";
-            colName.MinimumWidth = 6;
-            colName.Name = "colName";
-            colName.ReadOnly = true;
-            colName.Width = 160;
-            // 
-            // DiscountType
-            // 
-            DiscountType.DataPropertyName = "DiscountType";
-            DiscountType.HeaderText = "Тип скидки";
-            DiscountType.MinimumWidth = 6;
-            DiscountType.Name = "DiscountType";
-            DiscountType.ReadOnly = true;
-            DiscountType.Width = 150;
-            // 
-            // OriginPrice
-            // 
-            OriginPrice.DataPropertyName = "OriginPrice";
-            OriginPrice.HeaderText = "Исходная цена";
-            OriginPrice.MinimumWidth = 6;
-            OriginPrice.Name = "OriginPrice";
-            OriginPrice.ReadOnly = true;
-            OriginPrice.Width = 150;
-            // 
-            // DiscountValue
-            // 
-            DiscountValue.DataPropertyName = "DiscountValue";
-            DiscountValue.HeaderText = "Размер скидки";
-            DiscountValue.MinimumWidth = 6;
-            DiscountValue.Name = "DiscountValue";
-            DiscountValue.ReadOnly = true;
-            DiscountValue.Width = 150;
-            // 
-            // DiscountPrice
-            // 
-            DiscountPrice.DataPropertyName = "DiscountPrice";
-            DiscountPrice.HeaderText = "Итоговая цена";
-            DiscountPrice.MinimumWidth = 6;
-            DiscountPrice.Name = "DiscountPrice";
-            DiscountPrice.ReadOnly = true;
-            DiscountPrice.Width = 150;
             // 
             // panelButtons
             // 
@@ -186,6 +141,51 @@
             buttonAddDiscount.UseVisualStyleBackColor = true;
             buttonAddDiscount.Click += ButtonAddDiscount_Click;
             // 
+            // colName
+            // 
+            colName.DataPropertyName = "Name";
+            colName.HeaderText = "Название скидки";
+            colName.MinimumWidth = 6;
+            colName.Name = "colName";
+            colName.ReadOnly = true;
+            colName.Width = 160;
+            // 
+            // DiscountType
+            // 
+            DiscountType.DataPropertyName = "DiscountType";
+            DiscountType.HeaderText = "Тип скидки";
+            DiscountType.MinimumWidth = 6;
+            DiscountType.Name = "DiscountType";
+            DiscountType.ReadOnly = true;
+            DiscountType.Width = 150;
+            // 
+            // OriginPrice
+            // 
+            OriginPrice.DataPropertyName = "OriginPrice";
+            OriginPrice.HeaderText = "Исходная цена, ₽";
+            OriginPrice.MinimumWidth = 6;
+            OriginPrice.Name = "OriginPrice";
+            OriginPrice.ReadOnly = true;
+            OriginPrice.Width = 150;
+            // 
+            // DiscountValue
+            // 
+            DiscountValue.DataPropertyName = "DiscountValueDisplay";
+            DiscountValue.HeaderText = "Размер скидки, ₽";
+            DiscountValue.MinimumWidth = 6;
+            DiscountValue.Name = "DiscountValue";
+            DiscountValue.ReadOnly = true;
+            DiscountValue.Width = 150;
+            // 
+            // DiscountPrice
+            // 
+            DiscountPrice.DataPropertyName = "DiscountPrice";
+            DiscountPrice.HeaderText = "Итоговая цена, ₽";
+            DiscountPrice.MinimumWidth = 6;
+            DiscountPrice.Name = "DiscountPrice";
+            DiscountPrice.ReadOnly = true;
+            DiscountPrice.Width = 150;
+            // 
             // DiscountForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -211,13 +211,13 @@
         private Panel panelButtons;
         private Button buttonRemoveDiscount;
         private Button buttonAddDiscount;
+        private Button buttonSearch;
+        private Button buttonLoad;
+        private Button buttonSave;
         private DataGridViewTextBoxColumn colName;
         private DataGridViewTextBoxColumn DiscountType;
         private DataGridViewTextBoxColumn OriginPrice;
         private DataGridViewTextBoxColumn DiscountValue;
         private DataGridViewTextBoxColumn DiscountPrice;
-        private Button buttonSearch;
-        private Button buttonLoad;
-        private Button buttonSave;
     }
 }

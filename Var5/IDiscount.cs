@@ -39,5 +39,10 @@ namespace Var5
         /// Cкидка
         /// </summary>
         double DiscountValue { get; }
+
+        /// <summary>
+        /// Отображаемый размер скидки
+        /// </summary>
+        string DiscountValueDisplay { get; }
     }
 }
