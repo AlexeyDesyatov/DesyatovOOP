@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBoxCommon = new GroupBox();
+            textOriginPrice = new TextBox();
             label1 = new Label();
             textName = new MaskedTextBox();
             labelPrice = new Label();
@@ -45,7 +46,6 @@
             buttonOK = new Button();
             buttonCancel = new Button();
             buttonRandomData = new Button();
-            textOriginPrice = new TextBox();
             groupBoxCommon.SuspendLayout();
             groupBoxType.SuspendLayout();
             panelPercent.SuspendLayout();
@@ -68,6 +68,14 @@
             groupBoxCommon.TabStop = false;
             groupBoxCommon.Text = "Общие параметры";
             // 
+            // textOriginPrice
+            // 
+            textOriginPrice.Location = new Point(134, 63);
+            textOriginPrice.MaxLength = 10;
+            textOriginPrice.Name = "textOriginPrice";
+            textOriginPrice.Size = new Size(39, 23);
+            textOriginPrice.TabIndex = 2;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -82,7 +90,7 @@
             textName.Location = new Point(134, 22);
             textName.Name = "textName";
             textName.Size = new Size(110, 23);
-            textName.TabIndex = 4;
+            textName.TabIndex = 1;
             // 
             // labelPrice
             // 
@@ -120,7 +128,7 @@
             radioButtonCertificate.Margin = new Padding(3, 2, 3, 2);
             radioButtonCertificate.Name = "radioButtonCertificate";
             radioButtonCertificate.Size = new Size(114, 19);
-            radioButtonCertificate.TabIndex = 1;
+            radioButtonCertificate.TabIndex = 4;
             radioButtonCertificate.TabStop = true;
             radioButtonCertificate.Text = "По сертификату";
             radioButtonCertificate.UseVisualStyleBackColor = true;
@@ -132,7 +140,7 @@
             radioButtonPercent.Margin = new Padding(3, 2, 3, 2);
             radioButtonPercent.Name = "radioButtonPercent";
             radioButtonPercent.Size = new Size(92, 19);
-            radioButtonPercent.TabIndex = 0;
+            radioButtonPercent.TabIndex = 3;
             radioButtonPercent.Text = "Процентная";
             radioButtonPercent.UseVisualStyleBackColor = true;
             // 
@@ -185,7 +193,7 @@
             textAmount.Mask = "9999999999999999999";
             textAmount.Name = "textAmount";
             textAmount.Size = new Size(38, 23);
-            textAmount.TabIndex = 1;
+            textAmount.TabIndex = 5;
             // 
             // labelAmount
             // 
@@ -228,13 +236,6 @@
             buttonRandomData.Text = "Случайные данные";
             buttonRandomData.UseVisualStyleBackColor = true;
             buttonRandomData.Click += ButtonRandomData_Click;
-            // 
-            // textOriginPrice
-            // 
-            textOriginPrice.Location = new Point(134, 63);
-            textOriginPrice.Name = "textOriginPrice";
-            textOriginPrice.Size = new Size(39, 23);
-            textOriginPrice.TabIndex = 7;
             // 
             // AddDiscountForm
             // 
