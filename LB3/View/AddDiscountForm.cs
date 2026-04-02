@@ -107,14 +107,17 @@ namespace View
             {
                 if (!radioButtonPercent.Checked && !radioButtonCertificate.Checked)
                 {
-                    throw new IncorrectArgumentException("Выберите тип скидки.");
+                    throw new IncorrectArgumentException
+                        ("Выберите тип скидки.");
                 }
 
                 var validators = new Dictionary<string, Func<bool>>
                 {
-                    { "Название", () => FieldValidation.ValidateString(textName,
+                    { "Название", () => FieldValidation
+                    .ValidateString(textName,
                         "Название скидки", _ => {}) },
-                    { "Цена", () => FieldValidation.ValidateDouble(textOriginPrice,
+                    { "Цена", () => FieldValidation
+                    .ValidateDouble(textOriginPrice,
                         "Исходная цена", _ => {}) }
                 };
 
@@ -127,7 +130,8 @@ namespace View
                 }
 
                 var name = textName.Text;
-                var price = double.Parse(textOriginPrice.Text,
+                var price = double.Parse(textOriginPrice.Text
+                    .Replace(',', '.'),
                     CultureInfo.InvariantCulture);
 
                 NewDiscount = radioButtonPercent.Checked
