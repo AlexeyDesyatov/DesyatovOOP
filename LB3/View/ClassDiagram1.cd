@@ -8,7 +8,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="View.DiscountForm">
-    <Position X="7.25" Y="0.75" Width="2.75" />
+    <Position X="7.25" Y="1.25" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AACAEQgEADAAAAAAwICAEAICAgEQBACAIAgCAAAIAAA=</HashCode>
       <FileName>DiscountForm.cs</FileName>
@@ -41,6 +41,25 @@
       <HashCode>AAAAEQIAACAQCDAAIICCgQICAgAAgAAAAAgCAAAAAAA=</HashCode>
       <FileName>SearchForm.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="Var5.DiscountBase">
+    <Position X="12.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Var5.PercentDiscount">
+    <Position X="15" Y="1.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Var5.CertificateDiscount">
+    <Position X="15" Y="4.25" Width="1.75" />
+    <InheritanceLine Type="Var5.DiscountBase" FixedToPoint="true">
+      <Path>
+        <Point X="14" Y="4.562" />
+        <Point X="15" Y="4.562" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
