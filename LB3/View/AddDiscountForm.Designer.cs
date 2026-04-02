@@ -30,7 +30,6 @@
         {
             groupBoxCommon = new GroupBox();
             label1 = new Label();
-            textOriginPrice = new MaskedTextBox();
             textName = new MaskedTextBox();
             labelPrice = new Label();
             labelName = new Label();
@@ -46,6 +45,7 @@
             buttonOK = new Button();
             buttonCancel = new Button();
             buttonRandomData = new Button();
+            textOriginPrice = new TextBox();
             groupBoxCommon.SuspendLayout();
             groupBoxType.SuspendLayout();
             panelPercent.SuspendLayout();
@@ -54,8 +54,8 @@
             // 
             // groupBoxCommon
             // 
-            groupBoxCommon.Controls.Add(label1);
             groupBoxCommon.Controls.Add(textOriginPrice);
+            groupBoxCommon.Controls.Add(label1);
             groupBoxCommon.Controls.Add(textName);
             groupBoxCommon.Controls.Add(labelPrice);
             groupBoxCommon.Controls.Add(labelName);
@@ -76,16 +76,6 @@
             label1.Size = new Size(92, 15);
             label1.TabIndex = 6;
             label1.Text = "Исходная цена:";
-            // 
-            // textOriginPrice
-            // 
-            textOriginPrice.AllowPromptAsInput = false;
-            textOriginPrice.Location = new Point(134, 62);
-            textOriginPrice.Margin = new Padding(3, 2, 3, 2);
-            textOriginPrice.Mask = "99999999999999999999";
-            textOriginPrice.Name = "textOriginPrice";
-            textOriginPrice.Size = new Size(38, 23);
-            textOriginPrice.TabIndex = 3;
             // 
             // textName
             // 
@@ -208,7 +198,6 @@
             // 
             // buttonOK
             // 
-            buttonOK.DialogResult = System.Windows.Forms.DialogResult.None;
             buttonOK.Location = new Point(12, 245);
             buttonOK.Margin = new Padding(3, 2, 3, 2);
             buttonOK.Name = "buttonOK";
@@ -239,6 +228,13 @@
             buttonRandomData.Text = "Случайные данные";
             buttonRandomData.UseVisualStyleBackColor = true;
             buttonRandomData.Click += ButtonRandomData_Click;
+            // 
+            // textOriginPrice
+            // 
+            textOriginPrice.Location = new Point(134, 63);
+            textOriginPrice.Name = "textOriginPrice";
+            textOriginPrice.Size = new Size(39, 23);
+            textOriginPrice.TabIndex = 7;
             // 
             // AddDiscountForm
             // 
@@ -275,7 +271,6 @@
         private Label labelPrice;
         private GroupBox groupBoxType;
         private MaskedTextBox textName;
-        private MaskedTextBox textOriginPrice;
         private RadioButton radioButtonCertificate;
         private RadioButton radioButtonPercent;
         private Panel panelPercent;
@@ -288,5 +283,6 @@
         private Button buttonCancel;
         private Button buttonRandomData;
         private Label label1;
+        private TextBox textOriginPrice;
     }
 }
