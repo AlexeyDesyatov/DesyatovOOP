@@ -39,7 +39,7 @@ namespace Var5
             get => _percent;
             set
             {
-                if (value < MinPercent || value > MaxPercent)
+                if (double.IsNaN(value) || value < MinPercent || value > MaxPercent)
                 {
                     throw new IncorrectArgumentException(
                         $"Процент скидки должен быть " +

@@ -29,7 +29,7 @@ namespace Var5
             get => _certificateAmount;
             set
             {
-                if (value <= 0)
+                if (double.IsNaN(value) || value <= 0)
                 {
                     throw new IncorrectArgumentException(
                         "Сумма сертификата должна быть положительной.");

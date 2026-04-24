@@ -62,7 +62,7 @@ namespace Var5
         /// <exception cref="IncorrectArgumentException"></exception>
         private void SetPrice(double value)
         {
-            if (value < 0)
+            if (double.IsNaN(value) || value < 0)
             {
                 throw new IncorrectArgumentException(
                     "Цена не может быть отрицательной.");
