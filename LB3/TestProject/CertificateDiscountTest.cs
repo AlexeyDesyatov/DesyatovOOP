@@ -10,11 +10,6 @@ namespace UnitTests.Model
     public class CertificateDiscountTest
     {
         /// <summary>
-		/// Отклонение для double
-		/// </summary>
-		private const double Deviation = 0.01;
-
-        /// <summary>
         /// Тестирование свойства CertificateAmount
         /// </summary>
         [Test]
@@ -141,7 +136,7 @@ namespace UnitTests.Model
                 OriginPrice = originPrice,
                 CertificateAmount = certAmount
             };
-            Assert.AreEqual(expected, discount.DiscountValue, Deviation);
+            Assert.AreEqual(expected, discount.DiscountValue, DiscountBaseTest.Tolerance);
         }
         [Test]
         [TestCase(
@@ -167,7 +162,7 @@ namespace UnitTests.Model
                 OriginPrice = originPrice,
                 CertificateAmount = certAmount
             };
-            Assert.AreEqual(expected, discount.DiscountValue, Deviation);
+            Assert.AreEqual(expected, discount.DiscountValue, DiscountBaseTest.Tolerance);
         }
 
         /// <summary>
@@ -207,7 +202,7 @@ namespace UnitTests.Model
                 OriginPrice = originPrice,
                 CertificateAmount = certAmount
             };
-            Assert.AreEqual(expected, discount.DiscountPrice, Deviation);
+            Assert.AreEqual(expected, discount.DiscountPrice, DiscountBaseTest.Tolerance);
         }
     }
 }

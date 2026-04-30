@@ -10,6 +10,11 @@ namespace UnitTests.Model
     public class DiscountBaseTest
     {
         /// <summary>
+        /// Отклонение для double
+        /// </summary>
+        public const double Tolerance = 0.01;
+
+        /// <summary>
         /// Тестирование свойства Name
         /// </summary>
         [Test]
